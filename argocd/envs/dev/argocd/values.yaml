@@ -7,8 +7,10 @@ configs:
     passwordPattern: "^.{4,32}$"
     url: 'http://localhost:8080/'
     statusbadge.url: 'http://localhost:8080/'
-    accounts.oisis: apiKey, login
-    accounts.oisis.enabled: true
+    accounts.root: apiKey, login
+    accounts.root.enabled: true
+    accounts.viewer: login
+    accounts.viewer.enabled: true
   rbac:
     # RBAC doc: https://argo-cd.readthedocs.io/en/stable/operator-manual/rbac/
     # https://github.com/argoproj/argo-cd/blob/master/assets/builtin-policy.csv
@@ -49,13 +51,16 @@ configs:
       p, role:viewer, logs, get, */*, deny
       p, role:viewer, exec, create, */*, deny
       g, admin, role:admin
-      g, oisis, role:viewer
+      g, root, role:admin
+      g, viewer, role:viewer
     policy.default: role:readonly
   secret:
     extra:
       # HOWTO: https://github.com/argoproj/argo-cd/blob/master/docs/operator-manual/argocd-secret.yaml
       # To generate password run command: htpasswd -nbBC 10 "" admin123 | tr -d ':\n' | sed 's/$2y/$2a/'
-      # oisis password: oisis
-      accounts.oisis.password: $2a$10$/GN2Nnl2WGQnjOnFLgzBn.1B2o.fIa7RQkAcqvwgTL4/Ai1xU2tui
       # admin password: admin
       admin.password: $2a$10$WeVnTGLH/oq1XSuVIkGj6udjNQmizKhZyeuLKClTz.KLkvwaO.T0a
+      # root password: root
+      accounts.root.password: $2a$10$CnKwv3a19BhDTCHWUplCYOYSjH327ELWVUxzfQ.DABviVKaN4tXCC
+      # viewer password: viewer
+      accounts.viewer.password: $2a$10$xWt7ReCGnmITwTSFkQDs6eBt3derfSmVUCU16HUug7uChWkUgb9zu
