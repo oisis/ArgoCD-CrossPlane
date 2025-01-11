@@ -143,6 +143,11 @@ configs:
           end
 
           return health_status
+    resource.exclusions: |
+      - apiGroups:
+        - "*"
+        kinds:
+        - ProviderConfigUsage
   rbac:
     # RBAC doc: https://argo-cd.readthedocs.io/en/stable/operator-manual/rbac/
     # https://github.com/argoproj/argo-cd/blob/master/assets/builtin-policy.csv
