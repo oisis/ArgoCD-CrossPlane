@@ -5,8 +5,8 @@ metadata:
   name: aws-provider-config
 spec:
   credentials:
+    source: Secret
     secretRef:
-      key: credentials
+      key: creds
       name: aws-secret
       namespace: crossplane-system
-    source: Secret
