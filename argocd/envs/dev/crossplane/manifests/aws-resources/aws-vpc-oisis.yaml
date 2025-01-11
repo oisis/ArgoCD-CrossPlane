@@ -62,3 +62,6 @@ spec:
       - destinationCidrBlock: "0.0.0.0/0"
         gatewayIdRef:
           name: cp-vpc-igw
+    tags:
+      - key: Name
+        value: CP-example-rt
