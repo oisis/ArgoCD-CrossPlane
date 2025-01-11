@@ -16,7 +16,7 @@ spec:
                     repoURL: https://github.com/oisis/ArgoCD-CrossPlane.git
                     revision: HEAD
                     files:
-                      - path: envs/dev/apps-config.yaml
+                      - path: argocd/envs/dev/apps-config.yaml
                 - list:
                     elementsYaml: "{{ .k8s_manifest_apps | toJson }}"
           - matrix:
@@ -25,7 +25,7 @@ spec:
                     repoURL: https://github.com/oisis/ArgoCD-CrossPlane.git
                     revision: HEAD
                     files:
-                      - path: envs/dev/apps-config.yaml
+                      - path: argocd/envs/dev/apps-config.yaml
                 - list:
                     elementsYaml: "{{ .common_params | toJson }}"
   template:
@@ -41,12 +41,12 @@ spec:
       sources:
         - repoURL: https://github.com/oisis/ArgoCD-CrossPlane.git
           targetRevision: HEAD
-          path: apps/{{.config_dir}}
+          path: argocd/apps/{{.config_dir}}
           directory:
             recurse: true
         - repoURL: https://github.com/oisis/ArgoCD-CrossPlane.git
           targetRevision: HEAD
-          path: envs/{{.environment}}/{{.config_dir}}
+          path: argocd/envs/{{.environment}}/{{.config_dir}}
           directory:
             recurse: true
       destination:
