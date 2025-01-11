@@ -11,6 +11,7 @@ configs:
     accounts.root.enabled: true
     accounts.viewer: login
     accounts.viewer.enabled: true
+    application.resourceTrackingMethod: annotation
   rbac:
     # RBAC doc: https://argo-cd.readthedocs.io/en/stable/operator-manual/rbac/
     # https://github.com/argoproj/argo-cd/blob/master/assets/builtin-policy.csv
