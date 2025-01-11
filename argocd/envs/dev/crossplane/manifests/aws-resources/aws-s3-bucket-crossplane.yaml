@@ -8,6 +8,16 @@ spec:
     name: aws-provider-config
   forProvider:
     locationConstraint: us-east-1
+    corsConfiguration:
+      corsRules:
+        - allowedHeaders:
+            - "*"
+          allowedMethods:
+            - GET
+          allowedOrigins:
+            - "*"
+          exposeHeaders:
+            - x-amz-server-side-encryption
     versioningConfiguration:
       status: Enabled
     tagging:
