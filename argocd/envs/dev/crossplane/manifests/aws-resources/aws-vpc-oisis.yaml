@@ -41,6 +41,7 @@ spec:
   providerConfigRef:
     name: aws-provider-config
   forProvider:
+    region: us-east-1
     vpcIdRef:
       name: cp-vpc
 ---
