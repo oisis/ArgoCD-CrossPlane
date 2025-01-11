@@ -23,5 +23,5 @@ ARGOPASS=$(argocd admin initial-password -n argocd | head -n 1)
 printf "${GREEN}ArgoCD admin password${NC}: ${RED}${ARGOPASS}${NC}\n"
 
 printf "${GREEN}To get access to ArgoCD UI run command:${NC}\n"
-printf "    kubectl port-forward svc/argocd-server -n argocd 8080:443$\n"
+printf "    kubectl port-forward svc/argocd-server -n argocd 8080:443\n"
 printf "${GREEN}Open http://localhost:8080 in webbrowser${NC}\n"
