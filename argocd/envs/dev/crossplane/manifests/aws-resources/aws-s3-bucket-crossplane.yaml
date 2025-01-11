@@ -5,7 +5,7 @@ metadata:
   name: oisis-cp-bucket-example
 spec:
   providerConfigRef:
-    name: default
+    name: aws-provider-config
   forProvider:
     acl: private
     locationConstraint: us-east-1

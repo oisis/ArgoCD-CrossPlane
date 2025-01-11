@@ -5,7 +5,7 @@ metadata:
   name: cp-vpc
 spec:
   providerConfigRef:
-    name: default
+    name: aws-provider-config
   forProvider:
     cidrBlock: "10.0.0.0/16"
     enableDnsSupport: true
@@ -17,7 +17,7 @@ metadata:
   name: cp-vpc-sn
 spec:
   providerConfigRef:
-    name: default
+    name: aws-provider-config
   forProvider:
     vpcIdRef:
       name: cp-vpc
@@ -32,7 +32,7 @@ metadata:
   name: cp-vpc-igw
 spec:
   providerConfigRef:
-    name: default
+    name: aws-provider-config
   forProvider:
     vpcIdRef:
       name: cp-vpc
@@ -43,8 +43,9 @@ metadata:
   name: cp-vpc-rt
 spec:
   providerConfigRef:
-    name: default
+    name: aws-provider-config
   forProvider:
+    region: us-east-1
     associations:
       - subnetIdRef:
           name: cp-vpc-sn
