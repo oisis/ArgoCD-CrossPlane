@@ -10,9 +10,3 @@ spec:
       name: aws-secret
       namespace: crossplane-system
     source: Secret
-  endpoint:
-    url:
-      dynamic:
-        host: amazonaws.com
-        protocol: https
-      type: Dynamic
