@@ -44,6 +44,9 @@ spec:
     region: us-east-1
     vpcIdRef:
       name: cp-vpc
+    tags:
+      - key: Name
+        value: CP-example-igw
 ---
 apiVersion: ec2.aws.crossplane.io/v1beta1
 kind: RouteTable
