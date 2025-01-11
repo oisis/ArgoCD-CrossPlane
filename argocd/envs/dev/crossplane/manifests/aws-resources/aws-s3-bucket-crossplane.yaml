@@ -7,7 +7,7 @@ spec:
   providerConfigRef:
     name: default
   forProvider:
-    acl: privat
+    acl: private
     locationConstraint: us-east-1
     versioningConfiguration:
       status: Enabled
