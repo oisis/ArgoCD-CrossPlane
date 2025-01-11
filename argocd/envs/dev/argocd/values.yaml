@@ -142,7 +142,7 @@ configs:
             end
           end
 
-        return health_status
+          return health_status
   rbac:
     # RBAC doc: https://argo-cd.readthedocs.io/en/stable/operator-manual/rbac/
     # https://github.com/argoproj/argo-cd/blob/master/assets/builtin-policy.csv
