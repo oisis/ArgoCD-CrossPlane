@@ -11,6 +11,9 @@ spec:
     cidrBlock: "10.0.0.0/16"
     enableDnsSupport: true
     enableDnsHostNames: true
+    tags:
+      - key: Name
+        value: CP-example
 ---
 apiVersion: ec2.aws.crossplane.io/v1beta1
 kind: Subnet
