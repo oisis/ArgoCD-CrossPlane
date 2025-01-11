@@ -7,7 +7,7 @@ NC='\033[0m'
 printf "${GREEN}Adding ArgoCD Helm repo${NC}\n"
 helm repo add argocd https://argoproj.github.io/argo-helm
 
-print "${GREEN} Update Helm local repos cache${NC}\n"
+printf "${GREEN} Update Helm local repos cache${NC}\n"
 helm repo update
 
 printf "${GREEN}Installing ArgoCD with Helm${NC}\n"
