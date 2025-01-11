@@ -9,7 +9,7 @@ spec:
   forProvider:
     cidrBlock: "10.0.0.0/16"
     enableDnsSupport: true
-    enableDnsHostnames: true
+    enableDnsHostNames: true
 ---
 apiVersion: ec2.aws.crossplane.io/v1beta1
 kind: Subnet
@@ -21,9 +21,10 @@ spec:
   forProvider:
     vpcIdRef:
       name: cp-vpc
+    region: us-east-1
     cidrBlock: "10.0.1.0/24"
     availabilityZone: "us-east-1a"
-    mapPublicIpOnLaunch: true
+    mapPublicIPOnLaunch: true
 ---
 apiVersion: ec2.aws.crossplane.io/v1beta1
 kind: InternetGateway
@@ -44,22 +45,12 @@ spec:
   providerConfigRef:
     name: default
   forProvider:
+    associations:
+      - subnetIdRef:
+          name: cp-vpc-sn
     vpcIdRef:
       name: cp-vpc
     routes:
       - destinationCidrBlock: "0.0.0.0/0"
         gatewayIdRef:
           name: cp-vpc-igw
----
-apiVersion: ec2.aws.crossplane.io/v1beta1
-kind: RouteTableAssociation
-metadata:
-  name: cp-vpc-rt-association
-spec:
-  providerConfigRef:
-    name: default
-  forProvider:
-    routeTableIdRef:
-      name: cp-vpc-rt
-    subnetIdRef:
-      name: my-subnet
