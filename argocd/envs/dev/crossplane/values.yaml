@@ -1,0 +1,6 @@
+provider:
+  packages:
+    - name: provider-aws-s3
+      package: "xpkg.upbound.io/upbound/provider-aws-s3:v1.17.0"
+    - name: provider-aws-vpc
+      package: "xpkg.upbound.io/upbound/provider-aws-vpc:v1"
