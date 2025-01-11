@@ -1,4 +1,4 @@
-# ArgoCD-example
+# ArgoCD-CrossPlane
 ArgoCD test environment, operating on a local machine using Docker Desktop.
 
 ### 1. Prerequisites
@@ -6,27 +6,19 @@ ArgoCD test environment, operating on a local machine using Docker Desktop.
 * [kubectl](https://kubernetes.io/docs/tasks/tools/)
 * [argocd](https://argo-cd.readthedocs.io/en/stable/cli_installation/)
 * [helm](https://helm.sh/docs/intro/install/)
-* Copy of two repositories: _apps_ and _argocd_
-* Create token with access to _apps_ and _argocd_ repositories, access level: _api. api_read, repo_read_
 
 ### 2. Run Docker desktop in Kubernetes mode:
 Follow this [guide](https://docs.docker.com/desktop/features/kubernetes/) to configure Docker Desktop in Kubernetes mode.
 
-### 3. Set up git repository and access token:
-* Create Github repository, [how to](https://docs.github.com/en/repositories/creating-and-managing-repositories/quickstart-for-repositories)
-* Create Github private access token [how to](https://docs.github.com/en/authentication/keeping-your-account-and-data-secure/managing-your-personal-access-tokens)
-* Update token, line 25 in [this](./argocd-bootstrap/manifests/repositories.yaml) file
-* Update link to your repository
-  * [repositories.yaml](argocd-bootstrap/manifests/repositories.yaml) lines: 11 and 22
-  * [bootstrap-apps.yaml](argocd-bootstrap/manifests/bootstrap-apps.yaml) lines: 14, 28, 37
-  * [repositories.yaml](apps/argocd/manifests/repositories.yaml) lines 11
-  * [bootstrap-apps.yaml](apps/argocd/manifests/bootstrap-apps.yaml) lines: 14, 28, 37
-
-### 4. Install ArgoCD
-#### 4.1 Install with Helm
+### 3. Install ArgoCD
+#### 3.1 Install with Helm
 * Add ArgoCD Helm repo:
 ```bash
 helm repo add argocd https://argoproj.github.io/argo-helm
+```
+* Update repositories cache:
+```bash
+helm repo update
 ```
 
 * Install ArgoCD with Helm
@@ -36,7 +28,7 @@ helm install argocd argocd/argo-cd --version 7.7.6 \
   --create-namespace \
   -n argocd
 ```
-#### 4.2 Install ArgoCD in Argo way
+#### 3.2 Install ArgoCD in Argo way
 * Create namespace for ArgoCD
 ```bash
 kubectl create namespace argocd
@@ -52,16 +44,26 @@ kubectl apply -n argocd -f https://raw.githubusercontent.com/argoproj/argo-cd/st
 kubectl patch svc argocd-server -n argocd -p '{"spec": {"type": "LoadBalancer"}}'
 ```
 
-### 5. Bootstrap ArgoCD
+### 4. Bootstrap ArgoCD
 * Apply Kubernetes manifests to finish ArgoCD bootstraping
 Create Repositories, Cluster(local), ApplicationOfApplications(ApplicationSet)
 ```bash
 kubectl apply -f ./argocd/bootstrap/manifests/
 ```
 
-### 6. Get default ArgoCD password
+### 5. Get default ArgoCD password
 ```bash
 argocd admin initial-password -n argocd
+```
+or 
+```bash
+kubectl -n argocd get secret argocd-initial-admin-secret -o jsonpath="{.data.password}" | base64 -d
+```
+
+### 6. You can use `run.sh` script
+Script will run all above commands for you
+```bash
+sh ./run.sh
 ```
 
 ### 7. Open ArgoCD ui
