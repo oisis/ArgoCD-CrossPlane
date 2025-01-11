@@ -59,6 +59,7 @@ or
 ```bash
 kubectl -n argocd get secret argocd-initial-admin-secret -o jsonpath="{.data.password}" | base64 -d
 ```
+After first ArgoCD sync with repo, passwords will be changed to this from [file](./argocd/envs/dev/argocd/values.yaml).
 
 ### 6. You can use `run.sh` script
 Script will run all above commands for you
