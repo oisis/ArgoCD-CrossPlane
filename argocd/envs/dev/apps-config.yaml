@@ -21,7 +21,6 @@ helm_apps:
     targetRevision: '1.18.2'
   - name: 'kubernetes-dashboard'
     namespace: 'kubernetes-dashboard'
-    project: 'dev'
     repoUrl: 'https://kubernetes.github.io/dashboard'
     chart: 'kubernetes-dashboard'
     targetRevision: '7.10.1'
