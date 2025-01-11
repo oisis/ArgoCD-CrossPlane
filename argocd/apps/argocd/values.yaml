@@ -1,61 +1,19 @@
+crds:
+  install: true
+  keep: true
 global:
-  domain: localhost:8080
-  additionalLabels:
-    environment: dev
+  logging:
+    format: text
+    level: info
 configs:
   cm:
-    passwordPattern: "^.{4,32}$"
-    url: 'http://localhost:8080/'
-    statusbadge.url: 'http://localhost:8080/'
-    accounts.oisis: apiKey, login
-    accounts.oisis.enabled: true
-  rbac:
-    # RBAC doc: https://argo-cd.readthedocs.io/en/stable/operator-manual/rbac/
-    # https://github.com/argoproj/argo-cd/blob/master/assets/builtin-policy.csv
-    policy.csv: |
-      p, role:viewer, applications, get, */*, allow
-      p, role:viewer, applications, create, */*, deny
-      p, role:viewer, applications, update, */*, deny
-      p, role:viewer, applications, delete, */*, deny
-      p, role:viewer, applications, sync, */*, allow
-      p, role:viewer, applications, override, */*, allow
-      p, role:viewer, applications, action/*, */*, allow
-      p, role:viewer, applicationsets, get, */*, allow
-      p, role:viewer, applicationsets, create, */*, deny
-      p, role:viewer, applicationsets, update, */*, deny
-      p, role:viewer, applicationsets, delete, */*, deny
-      p, role:viewer, certificates, get, *, allow
-      p, role:viewer, certificates, create, *, deny
-      p, role:viewer, certificates, update, *, deny
-      p, role:viewer, certificates, delete, *, deny
-      p, role:viewer, clusters, get, *, allow
-      p, role:viewer, clusters, create, *, deny
-      p, role:viewer, clusters, update, *, deny
-      p, role:viewer, clusters, delete, *, deny
-      p, role:viewer, repositories, get, *, allow
-      p, role:viewer, repositories, create, *, deny
-      p, role:viewer, repositories, update, *, deny
-      p, role:viewer, repositories, delete, *, deny
-      p, role:viewer, write-repositories, get, *, deny
-      p, role:viewer, write-repositories, create, *, deny
-      p, role:viewer, write-repositories, update, *, deny
-      p, role:viewer, write-repositories, delete, *, deny
-      p, role:viewer, projects, get, *, allow
-      p, role:viewer, projects, create, *, deny
-      p, role:viewer, projects, update, *, deny
-      p, role:viewer, projects, delete, *, deny
-      p, role:viewer, accounts, get, *, deny
-      p, role:viewer, gpgkeys, get, *, deny
-      p, role:viewer, logs, get, */*, deny
-      p, role:viewer, exec, create, */*, deny
-      g, admin, role:admin
-      g, oisis, role:viewer
-    policy.default: role:readonly
-  secret:
-    extra:
-      # HOWTO: https://github.com/argoproj/argo-cd/blob/master/docs/operator-manual/argocd-secret.yaml
-      # To generate password run command: htpasswd -nbBC 10 "" admin123 | tr -d ':\n' | sed 's/$2y/$2a/'
-      # oisis password: oisis
-      accounts.oisis.password: $2a$10$/GN2Nnl2WGQnjOnFLgzBn.1B2o.fIa7RQkAcqvwgTL4/Ai1xU2tui
-      # admin password: admin
-      admin.password: $2a$10$WeVnTGLH/oq1XSuVIkGj6udjNQmizKhZyeuLKClTz.KLkvwaO.T0a
+    create: true
+    exec.enabled: true
+    server.insecure: true
+    admin.enabled: true
+    statusbadge.enabled: true
+  params:
+    server.insecure: true
+dex:
+  enabled: false
+
