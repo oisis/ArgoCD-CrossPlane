@@ -201,3 +201,7 @@ configs:
       accounts.root.password: $2a$10$CnKwv3a19BhDTCHWUplCYOYSjH327ELWVUxzfQ.DABviVKaN4tXCC
       # viewer password: viewer
       accounts.viewer.password: $2a$10$xWt7ReCGnmITwTSFkQDs6eBt3derfSmVUCU16HUug7uChWkUgb9zu
+controller:
+  env:
+  - name: ARGOCD_K8S_CLIENT_QPS
+    value: "300"
