@@ -1,17 +1,18 @@
 # ArgoCD-CrossPlane
 ArgoCD test environment, operating on a local machine using Docker Desktop.
 
-### 1. Prerequisites
+## 1. Prerequisites
 * [Docker desktop](https://www.docker.com/products/docker-desktop/)
 * [kubectl](https://kubernetes.io/docs/tasks/tools/)
 * [argocd](https://argo-cd.readthedocs.io/en/stable/cli_installation/)
 * [helm](https://helm.sh/docs/intro/install/)
 
-### 2. Run Docker desktop in Kubernetes mode:
+## 2. Setup Argocd
+### 2.1 Run Docker desktop in Kubernetes mode:
 Follow this [guide](https://docs.docker.com/desktop/features/kubernetes/) to configure Docker Desktop in Kubernetes mode.
 
-### 3. Install ArgoCD
-#### 3.1 Install with Helm
+### 2.2 Install ArgoCD
+#### 2.2.1 Install with Helm
 * Add ArgoCD Helm repo:
 ```bash
 helm repo add argocd https://argoproj.github.io/argo-helm
@@ -28,7 +29,7 @@ helm install argocd argocd/argo-cd --version 7.7.6 \
   --create-namespace \
   -n argocd
 ```
-#### 3.2 Install ArgoCD in Argo way
+#### 2.2.2 Install ArgoCD in Argo way
 * Create namespace for ArgoCD
 ```bash
 kubectl create namespace argocd
@@ -44,14 +45,14 @@ kubectl apply -n argocd -f https://raw.githubusercontent.com/argoproj/argo-cd/st
 kubectl patch svc argocd-server -n argocd -p '{"spec": {"type": "LoadBalancer"}}'
 ```
 
-### 4. Bootstrap ArgoCD
+### 2.3. Bootstrap ArgoCD
 * Apply Kubernetes manifests to finish ArgoCD bootstraping
 Create Repositories, Cluster(local), ApplicationOfApplications(ApplicationSet)
 ```bash
 kubectl apply -f ./argocd/bootstrap/manifests/
 ```
 
-### 5. Get default ArgoCD password
+### 2.4. Get default ArgoCD password
 ```bash
 argocd admin initial-password -n argocd
 ```
@@ -61,20 +62,22 @@ kubectl -n argocd get secret argocd-initial-admin-secret -o jsonpath="{.data.pas
 ```
 After first ArgoCD sync with repo, passwords will be changed to this from [file](./argocd/envs/dev/argocd/values.yaml).
 
-### 6. You can use `run.sh` script
+### 2.5. You can use `run.sh` script
 Script will run all above commands for you
 ```bash
 sh ./run.sh
 ```
 
-### 7. Open ArgoCD ui
+### 2.6. Open ArgoCD ui
 ```bash
 kubectl port-forward svc/argocd-server -n argocd 8080:443
 ```
 Open http://localhost:8080 in web browser
 
-### 8. Change ArgoCD default password
+### 2.7. Change ArgoCD default password
 ```bash
 argocd login localhost:8080
 argocd account update-password
 ```
+
+## 3. CrossPlane
