@@ -1,16 +1,65 @@
 ---
-apiVersion: vpc.aws.upbound.io/v1beta1
-kind: NetworkPerformanceMetricSubscription
+apiVersion: ec2.aws.crossplane.io/v1beta1
+kind: VPC
 metadata:
-  annotations:
-    meta.upbound.io/example-id: vpc/v1beta1/networkperformancemetricsubscription
-  labels:
-    testing.upbound.io/example-name: oisis
-  name: oisis
+  name: cp-vpc
 spec:
-  forProvider:
-    destination: us-west-1
-    region: us-west-1
-    source: us-east-1
   providerConfigRef:
     name: default
+  forProvider:
+    cidrBlock: "10.0.0.0/16"
+    enableDnsSupport: true
+    enableDnsHostnames: true
+---
+apiVersion: ec2.aws.crossplane.io/v1beta1
+kind: Subnet
+metadata:
+  name: cp-vpc-sn
+spec:
+  providerConfigRef:
+    name: default
+  forProvider:
+    vpcIdRef:
+      name: cp-vpc
+    cidrBlock: "10.0.1.0/24"
+    availabilityZone: "us-east-1a"
+    mapPublicIpOnLaunch: true
+---
+apiVersion: ec2.aws.crossplane.io/v1beta1
+kind: InternetGateway
+metadata:
+  name: cp-vpc-igw
+spec:
+  providerConfigRef:
+    name: default
+  forProvider:
+    vpcIdRef:
+      name: cp-vpc
+---
+apiVersion: ec2.aws.crossplane.io/v1beta1
+kind: RouteTable
+metadata:
+  name: cp-vpc-rt
+spec:
+  providerConfigRef:
+    name: default
+  forProvider:
+    vpcIdRef:
+      name: cp-vpc
+    routes:
+      - destinationCidrBlock: "0.0.0.0/0"
+        gatewayIdRef:
+          name: cp-vpc-igw
+---
+apiVersion: ec2.aws.crossplane.io/v1beta1
+kind: RouteTableAssociation
+metadata:
+  name: cp-vpc-rt-association
+spec:
+  providerConfigRef:
+    name: default
+  forProvider:
+    routeTableIdRef:
+      name: cp-vpc-rt
+    subnetIdRef:
+      name: my-subnet

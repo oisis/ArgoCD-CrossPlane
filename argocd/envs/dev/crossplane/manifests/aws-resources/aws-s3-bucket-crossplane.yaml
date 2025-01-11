@@ -1,10 +1,13 @@
 ---
-apiVersion: s3.aws.upbound.io/v1beta1
+apiVersion: s3.aws.crossplane.io/v1beta1
 kind: Bucket
 metadata:
   name: crossplane-bucket-oisis
 spec:
-  forProvider:
-    region: us-east-1
   providerConfigRef:
     name: default
+  forProvider:
+    acl: privat
+    locationConstraint: us-east-1
+    versioningConfiguration:
+      status: Enabled
