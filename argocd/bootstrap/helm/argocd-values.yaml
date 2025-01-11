@@ -1,0 +1,18 @@
+crds:
+  install: true
+  keep: true
+global:
+  logging:
+    format: text
+    level: info
+configs:
+  cm:
+    create: true
+    exec.enabled: true
+    server.insecure: true
+    admin.enabled: true
+    statusbadge.enabled: true
+  params:
+    server.insecure: true
+dex:
+  enabled: false

@@ -1,0 +1,67 @@
+---
+apiVersion: argoproj.io/v1alpha1
+kind: ApplicationSet
+metadata:
+  name: k8s-manifest-aoa
+  namespace: argocd
+spec:
+  goTemplate: true
+  goTemplateOptions: ["missingkey=error"]
+  generators:
+    - matrix:
+        generators:
+          - matrix:
+              generators:
+                - git:
+                    repoURL: https://github.com/oisis/ArgoCD-CrossPlane.git
+                    revision: HEAD
+                    files:
+                      - path: envs/dev/apps-config.yaml
+                - list:
+                    elementsYaml: "{{ .k8s_manifest_apps | toJson }}"
+          - matrix:
+              generators:
+                - git:
+                    repoURL: https://github.com/oisis/ArgoCD-CrossPlane.git
+                    revision: HEAD
+                    files:
+                      - path: envs/dev/apps-config.yaml
+                - list:
+                    elementsYaml: "{{ .common_params | toJson }}"
+  template:
+    metadata:
+      name: '{{.name}}'
+      labels:
+        custom.label/deployed-by: 'k8s-manifests-aoa'
+        custom.label/environment: '{{.environment}}'
+      finalizers:
+        - resources-finalizer.argocd.argoproj.io
+    spec:
+      project: '{{.project}}'
+      sources:
+        - repoURL: https://github.com/oisis/ArgoCD-CrossPlane.git
+          targetRevision: HEAD
+          path: apps/{{.config_dir}}
+          directory:
+            recurse: true
+        - repoURL: https://github.com/oisis/ArgoCD-CrossPlane.git
+          targetRevision: HEAD
+          path: envs/{{.environment}}/{{.config_dir}}
+          directory:
+            recurse: true
+      destination:
+        name: '{{.environment}}'
+        namespace: '{{.namespace}}'
+      info:
+        - name: 'Applicatation url:'
+          value: 'http://{{.name}}.{{.domain}}'
+      syncPolicy:
+        automated:
+          prune: true
+          selfHeal: true
+          allowEmpty: true
+        syncOptions:
+          - Validate=true
+          - CreateNamespace=true
+          - PrunePropagationPolicy=foreground
+          - PruneLast=true
