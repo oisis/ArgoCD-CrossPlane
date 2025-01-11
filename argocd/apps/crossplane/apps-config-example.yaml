@@ -1,3 +1,4 @@
+helm_apps:
   - name: 'crossplane'
     namespace: 'crossplane-system'
     repoUrl: 'https://charts.crossplane.io/stable'

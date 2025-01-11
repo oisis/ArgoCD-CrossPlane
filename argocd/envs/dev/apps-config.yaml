@@ -1,22 +1,28 @@
 common_params:
   - environment: dev
-    domain: "dev.example.com"
-    project: "dev"
+    domain: 'dev.example.com'
+    project: 'dev'
 helm_apps:
-  - name: "argocd"
-    namespace: "argocd"
-    project: "default"
-    repoUrl: "https://argoproj.github.io/argo-helm"
-    chart: "argo-cd"
-    targetRevision: "7.7.14"
-  - name: "metrics-server"
-    namespace: "metrics-server"
-    repoUrl: "https://kubernetes-sigs.github.io/metrics-server/"
+  - name: 'argocd'
+    namespace: 'argocd'
+    project: 'default'
+    repoUrl: 'https://argoproj.github.io/argo-helm'
+    chart: 'argo-cd'
+    targetRevision: '7.7.14'
+  - name: 'metrics-server'
+    namespace: 'metrics-server'
+    repoUrl: 'https://kubernetes-sigs.github.io/metrics-server/'
     chart: metrics-server
-    targetRevision: "3.12.2"
+    targetRevision: '3.12.2'
   - name: 'crossplane'
     namespace: 'crossplane-system'
     repoUrl: 'https://charts.crossplane.io/stable'
     chart: 'crossplane'
     targetRevision: '1.18.2'
+  - name: 'kubernetes-dashboard'
+    namespace: 'kubernetes-dashboard'
+    project: 'dev'
+    repoUrl: 'https://kubernetes.github.io/dashboard'
+    chart: 'kubernetes-dashboard'
+    targetRevision: '7.10.1'
 k8s_manifest_apps:
