@@ -25,6 +25,6 @@ helm_apps:
     chart: 'kubernetes-dashboard'
     targetRevision: '7.10.1'
 k8s_manifest_apps:
-#   - name: "aws-cp-example"
-#     namespace: 'crossplane-system'
-#     config_dir: "aws-cp-example"
+  - name: "aws-cp-example"
+    namespace: 'crossplane-system'
+    config_dir: "aws-cp-example"
