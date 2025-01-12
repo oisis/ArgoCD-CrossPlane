@@ -17,7 +17,7 @@ spec:
 apiVersion: ec2.aws.upbound.io/v1beta1
 kind: EIP
 metadata:
-  name: dcp-example-nat
+  name: dcp-example-eip
 spec:
   providerConfigRef:
     name: aws-upbound-pc
@@ -25,7 +25,7 @@ spec:
     region: us-east-1
     vpc: true
     tags:
-      Name: cp-example-nat
+      Name: cp-example-eip
 ---
 apiVersion: ec2.aws.upbound.io/v1beta1
 kind: NATGateway
@@ -38,7 +38,7 @@ spec:
     connectivityType: public
     region: us-east-1
     allocationIdRef:
-      name: cp-example-nat
+      name: cp-example-eip
     subnetIdSelector:
       matchLabels:
         name: cp-example-public-us-east-1a
