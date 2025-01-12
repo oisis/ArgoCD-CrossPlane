@@ -9,6 +9,7 @@ spec:
   forProvider:
     description: Security group for EC2 instance
     groupName: cp-example-instance-1-sg
+    region: us-east-1
     vpcIdSelector:
       matchLabels:
         name: cp-example-vpc
@@ -23,7 +24,7 @@ spec:
   providerConfigRef:
     name: aws-upbound-pc
   forProvider:
-    region: us-west-1
+    region: us-east-1
     ami: ami-07b068f843ec78e72
     instanceType: t2.medium
     associatePublicIpAddress: true
