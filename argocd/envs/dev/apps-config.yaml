@@ -27,4 +27,4 @@ helm_apps:
 k8s_manifest_apps:
   - name: "aws-cp-example"
     namespace: 'crossplane-system'
-    config_dir: "echoserver"
+    config_dir: "aws-cp-example"
