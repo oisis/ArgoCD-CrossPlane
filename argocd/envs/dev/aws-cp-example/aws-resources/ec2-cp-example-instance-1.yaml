@@ -10,9 +10,7 @@ spec:
     description: Security group for EC2 instance
     groupName: cp-example-instance-1-sg
     region: us-east-1
-    vpcIdSelector:
-      matchLabels:
-        name: cp-example-vpc
+    vpcId: cp-example-vpc
 ---
 apiVersion: ec2.aws.upbound.io/v1beta1
 kind: Instance
