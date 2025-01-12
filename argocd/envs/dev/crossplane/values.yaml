@@ -1,5 +1,5 @@
 provider:
   packages:
-    - "xpkg.upbound.io/crossplane-contrib/provider-aws:v0.51.0"
     - "xpkg.upbound.io/upbound/provider-aws-s3:v1"
     - "xpkg.upbound.io/upbound/provider-aws-vpc:v1"
+    # - "xpkg.upbound.io/crossplane-contrib/provider-aws:v0.51.0"
