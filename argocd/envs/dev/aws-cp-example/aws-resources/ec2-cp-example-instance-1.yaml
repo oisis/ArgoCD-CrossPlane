@@ -64,12 +64,22 @@ spec:
     availabilityZone: us-east-1a
     disableApiStop: true
     monitoring: true
-    securityGroupIds:
-      - cp-example-instance-1-sg
+    securityGroupIdRefs:
+      - name: cp-example-instance-1-sg
     subnetIdSelector:
-      matchLabels:
-        name: cp-example-public-us-east-1a
+      matchControllerRef: true
+    blockDeviceMappings:
+      - deviceName: /dev/xvdb
+        ebs:
+          volumeIdRef:
+            name: cp-example-instance-1-ebs
     tags:
       Name: cp-example-instance-1
     volumeTags:
       Name: cp-example-instance-1
+    userData: |
+      #!/bin/bash
+      mkdir -p /mount/ebs1
+      mkfs.ext4 /dev/xvdb
+      mount /dev/xvdb /mount/ebs1
+      echo '/dev/xvdb /mount/ebs1 ext4 defaults 0 0' >> /etc/fstab
