@@ -12,6 +12,7 @@ spec:
     enableDnsSupport: true
     enableDnsHostnames: true
     instanceTenancy: Default
+    enableNetworkAddressUsageMetrics: true
     tags:
       ManagedBy: Crossplane
       Name: cp-example-vpc
