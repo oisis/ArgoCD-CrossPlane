@@ -5,7 +5,7 @@ metadata:
   name: cp-example-bucket
 spec:
   providerConfigRef:
-    name: aws-provider-config
+    name: aws-upbound-pc
   forProvider:
     forceDestroy: true
     region: us-east-1
