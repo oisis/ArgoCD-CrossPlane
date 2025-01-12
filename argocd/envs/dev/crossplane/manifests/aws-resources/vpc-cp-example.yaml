@@ -1,0 +1,251 @@
+apiVersion: ec2.aws.upbound.io/v1beta1
+kind: VPC
+metadata:
+  name: cp-example-vpc
+spec:
+  providerConfigRef:
+    name: aws-upbound-pc
+  forProvider:
+    region: us-east-1
+    cidrBlock: 10.100.0.0/16
+    enableDnsSupport: true
+    enableDnsHostnames: true
+    tags:
+      ManagedBy: Crossplane
+      Name: cp-example-vpc
+---
+apiVersion: ec2.aws.upbound.io/v1beta1
+kind: EIP
+metadata:
+  name: dcp-example-nat
+spec:
+  providerConfigRef:
+    name: aws-upbound-pc
+  forProvider:
+    region: us-east-1
+    vpc: true
+    tags:
+      Name: cp-example-nat
+---
+apiVersion: ec2.aws.upbound.io/v1beta1
+kind: NATGateway
+metadata:
+  name: cp-example-nat
+spec:
+  providerConfigRef:
+    name: aws-upbound-pc
+  forProvider:
+    connectivityType: public
+    region: us-east-1
+    allocationIdRef:
+      name: cp-example-nat
+    subnetIdSelector:
+      matchLabels:
+        name: cp-example-public-us-east-1a
+    tags:
+      Name: cp-example-nat
+---
+apiVersion: ec2.aws.upbound.io/v1beta1
+kind: InternetGateway
+metadata:
+  name: cp-example-igw
+spec:
+  providerConfigRef:
+    name: aws-upbound-pc
+  forProvider:
+    region: us-east-1
+    tags:
+      Name: cp-example-igw
+      ManagedBy: Crossplane
+    vpcIdRef:
+      name: cp-example-vpc
+---
+apiVersion: ec2.aws.upbound.io/v1beta1
+kind: Subnet
+metadata:
+  name: cp-example-private-us-east-1a
+  labels:
+    name: cp-example-private-us-east-1a
+spec:
+  providerConfigRef:
+    name: aws-upbound-pc
+  forProvider:
+    availabilityZone: us-east-1a
+    cidrBlock: 10.100.1.0/24
+    region: us-east-1
+    tags:
+      Name: cp-example-private-us-east-1a
+      ManagedBy: Crossplane
+    vpcIdRef:
+      name: cp-example-vpc
+---
+apiVersion: ec2.aws.upbound.io/v1beta1
+kind: Subnet
+metadata:
+  name: cp-example-private-us-east-1b
+  labels:
+    name: cp-example-private-us-east-1b
+spec:
+  providerConfigRef:
+    name: aws-upbound-pc
+  forProvider:
+    availabilityZone: us-east-1b
+    cidrBlock: 10.100.2.0/24
+    region: us-east-1
+    tags:
+      Name: cp-example-private-us-east-1b
+      ManagedBy: Crossplane
+    vpcIdRef:
+      name: cp-example-vpc
+---
+apiVersion: ec2.aws.upbound.io/v1beta1
+kind: Subnet
+metadata:
+  name: cp-example-public-us-east-1a
+  labels:
+    name: cp-example-public-us-east-1a
+spec:
+  providerConfigRef:
+    name: aws-upbound-pc
+  forProvider:
+    availabilityZone: us-east-1a
+    cidrBlock: 10.100.3.0/24
+    region: us-east-1
+    tags:
+      Name: cp-example-public-us-east-1a
+      ManagedBy: Crossplane 
+    vpcIdRef:
+      name: cp-example-vpc
+---
+apiVersion: ec2.aws.upbound.io/v1beta1
+kind: Subnet
+metadata:
+  name: cp-example-public-us-east-1b
+  labels:
+    name: cp-example-public-us-east-1b
+spec:
+  providerConfigRef:
+    name: aws-upbound-pc
+  forProvider:
+    availabilityZone: us-east-1b
+    cidrBlock: 10.100.4.0/24
+    region: us-east-1
+    tags:
+      Name: cp-example-public-us-east-1b
+      ManagedBy: Crossplane 
+    vpcIdRef:
+      name: cp-example-vpc
+---
+apiVersion: ec2.aws.upbound.io/v1beta1
+kind: RouteTable
+metadata:
+  name: cp-example-private
+spec:
+  providerConfigRef:
+    name: aws-upbound-pc
+  forProvider:
+    region: us-east-1
+    tags:
+      Name: cp-example-private
+    vpcIdRef:
+      name: cp-example-vpc
+---
+apiVersion: ec2.aws.upbound.io/v1beta1
+kind: Route
+metadata:
+  name: cp-example-private
+spec:
+  providerConfigRef:
+    name: aws-upbound-pc
+  forProvider:
+    destinationCidrBlock: 0.0.0.0/0
+    natGatewayIdRef:
+      name: cp-example-nat
+    region: us-east-1
+    routeTableIdRef:
+      name: cp-example-private
+---
+apiVersion: ec2.aws.upbound.io/v1beta1
+kind: RouteTable
+metadata:
+  name: cp-example-public
+spec:
+  providerConfigRef:
+    name: aws-upbound-pc
+  forProvider:
+    region: us-east-1
+    tags:
+      Name: cp-example-public
+    vpcIdRef:
+      name: cp-example-vpc
+---
+apiVersion: ec2.aws.upbound.io/v1beta1
+kind: Route
+metadata:
+  name: cp-example-public
+spec:
+  providerConfigRef:
+    name: aws-upbound-pc
+  forProvider:
+    destinationCidrBlock: 0.0.0.0/0
+    gatewayIdRef:
+      name: cp-example-igw
+    region: us-east-1
+    routeTableIdRef:
+      name: cp-example-public
+---
+apiVersion: ec2.aws.upbound.io/v1beta1
+kind: RouteTableAssociation
+metadata:
+  name: cp-example-private-us-east-1a
+spec:
+  providerConfigRef:
+    name: aws-upbound-pc
+  forProvider:
+    region: us-east-1
+    routeTableIdRef:
+      name: cp-example-private
+    subnetIdRef:
+      name: cp-example-private-us-east-1a
+---
+apiVersion: ec2.aws.upbound.io/v1beta1
+kind: RouteTableAssociation
+metadata:
+  name: cp-example-private-us-east-1b
+spec:
+  providerConfigRef:
+    name: aws-upbound-pc
+  forProvider:
+    region: us-east-1
+    routeTableIdRef:
+      name: cp-example-private
+    subnetIdRef:
+      name: cp-example-private-us-east-1b
+---
+apiVersion: ec2.aws.upbound.io/v1beta1
+kind: RouteTableAssociation
+metadata:
+  name: cp-example-public-us-east-1a
+spec:
+  providerConfigRef:
+    name: aws-upbound-pc
+  forProvider:
+    region: us-east-1
+    routeTableIdRef:
+      name: cp-example-public
+    subnetIdRef:
+      name: cp-example-public-us-east-1a
+---
+apiVersion: ec2.aws.upbound.io/v1beta1
+kind: RouteTableAssociation
+metadata:
+  name: cp-example-public-us-east-1b
+spec:
+  providerConfigRef:
+    name: aws-upbound-pc
+  forProvider:
+    region: us-east-1
+    routeTableIdRef:
+      name: cp-example-public
+    subnetIdRef:
+      name: cp-example-public-us-east-1b
