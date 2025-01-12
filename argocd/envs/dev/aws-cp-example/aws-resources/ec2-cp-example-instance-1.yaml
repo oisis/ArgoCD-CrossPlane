@@ -14,11 +14,11 @@ spec:
     availabilityZone: cp-example-public-us-east-1b
     disableApiStop: true
     ebsBlockDevice:
-      deleteOnTermination: true
-      deviceName: cp-example-instance-1-ebs
-      encrypted: false
-      volumeSize: 30
-      volumeType: gp3
+      - deviceName: cp-example-instance-1-ebs
+        deleteOnTermination: true
+        encrypted: false
+        volumeSize: 30
+        volumeType: gp3
     monitoring: true
     networkInterface:
       - deviceIndex: 0
