@@ -20,11 +20,11 @@ spec:
         volumeSize: 30
         volumeType: gp3
     monitoring: true
-    networkInterface:
-      - deviceIndex: 0
-        networkInterfaceIdSelector:
-          matchLabels:
-            testing.upbound.io/example-name: cp-example-instance-1
+    # networkInterface:
+    #   - deviceIndex: 0
+    #     networkInterfaceIdSelector:
+    #       matchLabels:
+    #         testing.upbound.io/example-name: cp-example-instance-1
     subnetIdRef:
       name: cp-example-public-us-east-1b
     tags:
