@@ -28,7 +28,6 @@ spec:
     subnetIdRef:
       name: cp-example-public-us-east-1b
     tags:
-      - key: Name
-        value: cp-example-instance-1
+      Name: cp-example-instance-1
     volumeTags:
       Name: cp-example-instance-1
