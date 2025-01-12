@@ -62,7 +62,7 @@ spec:
     instanceType: t2.medium
     associatePublicIpAddress: true
     availabilityZone: us-east-1a
-    disableApiStop: true
+    disableApiStop: false
     monitoring: true
     securityGroupIdRefs:
       - name: cp-example-instance-1-sg
