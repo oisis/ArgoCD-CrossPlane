@@ -1,0 +1,34 @@
+---
+apiVersion: ec2.aws.upbound.io/v1beta1
+kind: Instance
+metadata:
+  name: cp-example-instance-1
+  labels:
+    testing.upbound.io/example-name: cp-example-instance-1
+spec:
+  forProvider:
+    region: us-west-1
+    ami: ami-07b068f843ec78e72
+    instanceType: t2.medium
+    associatePublicIpAddress: true
+    availabilityZone: cp-example-public-us-east-1b
+    disableApiStop: true
+    ebsBlockDevice:
+      deleteOnTermination: true
+      deviceName: cp-example-instance-1-ebs
+      encrypted: false
+      tags:
+        Name: cp-example-instance-1-ebs
+      volumeSize: 30
+      volumeType: gp3
+    monitoring: true
+    networkInterface:
+      - deviceIndex: 0
+        networkInterfaceIdSelector:
+          matchLabels:
+            testing.upbound.io/example-name: cp-example-instance-1
+    subnetIdRef:
+      name: cp-example-public-us-east-1b
+    tags:
+      - key: Name
+        value: cp-example-instance-1
