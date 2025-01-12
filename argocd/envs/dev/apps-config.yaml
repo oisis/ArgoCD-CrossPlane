@@ -24,7 +24,7 @@ helm_apps:
     repoUrl: 'https://kubernetes.github.io/dashboard'
     chart: 'kubernetes-dashboard'
     targetRevision: '7.10.1'
-# k8s_manifest_apps:
+k8s_manifest_apps:
 #   - name: "aws-cp-example"
 #     namespace: 'crossplane-system'
 #     config_dir: "aws-cp-example"
