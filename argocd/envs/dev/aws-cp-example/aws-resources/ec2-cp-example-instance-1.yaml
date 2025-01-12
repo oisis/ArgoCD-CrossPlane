@@ -16,17 +16,12 @@ spec:
     availabilityZone: cp-example-public-us-east-1b
     disableApiStop: true
     ebsBlockDevice:
-      - deviceName: cp-example-instance-1-ebs
+      - deviceName: ebs_1
         deleteOnTermination: true
         encrypted: false
         volumeSize: 30
         volumeType: gp3
     monitoring: true
-    # networkInterface:
-    #   - deviceIndex: 0
-    #     networkInterfaceIdSelector:
-    #       matchLabels:
-    #         testing.upbound.io/example-name: cp-example-instance-1
     subnetIdRef:
       name: cp-example-public-us-east-1b
     tags:
