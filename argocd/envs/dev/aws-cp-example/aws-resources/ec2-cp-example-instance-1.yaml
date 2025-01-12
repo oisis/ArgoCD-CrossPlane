@@ -26,7 +26,7 @@ spec:
     name: aws-upbound-pc
   forProvider:
     region: us-east-1
-    ami: ami-07b068f843ec78e72
+    ami: ami-05576a079321f21f8
     instanceType: t2.medium
     associatePublicIpAddress: true
     availabilityZone: cp-example-public-us-east-1b
