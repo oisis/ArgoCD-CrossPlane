@@ -2,11 +2,7 @@
 apiVersion: s3.aws.upbound.io/v1beta1
 kind: Bucket
 metadata:
-  name: ${Rand.RFC1123Subdomain}
-  annotations:
-    meta.upbound.io/example-id: s3/v1beta1/bucketserversideencryptionconfiguration
-  labels:
-    testing.upbound.io/example-name: cp-example
+  name: cp-example-bucket
 spec:
   providerConfigRef:
     name: aws-upbound-pc
