@@ -1,5 +1,19 @@
 ---
 apiVersion: ec2.aws.upbound.io/v1beta1
+kind: SecurityGroup
+metadata:
+  name: cp-example-instance-1-sg
+spec:
+  providerConfigRef:
+    name: aws-upbound-pc
+  forProvider:
+    description: Security group for EC2 instance
+    groupName: cp-example-instance-1-sg
+    vpcIdSelector:
+      matchLabels:
+        name: cp-example-vpc
+---
+apiVersion: ec2.aws.upbound.io/v1beta1
 kind: Instance
 metadata:
   name: cp-example-instance-1
@@ -16,6 +30,11 @@ spec:
     availabilityZone: cp-example-public-us-east-1b
     disableApiStop: true
     monitoring: true
+    securityGroupIds:
+      - cp-example-instance-1-sg
+    subnetIdSelector:
+      matchLabels:
+        name: cp-example-public-us-east-1a
     tags:
       Name: cp-example-instance-1
     volumeTags:
