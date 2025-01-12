@@ -7,6 +7,7 @@ spec:
   providerConfigRef:
     name: aws-upbound-pc
   forProvider:
+    forceDestroy: true
     region: us-east-1
     tags:
       Name: cp-example-bucket
