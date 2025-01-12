@@ -3,6 +3,8 @@ apiVersion: ec2.aws.upbound.io/v1beta1
 kind: VPC
 metadata:
   name: cp-example-vpc
+  labels:
+    name: cp-example-vpc
 spec:
   providerConfigRef:
     name: aws-upbound-pc
