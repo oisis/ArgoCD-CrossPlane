@@ -14,6 +14,23 @@ spec:
       name: cp-example-vpc
     tags:
       Name: cp-example-instance-1-sg
+    ingress:
+      - ipProtocol: tcp
+        fromPort: 22
+        toPort: 22
+        cidrBlocks:
+          - 0.0.0.0/0
+      - ipProtocol: tcp
+        fromPort: 80
+        toPort: 80
+        cidrBlocks:
+          - 0.0.0.0/0
+    egress:
+      - ipProtocol: -1
+        fromPort: 0
+        toPort: 0
+        cidrBlocks:
+          - 0.0.0.0/0
 ---
 apiVersion: ec2.aws.upbound.io/v1beta1
 kind: Instance
