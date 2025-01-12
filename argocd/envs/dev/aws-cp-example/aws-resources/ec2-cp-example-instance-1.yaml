@@ -16,8 +16,7 @@ spec:
     availabilityZone: cp-example-public-us-east-1b
     disableApiStop: true
     ebsBlockDevice:
-      - deviceName: ebs_1
-        deleteOnTermination: true
+      - deleteOnTermination: true
         encrypted: false
         volumeSize: 30
         volumeType: gp3
