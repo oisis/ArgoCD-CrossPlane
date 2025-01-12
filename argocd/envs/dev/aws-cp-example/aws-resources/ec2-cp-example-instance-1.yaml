@@ -6,6 +6,8 @@ metadata:
   labels:
     testing.upbound.io/example-name: cp-example-instance-1
 spec:
+  providerConfigRef:
+    name: aws-upbound-pc
   forProvider:
     region: us-west-1
     ami: ami-07b068f843ec78e72
