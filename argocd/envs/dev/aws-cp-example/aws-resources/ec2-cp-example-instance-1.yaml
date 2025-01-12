@@ -16,7 +16,8 @@ spec:
     availabilityZone: cp-example-public-us-east-1b
     disableApiStop: true
     ebsBlockDevice:
-      - deleteOnTermination: true
+      - deviceName: xvdf
+        deleteOnTermination: true
         encrypted: false
         volumeSize: 30
         volumeType: gp3
