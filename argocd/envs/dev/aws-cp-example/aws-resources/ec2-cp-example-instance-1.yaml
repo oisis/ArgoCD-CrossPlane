@@ -18,7 +18,8 @@ spec:
       deviceName: cp-example-instance-1-ebs
       encrypted: false
       tags:
-        Name: cp-example-instance-1-ebs
+        - key: Name
+          value: cp-example-instance-1-ebs
       volumeSize: 30
       volumeType: gp3
     monitoring: true
