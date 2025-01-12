@@ -15,15 +15,7 @@ spec:
     associatePublicIpAddress: true
     availabilityZone: cp-example-public-us-east-1b
     disableApiStop: true
-    ebsBlockDevice:
-      - deviceName: xvdf
-        deleteOnTermination: true
-        encrypted: false
-        volumeSize: 30
-        volumeType: gp3
     monitoring: true
-    subnetIdRef:
-      name: cp-example-public-us-east-1b
     tags:
       Name: cp-example-instance-1
     volumeTags:
