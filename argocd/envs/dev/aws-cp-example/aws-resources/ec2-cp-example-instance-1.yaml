@@ -61,7 +61,7 @@ spec:
     ami: ami-05576a079321f21f8
     instanceType: t2.medium
     associatePublicIpAddress: true
-    availabilityZone: us-east-1b
+    availabilityZone: us-east-1a
     disableApiStop: true
     monitoring: true
     securityGroupIds:
