@@ -11,6 +11,7 @@ spec:
     cidrBlock: 10.100.0.0/16
     enableDnsSupport: true
     enableDnsHostnames: true
+    instanceTenancy: Default
     tags:
       ManagedBy: Crossplane
       Name: cp-example-vpc
