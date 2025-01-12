@@ -33,6 +33,21 @@ spec:
           - 0.0.0.0/0
 ---
 apiVersion: ec2.aws.upbound.io/v1beta1
+kind: Volume
+metadata:
+  name: cp-example-instance-1-ebs
+spec:
+  providerConfigRef:
+    name: aws-upbound-pc
+  forProvider:
+    availabilityZone: us-east-1a
+    size: 20
+    volumeType: gp2
+    tags:
+      - key: Name
+        value: cp-example-instance-1-ebs
+---
+apiVersion: ec2.aws.upbound.io/v1beta1
 kind: Instance
 metadata:
   name: cp-example-instance-1
