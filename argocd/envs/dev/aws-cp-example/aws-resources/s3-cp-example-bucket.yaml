@@ -2,12 +2,16 @@
 apiVersion: s3.aws.upbound.io/v1beta1
 kind: Bucket
 metadata:
-  name: cp-example-bucket
+  name: cp-example-random
+  annotations:
+    meta.upbound.io/example-id: s3/v1beta1/bucketserversideencryptionconfiguration
+  labels:
+    testing.upbound.io/example-name: cp-example
 spec:
   providerConfigRef:
     name: aws-upbound-pc
   forProvider:
-    forceDestroy: true
+    objectLockEnabled: true
     region: us-east-1
     tags:
       Name: cp-example-bucket
