@@ -63,7 +63,7 @@ spec:
       name: cp-example-eip
     subnetIdSelector:
       matchLabels:
-        name: cp-example-public-us-east-1a
+        name: cp-example-public-us-east-1a-subnet
     tags:
       Name: cp-example-nat
   writeConnectionSecretToRef:
