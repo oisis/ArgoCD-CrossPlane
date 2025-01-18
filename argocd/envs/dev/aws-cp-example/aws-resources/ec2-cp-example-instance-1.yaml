@@ -149,20 +149,20 @@ spec:
   forProvider:
     region: us-east-1
     ami: ami-05576a079321f21f8
-    instanceType: t2.medium
     associatePublicIpAddress: true
     availabilityZone: us-east-1a
     disableApiStop: false
+    instanceType: t2.medium
     monitoring: true
-    securityGroupIdRefs:
+    vpcSecurityGroupIdRefs:
       - name: cp-example-instance-1-sg
     subnetIdRef:
       name: cp-example-public-us-east-1a-subnet
-    blockDeviceMappings:
-      - deviceName: /dev/xvdb
-        ebs:
-          volumeIdRef:
-            name: cp-example-instance-1-ebs
+    # blockDeviceMappings:
+    #   - deviceName: /dev/xvdb
+    #     ebs:
+    #       volumeIdRef:
+    #         name: cp-example-instance-1-ebs
     tags:
       Name: cp-example-instance-1
     volumeTags:
