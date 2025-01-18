@@ -95,11 +95,11 @@ spec:
 apiVersion: ec2.aws.upbound.io/v1beta1
 kind: Subnet
 metadata:
-  name: cp-example-private-us-east-1a
+  name: cp-example-private-us-east-1a-subnet
   annotations:
     crossplane.io/external-name: subnet-08fabd0299c17c277 # manage existing Subnet
   labels:
-    name: cp-example-private-us-east-1a
+    name: cp-example-private-us-east-1a-subnet
 spec:
   providerConfigRef:
     name: aws-upbound-pc
@@ -108,22 +108,22 @@ spec:
     cidrBlock: 10.100.1.0/24
     region: us-east-1
     tags:
-      Name: cp-example-private-us-east-1a
+      Name: cp-example-private-us-east-1a-subnet
       ManagedBy: Crossplane
     vpcIdRef:
       name: cp-example-vpc
   writeConnectionSecretToRef:
     namespace: crossplane-system
-    name: cp-example-private-us-east-1a
+    name: cp-example-private-us-east-1a-subnet
 ---
 apiVersion: ec2.aws.upbound.io/v1beta1
 kind: Subnet
 metadata:
-  name: cp-example-private-us-east-1b
+  name: cp-example-private-us-east-1b-subnet
   annotations:
     crossplane.io/external-name: subnet-03c18525e77fda56b # manage existing Subnet
   labels:
-    name: cp-example-private-us-east-1b
+    name: cp-example-private-us-east-1b-subnet
 spec:
   providerConfigRef:
     name: aws-upbound-pc
@@ -132,22 +132,22 @@ spec:
     cidrBlock: 10.100.2.0/24
     region: us-east-1
     tags:
-      Name: cp-example-private-us-east-1b
+      Name: cp-example-private-us-east-1b-subnet
       ManagedBy: Crossplane
     vpcIdRef:
       name: cp-example-vpc
   writeConnectionSecretToRef:
     namespace: crossplane-system
-    name: cp-example-private-us-east-1b
+    name: cp-example-private-us-east-1b-subnet
 ---
 apiVersion: ec2.aws.upbound.io/v1beta1
 kind: Subnet
 metadata:
-  name: cp-example-public-us-east-1a
+  name: cp-example-public-us-east-1a-subnet
   annotations:
     crossplane.io/external-name: subnet-0d4def7ee346b5654 # manage existing Subnet
   labels:
-    name: cp-example-public-us-east-1a
+    name: cp-example-public-us-east-1a-subnet
 spec:
   providerConfigRef:
     name: aws-upbound-pc
@@ -156,22 +156,22 @@ spec:
     cidrBlock: 10.100.3.0/24
     region: us-east-1
     tags:
-      Name: cp-example-public-us-east-1a
+      Name: cp-example-public-us-east-1a-subnet
       ManagedBy: Crossplane 
     vpcIdRef:
       name: cp-example-vpc
   writeConnectionSecretToRef:
     namespace: crossplane-system
-    name: cp-example-public-us-east-1a
+    name: cp-example-public-us-east-1a-subnet
 ---
 apiVersion: ec2.aws.upbound.io/v1beta1
 kind: Subnet
 metadata:
-  name: cp-example-public-us-east-1b
+  name: cp-example-public-us-east-1b-subnet
   annotations:
     crossplane.io/external-name: subnet-0cef0db5956f355f0 # manage existing Subnet
   labels:
-    name: cp-example-public-us-east-1b
+    name: cp-example-public-us-east-1b-subnet
 spec:
   providerConfigRef:
     name: aws-upbound-pc
@@ -180,13 +180,13 @@ spec:
     cidrBlock: 10.100.4.0/24
     region: us-east-1
     tags:
-      Name: cp-example-public-us-east-1b
+      Name: cp-example-public-us-east-1b-subnet
       ManagedBy: Crossplane 
     vpcIdRef:
       name: cp-example-vpc
   writeConnectionSecretToRef:
     namespace: crossplane-system
-    name: cp-example-public-us-east-1b
+    name: cp-example-public-us-east-1b-subnet
 ---
 apiVersion: ec2.aws.upbound.io/v1beta1
 kind: RouteTable
@@ -271,7 +271,7 @@ spec:
 apiVersion: ec2.aws.upbound.io/v1beta1
 kind: RouteTableAssociation
 metadata:
-  name: cp-example-private-us-east-1a
+  name: cp-example-private-us-east-1a-rta
 spec:
   providerConfigRef:
     name: aws-upbound-pc
@@ -280,15 +280,15 @@ spec:
     routeTableIdRef:
       name: cp-example-private-rtb
     subnetIdRef:
-      name: cp-example-private-us-east-1a
+      name: cp-example-private-us-east-1a-subnet
   writeConnectionSecretToRef:
     namespace: crossplane-system
-    name: cp-example-private-us-east-1a
+    name: cp-example-private-us-east-1a-rta
 ---
 apiVersion: ec2.aws.upbound.io/v1beta1
 kind: RouteTableAssociation
 metadata:
-  name: cp-example-private-us-east-1b
+  name: cp-example-private-us-east-1b-rta
 spec:
   providerConfigRef:
     name: aws-upbound-pc
@@ -297,15 +297,15 @@ spec:
     routeTableIdRef:
       name: cp-example-private-rtb
     subnetIdRef:
-      name: cp-example-private-us-east-1b
+      name: cp-example-private-us-east-1b-subnet
   writeConnectionSecretToRef:
     namespace: crossplane-system
-    name: cp-example-private-us-east-1b
+    name: cp-example-private-us-east-1b-rta
 ---
 apiVersion: ec2.aws.upbound.io/v1beta1
 kind: RouteTableAssociation
 metadata:
-  name: cp-example-public-us-east-1a
+  name: cp-example-public-us-east-1a-rta
 spec:
   providerConfigRef:
     name: aws-upbound-pc
@@ -314,15 +314,15 @@ spec:
     routeTableIdRef:
       name: cp-example-public-rtb
     subnetIdRef:
-      name: cp-example-public-us-east-1a
+      name: cp-example-public-us-east-1a-subnet
   writeConnectionSecretToRef:
     namespace: crossplane-system
-    name: cp-example-public-us-east-1a
+    name: cp-example-public-us-east-1a-rta
 ---
 apiVersion: ec2.aws.upbound.io/v1beta1
 kind: RouteTableAssociation
 metadata:
-  name: cp-example-public-us-east-1b
+  name: cp-example-public-us-east-1b-rta
 spec:
   providerConfigRef:
     name: aws-upbound-pc
@@ -331,7 +331,7 @@ spec:
     routeTableIdRef:
       name: cp-example-public-rtb
     subnetIdRef:
-      name: cp-example-public-us-east-1b
+      name: cp-example-public-us-east-1b-subnet
   writeConnectionSecretToRef:
     namespace: crossplane-system
-    name: cp-example-public-us-east-1b
+    name: cp-example-public-us-east-1b-rta
