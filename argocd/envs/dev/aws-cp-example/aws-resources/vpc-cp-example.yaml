@@ -202,7 +202,7 @@ spec:
   forProvider:
     region: us-east-1
     tags:
-      Name: cp-example-private
+      Name: cp-example-private-rtb
     vpcIdRef:
       name: cp-example-vpc
   writeConnectionSecretToRef:
@@ -243,7 +243,7 @@ spec:
   forProvider:
     region: us-east-1
     tags:
-      Name: cp-example-public
+      Name: cp-example-public-rtb
     vpcIdRef:
       name: cp-example-vpc
   writeConnectionSecretToRef:
