@@ -13,7 +13,7 @@ spec:
     cidrBlock: 10.100.0.0/16
     enableDnsSupport: true
     enableDnsHostnames: true
-    instanceTenancy: Default
+    instanceTenancy: default
     enableNetworkAddressUsageMetrics: true
     tags:
       ManagedBy: Crossplane
