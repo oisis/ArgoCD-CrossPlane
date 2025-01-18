@@ -156,8 +156,8 @@ spec:
     monitoring: true
     securityGroupIdRefs:
       - name: cp-example-instance-1-sg
-    subnetIdSelector:
-      matchControllerRef: true
+    subnetIdRef:
+      name: cp-example-public-us-east-1a-subnet
     blockDeviceMappings:
       - deviceName: /dev/xvdb
         ebs:
