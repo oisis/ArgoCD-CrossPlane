@@ -3,8 +3,8 @@ apiVersion: ec2.aws.upbound.io/v1beta1
 kind: VPC
 metadata:
   name: cp-example-vpc
-  annotations:
-    crossplane.io/external-name: vpc-06b5984e75c31ff46 # manage existing VPC
+  # annotations:
+  #   crossplane.io/external-name: vpc-06b5984e75c31ff46 # manage existing VPC
   labels:
     name: cp-example-vpc
 spec:
@@ -29,8 +29,8 @@ apiVersion: ec2.aws.upbound.io/v1beta1
 kind: EIP
 metadata:
   name: cp-example-eip
-  annotations:
-    crossplane.io/external-name: eipalloc-088d9b4c5bf8cc067 # manage existing EIP
+  # annotations:
+  #   crossplane.io/external-name: eipalloc-088d9b4c5bf8cc067 # manage existing EIP
   labels:
     name: cp-example-eip
 spec:
@@ -49,8 +49,8 @@ apiVersion: ec2.aws.upbound.io/v1beta1
 kind: NATGateway
 metadata:
   name: cp-example-nat
-  annotations:
-    crossplane.io/external-name: nat-02bb3805fb0408de2 # manage existing NAT
+  # annotations:
+  #   crossplane.io/external-name: nat-02bb3805fb0408de2 # manage existing NAT
   labels:
     name: cp-example-nat
 spec:
@@ -74,8 +74,8 @@ apiVersion: ec2.aws.upbound.io/v1beta1
 kind: InternetGateway
 metadata:
   name: cp-example-igw
-  annotations:
-    crossplane.io/external-name: igw-0c36920ef01a2c06b # manage existing IGW
+  # annotations:
+  #   crossplane.io/external-name: igw-0c36920ef01a2c06b # manage existing IGW
   labels:
     name: cp-example-igw
 spec:
@@ -96,8 +96,8 @@ apiVersion: ec2.aws.upbound.io/v1beta1
 kind: Subnet
 metadata:
   name: cp-example-private-us-east-1a-subnet
-  annotations:
-    crossplane.io/external-name: subnet-08fabd0299c17c277 # manage existing Subnet
+  # annotations:
+  #   crossplane.io/external-name: subnet-08fabd0299c17c277 # manage existing Subnet
   labels:
     name: cp-example-private-us-east-1a-subnet
 spec:
@@ -120,8 +120,8 @@ apiVersion: ec2.aws.upbound.io/v1beta1
 kind: Subnet
 metadata:
   name: cp-example-private-us-east-1b-subnet
-  annotations:
-    crossplane.io/external-name: subnet-03c18525e77fda56b # manage existing Subnet
+  # annotations:
+  #   crossplane.io/external-name: subnet-03c18525e77fda56b # manage existing Subnet
   labels:
     name: cp-example-private-us-east-1b-subnet
 spec:
@@ -144,8 +144,8 @@ apiVersion: ec2.aws.upbound.io/v1beta1
 kind: Subnet
 metadata:
   name: cp-example-public-us-east-1a-subnet
-  annotations:
-    crossplane.io/external-name: subnet-0d4def7ee346b5654 # manage existing Subnet
+  # annotations:
+  #   crossplane.io/external-name: subnet-0d4def7ee346b5654 # manage existing Subnet
   labels:
     name: cp-example-public-us-east-1a-subnet
 spec:
@@ -168,8 +168,8 @@ apiVersion: ec2.aws.upbound.io/v1beta1
 kind: Subnet
 metadata:
   name: cp-example-public-us-east-1b-subnet
-  annotations:
-    crossplane.io/external-name: subnet-0cef0db5956f355f0 # manage existing Subnet
+  # annotations:
+  #   crossplane.io/external-name: subnet-0cef0db5956f355f0 # manage existing Subnet
   labels:
     name: cp-example-public-us-east-1b-subnet
 spec:
@@ -192,8 +192,8 @@ apiVersion: ec2.aws.upbound.io/v1beta1
 kind: RouteTable
 metadata:
   name: cp-example-private-rtb
-  annotations:
-    crossplane.io/external-name: rtb-0289b5ea251088cb6 # manage existing RouteTable
+  # annotations:
+  #   crossplane.io/external-name: rtb-0289b5ea251088cb6 # manage existing RouteTable
   labels:
     name: cp-example-private-rtb
 spec:
@@ -233,8 +233,8 @@ apiVersion: ec2.aws.upbound.io/v1beta1
 kind: RouteTable
 metadata:
   name: cp-example-public-rtb
-  annotations:
-    crossplane.io/external-name: rtb-00ec3f3036a7ab799 # manage existing RouteTable
+  # annotations:
+  #   crossplane.io/external-name: rtb-00ec3f3036a7ab799 # manage existing RouteTable
   labels:
     name: cp-example-public-rtb
 spec:
