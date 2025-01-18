@@ -81,3 +81,22 @@ argocd account update-password
 ```
 
 ## 3. CrossPlane
+
+### 3.1. Set AWS credentials
+#### 3.1.1. Create credential file 'aws-credentials.txt':
+```toml
+[default]
+aws_access_key_id = XXXXXXXXXXXXXXXXXXXX
+aws_secret_access_key = XXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXX
+```
+
+#### 3.1.2. Create secret from file:
+```bash
+kubectl create secret generic aws-secret -n crossplane-system --from-file=creds=./aws-credentials.txt
+```
+
+#### 3.1.3. Save secret as file
+##### WARNING: Protect your AWS credentials! The credentials provided here are invalid and are for example purposes only.!!!
+```bash
+kubectl get secret aws-secret -o yaml > ./argocd/envs/dev/crossplane/manifests/aws-creds-secret.yaml
+```
