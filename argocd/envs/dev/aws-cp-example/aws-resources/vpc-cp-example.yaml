@@ -20,9 +20,9 @@ spec:
     tags:
       ManagedBy: Crossplane
       Name: cp-example-vpc
-  # writeConnectionSecretToRef:
-  #   namespace: crossplane-system
-  #   name: cp-example-vpc
+  writeConnectionSecretToRef:
+    namespace: crossplane-system
+    name: cp-example-vpc
   # deletionPolicy: Orphan # Do not delete resource even you will delete it from crossplane
 ---
 apiVersion: ec2.aws.upbound.io/v1beta1
@@ -41,6 +41,9 @@ spec:
     vpc: true
     tags:
       Name: cp-example-eip
+  writeConnectionSecretToRef:
+    namespace: crossplane-system
+    name: cp-example-eip
 ---
 apiVersion: ec2.aws.upbound.io/v1beta1
 kind: NATGateway
@@ -63,6 +66,9 @@ spec:
         name: cp-example-public-us-east-1a
     tags:
       Name: cp-example-nat
+  writeConnectionSecretToRef:
+    namespace: crossplane-system
+    name: cp-example-nat
 ---
 apiVersion: ec2.aws.upbound.io/v1beta1
 kind: InternetGateway
@@ -82,6 +88,9 @@ spec:
       ManagedBy: Crossplane
     vpcIdRef:
       name: cp-example-vpc
+  writeConnectionSecretToRef:
+    namespace: crossplane-system
+    name: cp-example-igw
 ---
 apiVersion: ec2.aws.upbound.io/v1beta1
 kind: Subnet
@@ -103,6 +112,9 @@ spec:
       ManagedBy: Crossplane
     vpcIdRef:
       name: cp-example-vpc
+  writeConnectionSecretToRef:
+    namespace: crossplane-system
+    name: cp-example-private-us-east-1a
 ---
 apiVersion: ec2.aws.upbound.io/v1beta1
 kind: Subnet
@@ -124,6 +136,9 @@ spec:
       ManagedBy: Crossplane
     vpcIdRef:
       name: cp-example-vpc
+  writeConnectionSecretToRef:
+    namespace: crossplane-system
+    name: cp-example-private-us-east-1b
 ---
 apiVersion: ec2.aws.upbound.io/v1beta1
 kind: Subnet
@@ -145,6 +160,9 @@ spec:
       ManagedBy: Crossplane 
     vpcIdRef:
       name: cp-example-vpc
+  writeConnectionSecretToRef:
+    namespace: crossplane-system
+    name: cp-example-public-us-east-1a
 ---
 apiVersion: ec2.aws.upbound.io/v1beta1
 kind: Subnet
@@ -166,6 +184,9 @@ spec:
       ManagedBy: Crossplane 
     vpcIdRef:
       name: cp-example-vpc
+  writeConnectionSecretToRef:
+    namespace: crossplane-system
+    name: cp-example-public-us-east-1b
 ---
 apiVersion: ec2.aws.upbound.io/v1beta1
 kind: RouteTable
@@ -184,6 +205,9 @@ spec:
       Name: cp-example-private
     vpcIdRef:
       name: cp-example-vpc
+  writeConnectionSecretToRef:
+    namespace: crossplane-system
+    name: cp-example-private-rtb
 ---
 apiVersion: ec2.aws.upbound.io/v1beta1
 kind: Route
@@ -201,6 +225,9 @@ spec:
     region: us-east-1
     routeTableIdRef:
       name: cp-example-private-rtb
+  writeConnectionSecretToRef:
+    namespace: crossplane-system
+    name: cp-example-private-rt
 ---
 apiVersion: ec2.aws.upbound.io/v1beta1
 kind: RouteTable
@@ -219,6 +246,9 @@ spec:
       Name: cp-example-public
     vpcIdRef:
       name: cp-example-vpc
+  writeConnectionSecretToRef:
+    namespace: crossplane-system
+    name: cp-example-public-rtb
 ---
 apiVersion: ec2.aws.upbound.io/v1beta1
 kind: Route
@@ -234,6 +264,9 @@ spec:
     region: us-east-1
     routeTableIdRef:
       name: cp-example-public-rtb
+  writeConnectionSecretToRef:
+    namespace: crossplane-system
+    name: cp-example-public-rt
 ---
 apiVersion: ec2.aws.upbound.io/v1beta1
 kind: RouteTableAssociation
@@ -248,6 +281,9 @@ spec:
       name: cp-example-private-rtb
     subnetIdRef:
       name: cp-example-private-us-east-1a
+  writeConnectionSecretToRef:
+    namespace: crossplane-system
+    name: cp-example-private-us-east-1a
 ---
 apiVersion: ec2.aws.upbound.io/v1beta1
 kind: RouteTableAssociation
@@ -262,6 +298,9 @@ spec:
       name: cp-example-private-rtb
     subnetIdRef:
       name: cp-example-private-us-east-1b
+  writeConnectionSecretToRef:
+    namespace: crossplane-system
+    name: cp-example-private-us-east-1b
 ---
 apiVersion: ec2.aws.upbound.io/v1beta1
 kind: RouteTableAssociation
@@ -276,6 +315,9 @@ spec:
       name: cp-example-public-rtb
     subnetIdRef:
       name: cp-example-public-us-east-1a
+  writeConnectionSecretToRef:
+    namespace: crossplane-system
+    name: cp-example-public-us-east-1a
 ---
 apiVersion: ec2.aws.upbound.io/v1beta1
 kind: RouteTableAssociation
@@ -290,3 +332,6 @@ spec:
       name: cp-example-public-rtb
     subnetIdRef:
       name: cp-example-public-us-east-1b
+  writeConnectionSecretToRef:
+    namespace: crossplane-system
+    name: cp-example-public-us-east-1b
