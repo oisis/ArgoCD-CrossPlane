@@ -3,9 +3,17 @@ apiVersion: ec2.aws.upbound.io/v1beta1
 kind: SecurityGroup
 metadata:
   name: cp-example-instance-1-sg
+  # annotations:
+  #   crossplane.io/external-name: sg-0e880dcde534bafc1 # manage existing SecurityGroup
+  labels:
+    name: cp-example-instance-1-sg
 spec:
   providerConfigRef:
     name: aws-upbound-pc
+  writeConnectionSecretToRef:
+    namespace: crossplane-system
+    name: cp-example-instance-1-sg
+  # deletionPolicy: Orphan # Do not delete resource even you will delete it from crossplane
   forProvider:
     description: Security group for EC2 instance
     groupName: cp-example-instance-1-sg
@@ -36,9 +44,17 @@ apiVersion: ec2.aws.upbound.io/v1beta1
 kind: Volume
 metadata:
   name: cp-example-instance-1-ebs
+  # annotations:
+  #   crossplane.io/external-name: ebs-06b5984e75c31ff46 # manage existing Volume
+  labels:
+    name: cp-example-instance-1-ebs
 spec:
   providerConfigRef:
     name: aws-upbound-pc
+  writeConnectionSecretToRef:
+    namespace: crossplane-system
+    name: cp-example-instance-1-ebs
+  # deletionPolicy: Orphan # Do not delete resource even you will delete it from crossplane
   forProvider:
     availabilityZone: us-east-1a
     size: 20
@@ -51,11 +67,18 @@ apiVersion: ec2.aws.upbound.io/v1beta1
 kind: Instance
 metadata:
   name: cp-example-instance-1
+  # annotations:
+  #   crossplane.io/external-name: ec2-06b5984e75c31ff46 # manage existing EC2
   labels:
     testing.upbound.io/example-name: cp-example-instance-1
+    name: cp-example-instance-1-ebs
 spec:
   providerConfigRef:
     name: aws-upbound-pc
+  writeConnectionSecretToRef:
+    namespace: crossplane-system
+    name: cp-example-instance-1
+  # deletionPolicy: Orphan # Do not delete resource even you will delete it from crossplane
   forProvider:
     region: us-east-1
     ami: ami-05576a079321f21f8
