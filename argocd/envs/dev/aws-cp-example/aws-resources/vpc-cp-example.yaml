@@ -23,7 +23,7 @@ spec:
   writeConnectionSecretToRef:
     namespace: crossplane-system
     name: cp-example-vpc
-  # deletionPolicy: Orphan # Do not delete resource even you will delete it from crossplane
+  deletionPolicy: Orphan # Do not delete resource even you will delete it from crossplane
 ---
 apiVersion: ec2.aws.upbound.io/v1beta1
 kind: EIP
