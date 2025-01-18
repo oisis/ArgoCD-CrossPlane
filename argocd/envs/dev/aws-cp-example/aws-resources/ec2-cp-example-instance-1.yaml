@@ -116,8 +116,7 @@ spec:
     size: 20
     type: gp2
     tags:
-      - key: Name
-        value: cp-example-instance-1-ebs
+      Name: cp-example-instance-1-ebs
 ---
 apiVersion: ec2.aws.upbound.io/v1beta1
 kind: Instance
