@@ -137,7 +137,6 @@ metadata:
   # annotations:
   #   crossplane.io/external-name: ec2-06b5984e75c31ff46 # manage existing EC2
   labels:
-    testing.upbound.io/example-name: cp-example-instance-1
     name: cp-example-instance-1-ebs
 spec:
   providerConfigRef:
@@ -175,6 +174,10 @@ apiVersion: ec2.aws.upbound.io/v1beta1
 kind: VolumeAttachment
 metadata:
   name: cp-example-instance-1-volumeattach
+  # annotations:
+  #   crossplane.io/external-name: ec2-06b5984e75c31ff46 # manage existing VolumeAttachment
+  labels:
+    name: cp-example-instance-1-volumeattach
 spec:
   providerConfigRef:
     name: aws-upbound-pc
