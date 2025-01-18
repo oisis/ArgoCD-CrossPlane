@@ -16,32 +16,87 @@ spec:
   # deletionPolicy: Orphan # Do not delete resource even you will delete it from crossplane
   forProvider:
     description: Security group for EC2 instance
-    groupName: cp-example-instance-1-sg
+    name: cp-example-instance-1-sg
     region: us-east-1
-    vpcIdRef: 
-      name: cp-example-vpc
     tags:
       Name: cp-example-instance-1-sg
-    ingress:
-      - ipProtocol: tcp
-        fromPort: 22
-        toPort: 22
-        cidrBlocks:
-          - 0.0.0.0/0
-      - ipProtocol: tcp
-        fromPort: 80
-        toPort: 80
-        cidrBlocks:
-          - 0.0.0.0/0
-    egress:
-      - ipProtocol: -1
-        fromPort: 0
-        toPort: 0
-        cidrBlocks:
-          - 0.0.0.0/0
+    vpcIdRef: 
+      name: cp-example-vpc
 ---
 apiVersion: ec2.aws.upbound.io/v1beta1
-kind: Volume
+kind: SecurityGroupEgressRule
+metadata:
+  name: cp-example-instance-1-sg-egress
+  # annotations:
+  #   crossplane.io/external-name: sg-0e880dcde534bafc1 # manage existing SecurityGroup
+  labels:
+    name: cp-example-instance-1-sg-egress
+spec:
+  providerConfigRef:
+    name: aws-upbound-pc
+  writeConnectionSecretToRef:
+    namespace: crossplane-system
+    name: cp-example-instance-1-sg-egress
+  # deletionPolicy: Orphan # Do not delete resource even you will delete it from crossplane
+  forProvider:
+    description: "Allow all egress traffic"
+    region: us-west-1
+    cidrIpv4: 0.0.0.0/0
+    fromPort: 0
+    toPort: 0
+    ipProtocol: -1
+    securityGroupIdSelector:
+      matchLabels:
+        name: cp-example-instance-1-sg
+    tags:
+      Name: cp-example-instance-1-sg-egress
+---
+apiVersion: ec2.aws.upbound.io/v1beta1
+kind: SecurityGroupIngressRule
+metadata:
+  name: cp-example-instance-1-sg-ingress-22
+  # annotations:
+  #   crossplane.io/external-name: sg-0e880dcde534bafc1 # manage existing SecurityGroup
+  labels:
+    name: cp-example-instance-1-sg-ingress-22
+spec:
+  forProvider:
+    description: "Allow all ingress traffic for port 22"
+    region: us-west-1
+    cidrIpv4: 0.0.0.0/0
+    fromPort: 22
+    toPort: 22
+    ipProtocol: tcp
+    securityGroupIdSelector:
+      matchLabels:
+        name: cp-example-instance-1-sg
+    tags:
+      Name: cp-example-instance-1-sg-ingress-22
+---
+apiVersion: ec2.aws.upbound.io/v1beta1
+kind: SecurityGroupIngressRule
+metadata:
+  name: cp-example-instance-1-sg-ingress-22
+  # annotations:
+  #   crossplane.io/external-name: sg-0e880dcde534bafc1 # manage existing SecurityGroup
+  labels:
+    name: cp-example-instance-1-sg-ingress-80
+spec:
+  forProvider:
+    description: "Allow all ingress traffic for port 80"
+    region: us-west-1
+    cidrIpv4: 0.0.0.0/0
+    fromPort: 80
+    toPort: 80
+    ipProtocol: tcp
+    securityGroupIdSelector:
+      matchLabels:
+        name: cp-example-instance-1-sg
+    tags:
+      Name: cp-example-instance-1-sg-ingress-80
+---
+apiVersion: ec2.aws.upbound.io/v1beta1
+kind: EBSVolume
 metadata:
   name: cp-example-instance-1-ebs
   # annotations:
@@ -56,9 +111,10 @@ spec:
     name: cp-example-instance-1-ebs
   # deletionPolicy: Orphan # Do not delete resource even you will delete it from crossplane
   forProvider:
+    region: us-west-1
     availabilityZone: us-east-1a
     size: 20
-    volumeType: gp2
+    type: gp2
     tags:
       - key: Name
         value: cp-example-instance-1-ebs
