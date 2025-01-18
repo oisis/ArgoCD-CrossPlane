@@ -44,7 +44,7 @@ spec:
     cidrIpv4: 0.0.0.0/0
     fromPort: 0
     toPort: 0
-    ipProtocol: -1
+    ipProtocol: tcp
     securityGroupIdSelector:
       matchLabels:
         name: cp-example-instance-1-sg
