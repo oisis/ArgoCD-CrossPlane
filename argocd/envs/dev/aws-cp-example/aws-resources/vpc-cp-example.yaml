@@ -23,7 +23,7 @@ spec:
   writeConnectionSecretToRef:
     namespace: crossplane-system
     name: cp-example-vpc
-  deletionPolicy: Orphan # Do not delete resource even you will delete it from crossplane
+  # deletionPolicy: Orphan # Do not delete resource even you will delete it from crossplane
 ---
 apiVersion: ec2.aws.upbound.io/v1beta1
 kind: EIP
@@ -44,6 +44,7 @@ spec:
   writeConnectionSecretToRef:
     namespace: crossplane-system
     name: cp-example-eip
+  # deletionPolicy: Orphan # Do not delete resource even you will delete it from crossplane
 ---
 apiVersion: ec2.aws.upbound.io/v1beta1
 kind: NATGateway
@@ -69,6 +70,7 @@ spec:
   writeConnectionSecretToRef:
     namespace: crossplane-system
     name: cp-example-nat
+  # deletionPolicy: Orphan # Do not delete resource even you will delete it from crossplane
 ---
 apiVersion: ec2.aws.upbound.io/v1beta1
 kind: InternetGateway
@@ -91,6 +93,7 @@ spec:
   writeConnectionSecretToRef:
     namespace: crossplane-system
     name: cp-example-igw
+  # deletionPolicy: Orphan # Do not delete resource even you will delete it from crossplane
 ---
 apiVersion: ec2.aws.upbound.io/v1beta1
 kind: Subnet
@@ -115,6 +118,7 @@ spec:
   writeConnectionSecretToRef:
     namespace: crossplane-system
     name: cp-example-private-us-east-1a-subnet
+  # deletionPolicy: Orphan # Do not delete resource even you will delete it from crossplane
 ---
 apiVersion: ec2.aws.upbound.io/v1beta1
 kind: Subnet
@@ -139,6 +143,7 @@ spec:
   writeConnectionSecretToRef:
     namespace: crossplane-system
     name: cp-example-private-us-east-1b-subnet
+  # deletionPolicy: Orphan # Do not delete resource even you will delete it from crossplane
 ---
 apiVersion: ec2.aws.upbound.io/v1beta1
 kind: Subnet
@@ -163,6 +168,7 @@ spec:
   writeConnectionSecretToRef:
     namespace: crossplane-system
     name: cp-example-public-us-east-1a-subnet
+  # deletionPolicy: Orphan # Do not delete resource even you will delete it from crossplane
 ---
 apiVersion: ec2.aws.upbound.io/v1beta1
 kind: Subnet
@@ -187,6 +193,7 @@ spec:
   writeConnectionSecretToRef:
     namespace: crossplane-system
     name: cp-example-public-us-east-1b-subnet
+  # deletionPolicy: Orphan # Do not delete resource even you will delete it from crossplane
 ---
 apiVersion: ec2.aws.upbound.io/v1beta1
 kind: RouteTable
@@ -208,6 +215,7 @@ spec:
   writeConnectionSecretToRef:
     namespace: crossplane-system
     name: cp-example-private-rtb
+  # deletionPolicy: Orphan # Do not delete resource even you will delete it from crossplane
 ---
 apiVersion: ec2.aws.upbound.io/v1beta1
 kind: Route
@@ -228,6 +236,7 @@ spec:
   writeConnectionSecretToRef:
     namespace: crossplane-system
     name: cp-example-private-rt
+  # deletionPolicy: Orphan # Do not delete resource even you will delete it from crossplane
 ---
 apiVersion: ec2.aws.upbound.io/v1beta1
 kind: RouteTable
@@ -249,6 +258,7 @@ spec:
   writeConnectionSecretToRef:
     namespace: crossplane-system
     name: cp-example-public-rtb
+  # deletionPolicy: Orphan # Do not delete resource even you will delete it from crossplane
 ---
 apiVersion: ec2.aws.upbound.io/v1beta1
 kind: Route
@@ -267,6 +277,7 @@ spec:
   writeConnectionSecretToRef:
     namespace: crossplane-system
     name: cp-example-public-rt
+  # deletionPolicy: Orphan # Do not delete resource even you will delete it from crossplane
 ---
 apiVersion: ec2.aws.upbound.io/v1beta1
 kind: RouteTableAssociation
@@ -284,6 +295,7 @@ spec:
   writeConnectionSecretToRef:
     namespace: crossplane-system
     name: cp-example-private-us-east-1a-rta
+  # deletionPolicy: Orphan # Do not delete resource even you will delete it from crossplane
 ---
 apiVersion: ec2.aws.upbound.io/v1beta1
 kind: RouteTableAssociation
@@ -301,6 +313,7 @@ spec:
   writeConnectionSecretToRef:
     namespace: crossplane-system
     name: cp-example-private-us-east-1b-rta
+  # deletionPolicy: Orphan # Do not delete resource even you will delete it from crossplane
 ---
 apiVersion: ec2.aws.upbound.io/v1beta1
 kind: RouteTableAssociation
@@ -318,6 +331,7 @@ spec:
   writeConnectionSecretToRef:
     namespace: crossplane-system
     name: cp-example-public-us-east-1a-rta
+  # deletionPolicy: Orphan # Do not delete resource even you will delete it from crossplane
 ---
 apiVersion: ec2.aws.upbound.io/v1beta1
 kind: RouteTableAssociation
@@ -335,3 +349,4 @@ spec:
   writeConnectionSecretToRef:
     namespace: crossplane-system
     name: cp-example-public-us-east-1b-rta
+  # deletionPolicy: Orphan # Do not delete resource even you will delete it from crossplane
