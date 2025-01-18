@@ -111,7 +111,7 @@ spec:
     name: cp-example-instance-1-ebs
   # deletionPolicy: Orphan # Do not delete resource even you will delete it from crossplane
   forProvider:
-    region: us-west-1
+    region: us-east-1
     availabilityZone: us-east-1a
     size: 20
     type: gp2
