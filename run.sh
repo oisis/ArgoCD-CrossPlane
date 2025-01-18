@@ -11,7 +11,7 @@ printf "${GREEN} Update Helm local repos cache${NC}\n"
 helm repo update
 
 printf "${GREEN}Installing ArgoCD with Helm${NC}\n"
-helm install argocd argocd/argo-cd --version 7.7.14 \
+helm install argocd argocd/argo-cd --version 7.7.16 \
   -f ./argocd/bootstrap/helm/argocd-values.yaml \
   --create-namespace \
   -n argocd

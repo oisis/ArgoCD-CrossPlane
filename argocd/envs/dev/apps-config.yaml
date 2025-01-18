@@ -8,7 +8,7 @@ helm_apps:
     project: 'default'
     repoUrl: 'https://argoproj.github.io/argo-helm'
     chart: 'argo-cd'
-    targetRevision: '7.7.14'
+    targetRevision: '7.7.16'
   - name: 'metrics-server'
     namespace: 'metrics-server'
     repoUrl: 'https://kubernetes-sigs.github.io/metrics-server/'
