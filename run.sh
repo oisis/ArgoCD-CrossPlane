@@ -25,3 +25,21 @@ printf "${GREEN}ArgoCD admin password${NC}: ${RED}${ARGOPASS}${NC}\n"
 printf "${GREEN}To get access to ArgoCD UI run command:${NC}\n"
 printf "    kubectl port-forward svc/argocd-server -n argocd 8080:443\n"
 printf "${GREEN}Open http://localhost:8080 in webbrowser${NC}\n"
+
+printf "${GREEN}Create AWS credentials for CrossPlane:${NC}\n"
+if [ -z "${AWS_ACCESS_KEY_ID}" ]; then
+  read -p "Podaj wartość dla zmiennej VAR_A: " AWS_ACCESS_KEY_ID
+fi
+
+if [ -z "${AWS_SECRET_ACCESS_KEY}" ]; then
+  read -p "Podaj wartość dla zmiennej VAR_A: " AWS_SECRET_ACCESS_KEY
+fi
+
+if ! kubectl get namespace crossplane-system &> /dev/null; then
+  kubectl create namespace crossplane-system
+  echo "Namespace crossplane-system został utworzony."
+fi
+
+kubectl create secret generic aws-secret \
+  --namespace crossplane-system \
+  --from-literal=creds="$(echo -n "[default]\naws_access_key_id = ${AWS_ACCESS_KEY_ID}\naws_secret_access_key = ${AWS_SECRET_ACCESS_KEY}")"
