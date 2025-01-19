@@ -12,3 +12,4 @@ spec:
     region: us-east-1
     tags:
       Name: cp-example-bucket
+      ManagedBy: crossplane

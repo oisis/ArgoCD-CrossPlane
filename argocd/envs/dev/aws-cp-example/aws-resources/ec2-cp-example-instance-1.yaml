@@ -17,6 +17,7 @@ spec:
     region: us-east-1
     tags:
       Name: cp-example-instance-1-sg
+      ManagedBy: crossplane
     vpcIdRef: 
       name: cp-example-vpc
 ---
@@ -43,6 +44,7 @@ spec:
       name: cp-example-instance-1-sg
     tags:
       Name: cp-example-instance-1-sg-egress
+      ManagedBy: crossplane
 ---
 apiVersion: ec2.aws.upbound.io/v1beta1
 kind: SecurityGroupIngressRule
@@ -67,6 +69,7 @@ spec:
       name: cp-example-instance-1-sg
     tags:
       Name: cp-example-instance-1-sg-ingress-22
+      ManagedBy: crossplane
 ---
 apiVersion: ec2.aws.upbound.io/v1beta1
 kind: SecurityGroupIngressRule
@@ -91,6 +94,7 @@ spec:
       name: cp-example-instance-1-sg
     tags:
       Name: cp-example-instance-1-sg-ingress-80
+      ManagedBy: crossplane
 ---
 apiVersion: ec2.aws.upbound.io/v1beta1
 kind: EBSVolume
@@ -111,6 +115,7 @@ spec:
     type: gp2
     tags:
       Name: cp-example-instance-1-ebs
+      ManagedBy: crossplane
 ---
 apiVersion: ec2.aws.upbound.io/v1beta1
 kind: Instance
@@ -138,6 +143,7 @@ spec:
       name: cp-example-public-us-east-1a-subnet
     tags:
       Name: cp-example-instance-1
+      ManagedBy: crossplane
     volumeTags:
       Name: cp-example-instance-1
     userData: |

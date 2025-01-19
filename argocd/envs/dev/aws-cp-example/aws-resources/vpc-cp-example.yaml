@@ -39,6 +39,7 @@ spec:
     vpc: true
     tags:
       Name: cp-example-eip
+      ManagedBy: crossplane
 ---
 apiVersion: ec2.aws.upbound.io/v1beta1
 kind: NATGateway
@@ -62,6 +63,7 @@ spec:
         name: cp-example-public-us-east-1a-subnet
     tags:
       Name: cp-example-nat
+      ManagedBy: crossplane
 ---
 apiVersion: ec2.aws.upbound.io/v1beta1
 kind: InternetGateway
@@ -187,6 +189,7 @@ spec:
     region: us-east-1
     tags:
       Name: cp-example-private-rtb
+      ManagedBy: crossplane
     vpcIdRef:
       name: cp-example-vpc
 ---
@@ -224,6 +227,7 @@ spec:
     region: us-east-1
     tags:
       Name: cp-example-public-rtb
+      ManagedBy: crossplane
     vpcIdRef:
       name: cp-example-vpc
 ---
