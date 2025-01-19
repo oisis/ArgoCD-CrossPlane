@@ -135,12 +135,14 @@ spec:
     associatePublicIpAddress: true
     availabilityZone: us-east-1a
     disableApiStop: false
+    disableApiTermination: false
     instanceType: t2.medium
     monitoring: true
     vpcSecurityGroupIdRefs:
       - name: cp-example-instance-1-sg
     subnetIdRef:
       name: cp-example-public-us-east-1a-subnet
+    userDataReplaceOnChange: true
     tags:
       Name: cp-example-instance-1
       ManagedBy: crossplane
