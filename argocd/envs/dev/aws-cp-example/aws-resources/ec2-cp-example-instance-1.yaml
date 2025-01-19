@@ -45,9 +45,8 @@ spec:
     fromPort: 0
     toPort: 0
     ipProtocol: tcp
-    securityGroupIdSelector:
-      matchLabels:
-        name: cp-example-instance-1-sg
+    securityGroupIdRef:
+      name: cp-example-instance-1-sg
     tags:
       Name: cp-example-instance-1-sg-egress
 ---
@@ -73,9 +72,8 @@ spec:
     fromPort: 22
     toPort: 22
     ipProtocol: tcp
-    securityGroupIdSelector:
-      matchLabels:
-        name: cp-example-instance-1-sg
+    securityGroupIdRef:
+      name: cp-example-instance-1-sg
     tags:
       Name: cp-example-instance-1-sg-ingress-22
 ---
@@ -101,9 +99,8 @@ spec:
     fromPort: 80
     toPort: 80
     ipProtocol: tcp
-    securityGroupIdSelector:
-      matchLabels:
-        name: cp-example-instance-1-sg
+    securityGroupIdRef:
+      name: cp-example-instance-1-sg
     tags:
       Name: cp-example-instance-1-sg-ingress-80
 ---
