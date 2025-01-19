@@ -157,11 +157,6 @@ spec:
       - name: cp-example-instance-1-sg
     subnetIdRef:
       name: cp-example-public-us-east-1a-subnet
-    ebsBlockDevice:
-      - deviceName: /dev/xvdb
-        deleteOnTermination: true
-        tags:
-          InstanceName: cp-example-instance-1
     tags:
       Name: cp-example-instance-1
     volumeTags:
