@@ -166,3 +166,24 @@ spec:
       name: cp-example-instance-1
     volumeIdRef:
       name: cp-example-instance-1-ebs
+---
+apiVersion: ec2.aws.upbound.io/v1beta1
+kind: SecurityGroupRule
+metadata:
+  name: cp-example-instance-1-sg-egress-test
+  # annotations:
+  #   crossplane.io/external-name: sg-0e880dcde534bafc1 # manage existing SecurityGroup
+  labels:
+    testing.upbound.io/example-name: securitygrouprule
+spec:
+  forProvider:
+    description: "Allow all egress traffic"
+    region: us-west-1
+    cidrBlocks:
+      - 0.0.0.0/0
+    fromPort: 0
+    toPort: 65535
+    protocol: tcp
+    securityGroupIdRef:
+      name: cp-example-instance-1-sg
+    type: ingress
