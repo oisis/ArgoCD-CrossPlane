@@ -10,9 +10,6 @@ metadata:
 spec:
   providerConfigRef:
     name: aws-upbound-pc
-  writeConnectionSecretToRef:
-    namespace: crossplane-system
-    name: cp-example-instance-1-sg
   # deletionPolicy: Orphan # Do not delete resource even you will delete it from crossplane
   forProvider:
     description: Security group for EC2 instance
@@ -34,9 +31,6 @@ metadata:
 spec:
   providerConfigRef:
     name: aws-upbound-pc
-  writeConnectionSecretToRef:
-    namespace: crossplane-system
-    name: cp-example-instance-1-sg-egress
   # deletionPolicy: Orphan # Do not delete resource even you will delete it from crossplane
   forProvider:
     description: "Allow all egress traffic"
@@ -61,9 +55,6 @@ metadata:
 spec:
   providerConfigRef:
     name: aws-upbound-pc
-  writeConnectionSecretToRef:
-    namespace: crossplane-system
-    name: cp-example-instance-1-sg-ingress-22
   # deletionPolicy: Orphan # Do not delete resource even you will delete it from crossplane
   forProvider:
     description: "Allow all ingress traffic for port 22"
@@ -88,9 +79,6 @@ metadata:
 spec:
   providerConfigRef:
     name: aws-upbound-pc
-  writeConnectionSecretToRef:
-    namespace: crossplane-system
-    name: cp-example-instance-1-sg-ingress-80
   # deletionPolicy: Orphan # Do not delete resource even you will delete it from crossplane
   forProvider:
     description: "Allow all ingress traffic for port 80"
@@ -115,9 +103,6 @@ metadata:
 spec:
   providerConfigRef:
     name: aws-upbound-pc
-  writeConnectionSecretToRef:
-    namespace: crossplane-system
-    name: cp-example-instance-1-ebs
   # deletionPolicy: Orphan # Do not delete resource even you will delete it from crossplane
   forProvider:
     region: us-east-1
@@ -138,9 +123,6 @@ metadata:
 spec:
   providerConfigRef:
     name: aws-upbound-pc
-  writeConnectionSecretToRef:
-    namespace: crossplane-system
-    name: cp-example-instance-1
   # deletionPolicy: Orphan # Do not delete resource even you will delete it from crossplane
   forProvider:
     region: us-east-1
@@ -176,9 +158,6 @@ metadata:
 spec:
   providerConfigRef:
     name: aws-upbound-pc
-  writeConnectionSecretToRef:
-    namespace: crossplane-system
-    name: cp-example-instance-1-volumeattach
   # deletionPolicy: Orphan # Do not delete resource even you will delete it from crossplane
   forProvider:
     region: us-east-1
