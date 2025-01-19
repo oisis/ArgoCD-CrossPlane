@@ -6,6 +6,7 @@ metadata:
 spec:
   providerConfigRef:
     name: aws-upbound-pc
+  # deletionPolicy: Orphan # Do not delete resource even you will delete it from crossplane
   forProvider:
     forceDestroy: true
     region: us-east-1

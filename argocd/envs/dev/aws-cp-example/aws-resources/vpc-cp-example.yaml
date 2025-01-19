@@ -10,6 +10,7 @@ metadata:
 spec:
   providerConfigRef:
     name: aws-upbound-pc
+  # deletionPolicy: Orphan # Do not delete resource even you will delete it from crossplane
   forProvider:
     region: us-east-1
     cidrBlock: 10.100.0.0/16
@@ -20,10 +21,6 @@ spec:
     tags:
       ManagedBy: Crossplane
       Name: cp-example-vpc
-  writeConnectionSecretToRef:
-    namespace: crossplane-system
-    name: cp-example-vpc
-  # deletionPolicy: Orphan # Do not delete resource even you will delete it from crossplane
 ---
 apiVersion: ec2.aws.upbound.io/v1beta1
 kind: EIP
@@ -36,15 +33,12 @@ metadata:
 spec:
   providerConfigRef:
     name: aws-upbound-pc
+  # deletionPolicy: Orphan # Do not delete resource even you will delete it from crossplane
   forProvider:
     region: us-east-1
     vpc: true
     tags:
       Name: cp-example-eip
-  writeConnectionSecretToRef:
-    namespace: crossplane-system
-    name: cp-example-eip
-  # deletionPolicy: Orphan # Do not delete resource even you will delete it from crossplane
 ---
 apiVersion: ec2.aws.upbound.io/v1beta1
 kind: NATGateway
@@ -57,6 +51,7 @@ metadata:
 spec:
   providerConfigRef:
     name: aws-upbound-pc
+  # deletionPolicy: Orphan # Do not delete resource even you will delete it from crossplane
   forProvider:
     connectivityType: public
     region: us-east-1
@@ -67,10 +62,6 @@ spec:
         name: cp-example-public-us-east-1a-subnet
     tags:
       Name: cp-example-nat
-  writeConnectionSecretToRef:
-    namespace: crossplane-system
-    name: cp-example-nat
-  # deletionPolicy: Orphan # Do not delete resource even you will delete it from crossplane
 ---
 apiVersion: ec2.aws.upbound.io/v1beta1
 kind: InternetGateway
@@ -83,6 +74,7 @@ metadata:
 spec:
   providerConfigRef:
     name: aws-upbound-pc
+  # deletionPolicy: Orphan # Do not delete resource even you will delete it from crossplane
   forProvider:
     region: us-east-1
     tags:
@@ -90,10 +82,6 @@ spec:
       ManagedBy: Crossplane
     vpcIdRef:
       name: cp-example-vpc
-  writeConnectionSecretToRef:
-    namespace: crossplane-system
-    name: cp-example-igw
-  # deletionPolicy: Orphan # Do not delete resource even you will delete it from crossplane
 ---
 apiVersion: ec2.aws.upbound.io/v1beta1
 kind: Subnet
@@ -106,6 +94,7 @@ metadata:
 spec:
   providerConfigRef:
     name: aws-upbound-pc
+  # deletionPolicy: Orphan # Do not delete resource even you will delete it from crossplane
   forProvider:
     availabilityZone: us-east-1a
     cidrBlock: 10.100.1.0/24
@@ -115,10 +104,6 @@ spec:
       ManagedBy: Crossplane
     vpcIdRef:
       name: cp-example-vpc
-  writeConnectionSecretToRef:
-    namespace: crossplane-system
-    name: cp-example-private-us-east-1a-subnet
-  # deletionPolicy: Orphan # Do not delete resource even you will delete it from crossplane
 ---
 apiVersion: ec2.aws.upbound.io/v1beta1
 kind: Subnet
@@ -131,6 +116,7 @@ metadata:
 spec:
   providerConfigRef:
     name: aws-upbound-pc
+  # deletionPolicy: Orphan # Do not delete resource even you will delete it from crossplane
   forProvider:
     availabilityZone: us-east-1b
     cidrBlock: 10.100.2.0/24
@@ -140,10 +126,6 @@ spec:
       ManagedBy: Crossplane
     vpcIdRef:
       name: cp-example-vpc
-  writeConnectionSecretToRef:
-    namespace: crossplane-system
-    name: cp-example-private-us-east-1b-subnet
-  # deletionPolicy: Orphan # Do not delete resource even you will delete it from crossplane
 ---
 apiVersion: ec2.aws.upbound.io/v1beta1
 kind: Subnet
@@ -156,6 +138,7 @@ metadata:
 spec:
   providerConfigRef:
     name: aws-upbound-pc
+  # deletionPolicy: Orphan # Do not delete resource even you will delete it from crossplane
   forProvider:
     availabilityZone: us-east-1a
     cidrBlock: 10.100.3.0/24
@@ -165,10 +148,6 @@ spec:
       ManagedBy: Crossplane 
     vpcIdRef:
       name: cp-example-vpc
-  writeConnectionSecretToRef:
-    namespace: crossplane-system
-    name: cp-example-public-us-east-1a-subnet
-  # deletionPolicy: Orphan # Do not delete resource even you will delete it from crossplane
 ---
 apiVersion: ec2.aws.upbound.io/v1beta1
 kind: Subnet
@@ -181,6 +160,7 @@ metadata:
 spec:
   providerConfigRef:
     name: aws-upbound-pc
+  # deletionPolicy: Orphan # Do not delete resource even you will delete it from crossplane
   forProvider:
     availabilityZone: us-east-1b
     cidrBlock: 10.100.4.0/24
@@ -190,10 +170,6 @@ spec:
       ManagedBy: Crossplane 
     vpcIdRef:
       name: cp-example-vpc
-  writeConnectionSecretToRef:
-    namespace: crossplane-system
-    name: cp-example-public-us-east-1b-subnet
-  # deletionPolicy: Orphan # Do not delete resource even you will delete it from crossplane
 ---
 apiVersion: ec2.aws.upbound.io/v1beta1
 kind: RouteTable
@@ -206,16 +182,13 @@ metadata:
 spec:
   providerConfigRef:
     name: aws-upbound-pc
+  # deletionPolicy: Orphan # Do not delete resource even you will delete it from crossplane
   forProvider:
     region: us-east-1
     tags:
       Name: cp-example-private-rtb
     vpcIdRef:
       name: cp-example-vpc
-  writeConnectionSecretToRef:
-    namespace: crossplane-system
-    name: cp-example-private-rtb
-  # deletionPolicy: Orphan # Do not delete resource even you will delete it from crossplane
 ---
 apiVersion: ec2.aws.upbound.io/v1beta1
 kind: Route
@@ -226,6 +199,7 @@ metadata:
 spec:
   providerConfigRef:
     name: aws-upbound-pc
+  # deletionPolicy: Orphan # Do not delete resource even you will delete it from crossplane
   forProvider:
     destinationCidrBlock: 0.0.0.0/0
     natGatewayIdRef:
@@ -233,10 +207,6 @@ spec:
     region: us-east-1
     routeTableIdRef:
       name: cp-example-private-rtb
-  writeConnectionSecretToRef:
-    namespace: crossplane-system
-    name: cp-example-private-rt
-  # deletionPolicy: Orphan # Do not delete resource even you will delete it from crossplane
 ---
 apiVersion: ec2.aws.upbound.io/v1beta1
 kind: RouteTable
@@ -249,16 +219,13 @@ metadata:
 spec:
   providerConfigRef:
     name: aws-upbound-pc
+  # deletionPolicy: Orphan # Do not delete resource even you will delete it from crossplane
   forProvider:
     region: us-east-1
     tags:
       Name: cp-example-public-rtb
     vpcIdRef:
       name: cp-example-vpc
-  writeConnectionSecretToRef:
-    namespace: crossplane-system
-    name: cp-example-public-rtb
-  # deletionPolicy: Orphan # Do not delete resource even you will delete it from crossplane
 ---
 apiVersion: ec2.aws.upbound.io/v1beta1
 kind: Route
@@ -267,6 +234,7 @@ metadata:
 spec:
   providerConfigRef:
     name: aws-upbound-pc
+  # deletionPolicy: Orphan # Do not delete resource even you will delete it from crossplane
   forProvider:
     destinationCidrBlock: 0.0.0.0/0
     gatewayIdRef:
@@ -274,10 +242,6 @@ spec:
     region: us-east-1
     routeTableIdRef:
       name: cp-example-public-rtb
-  writeConnectionSecretToRef:
-    namespace: crossplane-system
-    name: cp-example-public-rt
-  # deletionPolicy: Orphan # Do not delete resource even you will delete it from crossplane
 ---
 apiVersion: ec2.aws.upbound.io/v1beta1
 kind: RouteTableAssociation
@@ -286,16 +250,13 @@ metadata:
 spec:
   providerConfigRef:
     name: aws-upbound-pc
+  # deletionPolicy: Orphan # Do not delete resource even you will delete it from crossplane
   forProvider:
     region: us-east-1
     routeTableIdRef:
       name: cp-example-private-rtb
     subnetIdRef:
       name: cp-example-private-us-east-1a-subnet
-  writeConnectionSecretToRef:
-    namespace: crossplane-system
-    name: cp-example-private-us-east-1a-rta
-  # deletionPolicy: Orphan # Do not delete resource even you will delete it from crossplane
 ---
 apiVersion: ec2.aws.upbound.io/v1beta1
 kind: RouteTableAssociation
@@ -304,16 +265,13 @@ metadata:
 spec:
   providerConfigRef:
     name: aws-upbound-pc
+  # deletionPolicy: Orphan # Do not delete resource even you will delete it from crossplane
   forProvider:
     region: us-east-1
     routeTableIdRef:
       name: cp-example-private-rtb
     subnetIdRef:
       name: cp-example-private-us-east-1b-subnet
-  writeConnectionSecretToRef:
-    namespace: crossplane-system
-    name: cp-example-private-us-east-1b-rta
-  # deletionPolicy: Orphan # Do not delete resource even you will delete it from crossplane
 ---
 apiVersion: ec2.aws.upbound.io/v1beta1
 kind: RouteTableAssociation
@@ -322,16 +280,13 @@ metadata:
 spec:
   providerConfigRef:
     name: aws-upbound-pc
+  # deletionPolicy: Orphan # Do not delete resource even you will delete it from crossplane
   forProvider:
     region: us-east-1
     routeTableIdRef:
       name: cp-example-public-rtb
     subnetIdRef:
       name: cp-example-public-us-east-1a-subnet
-  writeConnectionSecretToRef:
-    namespace: crossplane-system
-    name: cp-example-public-us-east-1a-rta
-  # deletionPolicy: Orphan # Do not delete resource even you will delete it from crossplane
 ---
 apiVersion: ec2.aws.upbound.io/v1beta1
 kind: RouteTableAssociation
@@ -340,13 +295,10 @@ metadata:
 spec:
   providerConfigRef:
     name: aws-upbound-pc
+  # deletionPolicy: Orphan # Do not delete resource even you will delete it from crossplane
   forProvider:
     region: us-east-1
     routeTableIdRef:
       name: cp-example-public-rtb
     subnetIdRef:
       name: cp-example-public-us-east-1b-subnet
-  writeConnectionSecretToRef:
-    namespace: crossplane-system
-    name: cp-example-public-us-east-1b-rta
-  # deletionPolicy: Orphan # Do not delete resource even you will delete it from crossplane
