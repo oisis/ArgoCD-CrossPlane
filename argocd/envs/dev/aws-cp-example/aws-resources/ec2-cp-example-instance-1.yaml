@@ -176,6 +176,9 @@ metadata:
   labels:
     testing.upbound.io/example-name: securitygrouprule
 spec:
+  providerConfigRef:
+    name: aws-upbound-pc
+  # deletionPolicy: Orphan # Do not delete resource even you will delete it from crossplane
   forProvider:
     description: "Allow all egress traffic"
     region: us-west-1
