@@ -31,6 +31,9 @@ spec:
       serviceIpv4Cidr: 10.0.0.0/16
     # roleArnRef:
     #   name: cp-example-eks-cluster-role
+    storageConfig:
+      blockStorage:
+        enabled: true
     tags:
       Name: cp-example-eks-cluster
       ManagedBy: crossplane
