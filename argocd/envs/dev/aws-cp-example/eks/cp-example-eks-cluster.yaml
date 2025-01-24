@@ -1,0 +1,43 @@
+---
+apiVersion: eks.aws.upbound.io/v1beta2
+kind: Cluster
+metadata:
+  name: cp-example-eks-cluster
+  # annotations:
+  #   crossplane.io/external-name: subnet-03c18525e77fda56b # manage existing Subnet
+  labels:
+    name: cp-example-eks-cluster
+spec:
+  providerConfigRef:
+    name: aws-upbound-pc
+  # deletionPolicy: Orphan # Do not delete resource even you will delete it from crossplane
+  forProvider:
+    region: us-east-1
+    accessConfig:
+      authenticationMode: API_AND_CONFIG_MAP
+    bootstrapSelfManagedAddons: true
+    computeConfig:
+      enabled: true
+    enabledClusterLogTypes:
+      - api
+      - audit
+      - authenticator
+      - controllerManager
+      - scheduler
+    kubernetesNetworkConfig:
+      elasticLoadBalancing:
+        enabled: true
+      ipFamily: ipv4
+      serviceIpv4Cidr: 10.0.0.0/16
+    roleArnRef:
+      name: cp-example-eks-cluster-role
+    tags:
+      Name: cp-example-eks-cluster
+      ManagedBy: crossplane
+    upgradePolicy:
+      supportType: STANDARD
+    version: 1.32
+    vpcConfig:
+      subnetIdRefs:
+        - name: cp-example-private-us-east-1a-subnet
+        - name: cp-example-private-us-east-1b-subnet
