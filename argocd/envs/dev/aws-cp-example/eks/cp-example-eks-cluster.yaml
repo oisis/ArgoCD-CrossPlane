@@ -36,7 +36,7 @@ spec:
       ManagedBy: crossplane
     upgradePolicy:
       supportType: STANDARD
-    version: 1.32
+    version: "1.32"
     vpcConfig:
       subnetIdRefs:
         - name: cp-example-private-us-east-1a-subnet
