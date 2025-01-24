@@ -14,37 +14,14 @@ spec:
   # deletionPolicy: Orphan # Do not delete resource even you will delete it from crossplane
   forProvider:
     description: "Role for SSM agent"
-    assumeRolePolicy: |
-      {
-        "Version": "2012-10-17",
-        "Statement": [
-          {
-            "Effect": "Allow",
-            "Action": [
-              "ec2:CreateTags"
-            ],
-            "Resource": "arn:aws:ec2:*:*:instance/*",
-            "Condition": {
-              "ForAnyValue:StringLike": {
-                "aws:TagKeys": "kubernetes.io/cluster/*"
-              }
-            }
-          },
-          {
-            "Effect": "Allow",
-            "Action": [
-              "ec2:DescribeInstances",
-              "ec2:DescribeNetworkInterfaces",
-              "ec2:DescribeVpcs",
-              "ec2:DescribeDhcpOptions",
-              "ec2:DescribeAvailabilityZones",
-              "ec2:DescribeInstanceTopology",
-              "kms:DescribeKey"
-            ],
-            "Resource": "*"
-          }
-        ]
-      }
+    managedPolicyArnsRefs:
+      - name: AmazonEKSBlockStoragePolicy
+      - name: AmazonEKSClusterPolicy
+      - name: AmazonEKSComputePolicy
+      - name: AmazonEKSLoadBalancingPolicy
+      - name: AmazonEKSNetworkingPolicy
+      - name: AmazonEC2ContainerRegistryPullOnly
+      - name: AmazonEKSWorkerNodeMinimalPolicy
     tags:
       Name: cp-example-eks-cluster-role
       ManagedBy: crossplane
