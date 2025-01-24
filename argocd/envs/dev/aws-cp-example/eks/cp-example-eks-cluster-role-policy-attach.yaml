@@ -2,11 +2,11 @@
 apiVersion: iam.aws.upbound.io/v1beta1
 kind: RolePolicyAttachment
 metadata:
-  name: cp-example-eks-cluster-role-policy-attach
+  name: eks-cluster-rpa
   # annotations:
   #   crossplane.io/external-name: sg-0e880dcde534bafc1 # manage existing SecurityGroup
   labels:
-    name: cp-example-eks-cluster-role-policy-attach
+    name: eks-cluster-rpa
     ManagedBy: crossplane
 spec:
   providerConfigRef:
@@ -14,11 +14,12 @@ spec:
   # deletionPolicy: Orphan # Do not delete resource even you will delete it from crossplane
   forProvider:
     policyArnRef:
-      - name: AmazonEKSBlockStoragePolicy
-      - name: AmazonEKSClusterPolicy
-      - name: AmazonEKSComputePolicy
-      - name: AmazonEKSLoadBalancingPolicy
-      - name: AmazonEKSNetworkingPolicy
-      - name: AmazonEC2ContainerRegistryPullOnly
-      - name: AmazonEKSWorkerNodeMinimalPolicy
-    roleName: cp-example-eks-cluster-role
+      name: AmazonEKSBlockStoragePolicy
+      # name: AmazonEKSClusterPolicy
+      # name: AmazonEKSComputePolicy
+      # name: AmazonEKSLoadBalancingPolicy
+      # name: AmazonEKSNetworkingPolicy
+      # name: AmazonEC2ContainerRegistryPullOnly
+      # name: AmazonEKSWorkerNodeMinimalPolicy
+    roleRef: 
+      name: cp-example-eks-cluster-role
