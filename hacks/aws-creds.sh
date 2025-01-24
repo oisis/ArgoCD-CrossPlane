@@ -5,16 +5,16 @@ NC='\033[0m'
 
 printf "${GREEN}Create AWS credentials for CrossPlane:${NC}\n"
 if [ -z "${AWS_ACCESS_KEY_ID}" ]; then
-  read -p "Podaj wartość dla zmiennej VAR_A: " AWS_ACCESS_KEY_ID
+  read -p "Provide a value for the variable AWS_ACCESS_KEY_ID: " AWS_ACCESS_KEY_ID
 fi
 
 if [ -z "${AWS_SECRET_ACCESS_KEY}" ]; then
-  read -p "Podaj wartość dla zmiennej VAR_A: " AWS_SECRET_ACCESS_KEY
+  read -p "Provide a value for the variable AWS_SECRET_ACCESS_KEY: " AWS_SECRET_ACCESS_KEY
 fi
 
 if ! kubectl get namespace crossplane-system &> /dev/null; then
   kubectl create namespace crossplane-system
-  echo "Namespace crossplane-system został utworzony."
+  echo "The namespace crossplane-system has been created."
 fi
 
 kubectl create secret generic aws-secret \
