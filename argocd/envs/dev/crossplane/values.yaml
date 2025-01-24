@@ -4,3 +4,4 @@ provider:
     - "xpkg.upbound.io/upbound/provider-aws-ec2:v1"
     - "xpkg.upbound.io/upbound/provider-aws-ssm:v1"
     - "xpkg.upbound.io/upbound/provider-aws-iam:v1"
+    - "xpkg.upbound.io/upbound/provider-aws-eks:v1"
