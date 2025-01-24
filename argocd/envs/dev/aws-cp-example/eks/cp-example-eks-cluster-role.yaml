@@ -14,6 +14,19 @@ spec:
   # deletionPolicy: Orphan # Do not delete resource even you will delete it from crossplane
   forProvider:
     description: "Role for SSM agent"
+    assumeRolePolicy: |
+      {
+        "Version": "2012-10-17",
+        "Statement": [
+          {
+            "Effect": "Allow",
+            "Principal": {
+              "Service": "eks.amazonaws.com"
+            },
+            "Action": "sts:AssumeRole"
+          }
+        ]
+      }
     managedPolicyArnsRefs:
       - name: AmazonEKSBlockStoragePolicy
       - name: AmazonEKSClusterPolicy
