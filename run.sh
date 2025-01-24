@@ -42,4 +42,4 @@ fi
 
 kubectl create secret generic aws-secret \
   --namespace crossplane-system \
-  --from-literal=creds="$(echo "[default]\naws_access_key_id = ${AWS_ACCESS_KEY_ID}\naws_secret_access_key = ${AWS_SECRET_ACCESS_KEY}")"
+  --from-literal=creds="$(printf '[default]\naws_access_key_id = %s\naws_secret_access_key = %s' "$AWS_ACCESS_KEY_ID" "$AWS_SECRET_ACCESS_KEY")"
