@@ -1,0 +1,38 @@
+---
+apiVersion: ec2.aws.upbound.io/v1beta1
+kind: Instance
+metadata:
+  name: ec2-1
+  # annotations:
+  #   crossplane.io/external-name: ec2-06b5984e75c31ff46 # manage existing EC2
+  labels:
+    name: ec2-1-ebs
+spec:
+  providerConfigRef:
+    name: aws-upbound-pc
+  # deletionPolicy: Orphan # Do not delete resource even you will delete it from crossplane
+  forProvider:
+    region: us-east-1
+    ami: ami-05576a079321f21f8
+    associatePublicIpAddress: true
+    availabilityZone: us-east-1a
+    disableApiStop: false
+    disableApiTermination: false
+    instanceType: t2.medium
+    monitoring: true
+    vpcSecurityGroupIdRefs:
+      - name: ec2-1-sg
+    subnetIdRef:
+      name: cp-example-public-us-east-1a-subnet
+    userDataReplaceOnChange: true
+    tags:
+      Name: ec2-1
+      ManagedBy: crossplane
+    volumeTags:
+      Name: ec2-1
+    userData: |
+      #!/bin/bash
+      mkdir -p /mount/ebs1
+      mkfs.ext4 /dev/xvdb
+      mount /dev/xvdb /mount/ebs1
+      echo '/dev/xvdb /mount/ebs1 ext4 defaults 0 0' >> /etc/fstab

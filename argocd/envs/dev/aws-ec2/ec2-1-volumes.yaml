@@ -1,0 +1,41 @@
+---
+apiVersion: ec2.aws.upbound.io/v1beta1
+kind: EBSVolume
+metadata:
+  name: ec2-1-ebs
+  # annotations:
+  #   crossplane.io/external-name: ebs-06b5984e75c31ff46 # manage existing Volume
+  labels:
+    name: ec2-1-ebs
+spec:
+  providerConfigRef:
+    name: aws-upbound-pc
+  # deletionPolicy: Orphan # Do not delete resource even you will delete it from crossplane
+  forProvider:
+    region: us-east-1
+    availabilityZone: us-east-1a
+    size: 20
+    type: gp2
+    tags:
+      Name: ec2-1-ebs
+      ManagedBy: crossplane
+---
+apiVersion: ec2.aws.upbound.io/v1beta1
+kind: VolumeAttachment
+metadata:
+  name: ec2-1-volumeattach
+  # annotations:
+  #   crossplane.io/external-name: ec2-06b5984e75c31ff46 # manage existing VolumeAttachment
+  labels:
+    name: ec2-1-volumeattach
+spec:
+  providerConfigRef:
+    name: aws-upbound-pc
+  # deletionPolicy: Orphan # Do not delete resource even you will delete it from crossplane
+  forProvider:
+    region: us-east-1
+    deviceName: /dev/xvdb
+    instanceIdRef:
+      name: ec2-1
+    volumeIdRef:
+      name: ec2-1-ebs

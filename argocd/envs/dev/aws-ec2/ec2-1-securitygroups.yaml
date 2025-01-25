@@ -1,0 +1,22 @@
+---
+apiVersion: ec2.aws.upbound.io/v1beta1
+kind: SecurityGroup
+metadata:
+  name: ec2-1-sg
+  # annotations:
+  #   crossplane.io/external-name: sg-0e880dcde534bafc1 # manage existing SecurityGroup
+  labels:
+    name: ec2-1-sg
+spec:
+  providerConfigRef:
+    name: aws-upbound-pc
+  # deletionPolicy: Orphan # Do not delete resource even you will delete it from crossplane
+  forProvider:
+    description: Security group for EC2 instance
+    name: ec2-1-sg
+    region: us-east-1
+    tags:
+      Name: ec2-1-sg
+      ManagedBy: crossplane
+    vpcIdRef: 
+      name: cp-example-vpc
