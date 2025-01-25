@@ -14,3 +14,19 @@ provider:
     - "xpkg.upbound.io/upbound/provider-aws-ssm:v1"
     - "xpkg.upbound.io/upbound/provider-aws-iam:v1"
     - "xpkg.upbound.io/upbound/provider-aws-eks:v1"
+extraObjects:
+  - apiVersion: aws.upbound.io/v1beta1
+    kind: ProviderConfig
+    metadata:
+      name: aws-upbound-pc
+      annotations:
+        argocd.argoproj.io/hook: PostSync
+        argocd.argoproj.io/sync-wave: "10"
+        argocd.argoproj.io/sync-options: "Retry=5;FailFast=false"
+    spec:
+      credentials:
+        source: Secret
+        secretRef:
+          key: creds
+          name: aws-secret
+          namespace: crossplane-system
