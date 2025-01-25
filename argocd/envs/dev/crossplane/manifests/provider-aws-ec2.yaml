@@ -4,7 +4,8 @@ kind: Provider
 metadata:
   name: provider-aws-ec2
   annotations:
-    argocd.argoproj.io/hook: Sync
-    argocd.argoproj.io/sync-wave: "0"
+    argocd.argoproj.io/hook: PostSync
+    argocd.argoproj.io/sync-wave: "1"
+    argocd.argoproj.io/sync-options: "Retry=5;FailFast=true;SkipDryRunOnMissingResource=true,Validate=false"
 spec:
   package: xpkg.upbound.io/upbound/provider-aws-ec2:v1
