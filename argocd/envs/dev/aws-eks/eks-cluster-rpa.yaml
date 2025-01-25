@@ -2,11 +2,11 @@
 apiVersion: iam.aws.upbound.io/v1beta1
 kind: RolePolicyAttachment
 metadata:
-  name: eks-cluster-rpa
+  name: eks-1-rpa
   # annotations:
   #   crossplane.io/external-name: sg-0e880dcde534bafc1 # manage existing SecurityGroup
   labels:
-    name: eks-cluster-rpa
+    name: eks-1-rpa
     ManagedBy: crossplane
 spec:
   providerConfigRef:
@@ -22,4 +22,4 @@ spec:
       - name: AmazonEC2ContainerRegistryPullOnly
       - name: AmazonEKSWorkerNodeMinimalPolicy
     roleRef: 
-      name: cp-example-eks-cluster-role
+      name: eks-1-role

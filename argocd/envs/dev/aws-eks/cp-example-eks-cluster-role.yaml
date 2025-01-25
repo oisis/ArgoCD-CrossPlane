@@ -2,11 +2,11 @@
 apiVersion: iam.aws.upbound.io/v1beta1
 kind: Role
 metadata:
-  name: cp-example-eks-cluster-role
+  name: eks-1-role
   # annotations:
   #   crossplane.io/external-name: sg-0e880dcde534bafc1 # manage existing SecurityGroup
   labels:
-    name: cp-example-role-with-policy
+    name: eks-1-role
     ManagedBy: crossplane
 spec:
   providerConfigRef:
@@ -28,5 +28,5 @@ spec:
         ]
       }
     tags:
-      Name: cp-example-eks-cluster-role
+      Name: eks-1-role
       ManagedBy: crossplane
