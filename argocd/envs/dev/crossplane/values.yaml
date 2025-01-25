@@ -1,3 +1,7 @@
+customAnnotations:
+  "helm.sh/hook": crd-install
+  "helm.sh/hook-weight": "-1"
+  "helm.sh/hook-delete-policy": before-hook-creation
 provider:
   packages:
     - "xpkg.upbound.io/upbound/provider-aws-s3:v1"
