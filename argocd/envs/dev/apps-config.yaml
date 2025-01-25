@@ -31,9 +31,9 @@ k8s_manifest_apps:
   - name: "aws-ec2"
     namespace: 'crossplane-system'
     config_dir: "aws-ec2"
-  - name: "aws-ssm-agent"
+  - name: "aws-ssm"
     namespace: 'crossplane-system'
-    config_dir: "aws-ssm-agent"
+    config_dir: "aws-ssm"
   - name: "aws-eks"
     namespace: 'crossplane-system'
     config_dir: "aws-eks"
