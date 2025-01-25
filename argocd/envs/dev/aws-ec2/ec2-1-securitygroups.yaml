@@ -19,4 +19,4 @@ spec:
       Name: ec2-1-sg
       ManagedBy: crossplane
     vpcIdRef: 
-      name: cp-example-vpc
+      name: vpc-1
