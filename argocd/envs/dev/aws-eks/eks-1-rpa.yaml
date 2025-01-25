@@ -14,12 +14,12 @@ spec:
   # deletionPolicy: Orphan # Do not delete resource even you will delete it from crossplane
   forProvider:
     policyArnRef:
-      - name: AmazonEKSBlockStoragePolicy
-      - name: AmazonEKSClusterPolicy
-      - name: AmazonEKSComputePolicy
-      - name: AmazonEKSLoadBalancingPolicy
-      - name: AmazonEKSNetworkingPolicy
-      - name: AmazonEC2ContainerRegistryPullOnly
-      - name: AmazonEKSWorkerNodeMinimalPolicy
+      name: AmazonEKSBlockStoragePolicy
+      # - name: AmazonEKSClusterPolicy
+      # - name: AmazonEKSComputePolicy
+      # - name: AmazonEKSLoadBalancingPolicy
+      # - name: AmazonEKSNetworkingPolicy
+      # - name: AmazonEC2ContainerRegistryPullOnly
+      # - name: AmazonEKSWorkerNodeMinimalPolicy
     roleRef: 
       name: eks-1-role
