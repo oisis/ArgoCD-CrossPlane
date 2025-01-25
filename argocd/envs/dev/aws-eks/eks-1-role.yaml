@@ -13,7 +13,7 @@ spec:
     name: aws-upbound-pc
   # deletionPolicy: Orphan # Do not delete resource even you will delete it from crossplane
   forProvider:
-    description: "Role for SSM agent"
+    description: "Role for EKS"
     assumeRolePolicy: |
       {
         "Version": "2012-10-17",
@@ -27,6 +27,14 @@ spec:
           }
         ]
       }
+    managedPolicyArnsRefs:
+      - name: AmazonEKSBlockStoragePolicy
+      - name: AmazonEKSClusterPolicy
+      - name: AmazonEKSComputePolicy
+      - name: AmazonEKSLoadBalancingPolicy
+      - name: AmazonEKSNetworkingPolicy
+      - name: AmazonEC2ContainerRegistryPullOnly
+      - name: AmazonEKSWorkerNodeMinimalPolicy
     tags:
       Name: eks-1-role
       ManagedBy: crossplane
