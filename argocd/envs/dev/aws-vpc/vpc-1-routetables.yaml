@@ -1,0 +1,40 @@
+---
+apiVersion: ec2.aws.upbound.io/v1beta1
+kind: RouteTable
+metadata:
+  name: vpc-1-priv-rtb
+  # annotations:
+  #   crossplane.io/external-name: rtb-0289b5ea251088cb6 # manage existing RouteTable
+  labels:
+    name: vpc-1-priv-rtb
+spec:
+  providerConfigRef:
+    name: aws-upbound-pc
+  # deletionPolicy: Orphan # Do not delete resource even you will delete it from crossplane
+  forProvider:
+    region: us-east-1
+    tags:
+      Name: vpc-1-priv-rtb
+      ManagedBy: crossplane
+    vpcIdRef:
+      name: vpc-1
+---
+apiVersion: ec2.aws.upbound.io/v1beta1
+kind: RouteTable
+metadata:
+  name: vpc-1-pub-rtb
+  # annotations:
+  #   crossplane.io/external-name: rtb-00ec3f3036a7ab799 # manage existing RouteTable
+  labels:
+    name: vpc-1-pub-rtb
+spec:
+  providerConfigRef:
+    name: aws-upbound-pc
+  # deletionPolicy: Orphan # Do not delete resource even you will delete it from crossplane
+  forProvider:
+    region: us-east-1
+    tags:
+      Name: vpc-1-pub-rtb
+      ManagedBy: crossplane
+    vpcIdRef:
+      name: vpc-1

@@ -1,0 +1,34 @@
+---
+apiVersion: ec2.aws.upbound.io/v1beta1
+kind: Route
+metadata:
+  name: vpc-1-priv-rt
+  labels:
+    name: vpc-1-priv-rtb
+spec:
+  providerConfigRef:
+    name: aws-upbound-pc
+  # deletionPolicy: Orphan # Do not delete resource even you will delete it from crossplane
+  forProvider:
+    destinationCidrBlock: 0.0.0.0/0
+    natGatewayIdRef:
+      name: vpc-1-nat
+    region: us-east-1
+    routeTableIdRef:
+      name: vpc-1-priv-rtb
+---
+apiVersion: ec2.aws.upbound.io/v1beta1
+kind: Route
+metadata:
+  name: vpc-1-pub-rt
+spec:
+  providerConfigRef:
+    name: aws-upbound-pc
+  # deletionPolicy: Orphan # Do not delete resource even you will delete it from crossplane
+  forProvider:
+    destinationCidrBlock: 0.0.0.0/0
+    gatewayIdRef:
+      name: vpc-1-igw
+    region: us-east-1
+    routeTableIdRef:
+      name: vpc-1-pub-rtb

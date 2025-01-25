@@ -1,0 +1,20 @@
+---
+apiVersion: ec2.aws.upbound.io/v1beta1
+kind: InternetGateway
+metadata:
+  name: vpc-1-igw
+  # annotations:
+  #   crossplane.io/external-name: igw-0c36920ef01a2c06b # manage existing IGW
+  labels:
+    name: vpc-1-igw
+spec:
+  providerConfigRef:
+    name: aws-upbound-pc
+  # deletionPolicy: Orphan # Do not delete resource even you will delete it from crossplane
+  forProvider:
+    region: us-east-1
+    tags:
+      Name: vpc-1-igw
+      ManagedBy: Crossplane
+    vpcIdRef:
+      name: vpc-1

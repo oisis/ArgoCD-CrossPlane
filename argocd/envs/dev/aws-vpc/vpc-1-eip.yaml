@@ -1,0 +1,19 @@
+---
+apiVersion: ec2.aws.upbound.io/v1beta1
+kind: EIP
+metadata:
+  name: vpc-1-eip
+  # annotations:
+  #   crossplane.io/external-name: eipalloc-088d9b4c5bf8cc067 # manage existing EIP
+  labels:
+    name: vpc-1-eip
+spec:
+  providerConfigRef:
+    name: aws-upbound-pc
+  # deletionPolicy: Orphan # Do not delete resource even you will delete it from crossplane
+  forProvider:
+    region: us-east-1
+    vpc: true
+    tags:
+      Name: vpc-1-eip
+      ManagedBy: crossplane

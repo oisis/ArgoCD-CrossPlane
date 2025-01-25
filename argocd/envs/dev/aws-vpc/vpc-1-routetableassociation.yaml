@@ -1,0 +1,60 @@
+---
+apiVersion: ec2.aws.upbound.io/v1beta1
+kind: RouteTableAssociation
+metadata:
+  name: vpc-1-priv-us-east-1a-rta
+spec:
+  providerConfigRef:
+    name: aws-upbound-pc
+  # deletionPolicy: Orphan # Do not delete resource even you will delete it from crossplane
+  forProvider:
+    region: us-east-1
+    routeTableIdRef:
+      name: vpc-1-priv-rtb
+    subnetIdRef:
+      name: vpc-1-priv-us-east-1a-subnet
+---
+apiVersion: ec2.aws.upbound.io/v1beta1
+kind: RouteTableAssociation
+metadata:
+  name: vpc-1-priv-us-east-1b-rta
+spec:
+  providerConfigRef:
+    name: aws-upbound-pc
+  # deletionPolicy: Orphan # Do not delete resource even you will delete it from crossplane
+  forProvider:
+    region: us-east-1
+    routeTableIdRef:
+      name: vpc-1-priv-rtb
+    subnetIdRef:
+      name: vpc-1-priv-us-east-1b-subnet
+---
+apiVersion: ec2.aws.upbound.io/v1beta1
+kind: RouteTableAssociation
+metadata:
+  name: vpc-1-pub-us-east-1a-rta
+spec:
+  providerConfigRef:
+    name: aws-upbound-pc
+  # deletionPolicy: Orphan # Do not delete resource even you will delete it from crossplane
+  forProvider:
+    region: us-east-1
+    routeTableIdRef:
+      name: vpc-1-pub-rtb
+    subnetIdRef:
+      name: vpc-1-pub-us-east-1a-subnet
+---
+apiVersion: ec2.aws.upbound.io/v1beta1
+kind: RouteTableAssociation
+metadata:
+  name: vpc-1-pub-us-east-1b-rta
+spec:
+  providerConfigRef:
+    name: aws-upbound-pc
+  # deletionPolicy: Orphan # Do not delete resource even you will delete it from crossplane
+  forProvider:
+    region: us-east-1
+    routeTableIdRef:
+      name: vpc-1-pub-rtb
+    subnetIdRef:
+      name: vpc-1-pub-us-east-1b-subnet

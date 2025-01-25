@@ -1,0 +1,23 @@
+---
+apiVersion: ec2.aws.upbound.io/v1beta1
+kind: VPC
+metadata:
+  name: vpc-1
+  # annotations:
+  #   crossplane.io/external-name: vpc-06b5984e75c31ff46 # manage existing VPC
+  labels:
+    name: vpc-1
+spec:
+  providerConfigRef:
+    name: aws-upbound-pc
+  # deletionPolicy: Orphan # Do not delete resource even you will delete it from crossplane
+  forProvider:
+    region: us-east-1
+    cidrBlock: 10.100.0.0/16
+    enableDnsSupport: true
+    enableDnsHostnames: true
+    instanceTenancy: default
+    enableNetworkAddressUsageMetrics: true
+    tags:
+      ManagedBy: Crossplane
+      Name: vpc-1

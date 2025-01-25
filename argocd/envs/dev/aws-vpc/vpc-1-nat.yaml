@@ -1,0 +1,24 @@
+---
+apiVersion: ec2.aws.upbound.io/v1beta1
+kind: NATGateway
+metadata:
+  name: vpc-1-nat
+  # annotations:
+  #   crossplane.io/external-name: nat-02bb3805fb0408de2 # manage existing NAT
+  labels:
+    name: vpc-1-nat
+spec:
+  providerConfigRef:
+    name: aws-upbound-pc
+  # deletionPolicy: Orphan # Do not delete resource even you will delete it from crossplane
+  forProvider:
+    connectivityType: public
+    region: us-east-1
+    allocationIdRef:
+      name: vpc-1-eip
+    subnetIdSelector:
+      matchLabels:
+        name: vpc-1-pub-us-east-1a-subnet
+    tags:
+      Name: vpc-1-nat
+      ManagedBy: crossplane
