@@ -53,14 +53,18 @@ spec:
               - $values/argocd/envs/{{.environment}}/{{.name}}/values.yaml
         - repoURL: https://github.com/oisis/ArgoCD-CrossPlane.git
           targetRevision: HEAD
-          path: argocd/apps/{{.name}}/manifests
+          path: argocd/apps/{{.name}}
           directory:
             recurse: true
+            include: '*.yaml'
+            exclude: '{values.yaml,.keep}'
         - repoURL: https://github.com/oisis/ArgoCD-CrossPlane.git
           targetRevision: HEAD
-          path: argocd/envs/{{.environment}}/{{.name}}/manifests
+          path: argocd/envs/{{.environment}}/{{.name}}
           directory:
             recurse: true
+            include: '*.yaml'
+            exclude: '{values.yaml,.keep}'
       destination:
         name: '{{.environment}}'
         namespace: '{{.namespace}}'
