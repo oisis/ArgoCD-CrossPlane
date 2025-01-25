@@ -14,10 +14,10 @@ spec:
   forProvider:
     region: us-east-1
     accessConfig:
-      authenticationMode: API_AND_CONFIG_MAP
+      - authenticationMode: API_AND_CONFIG_MAP
     bootstrapSelfManagedAddons: true
     computeConfig:
-      enabled: true
+      - enabled: true
     enabledClusterLogTypes:
       - api
       - audit
@@ -25,26 +25,26 @@ spec:
       - controllerManager
       - scheduler
     kubernetesNetworkConfig:
-      elasticLoadBalancing:
-        enabled: true
-      ipFamily: ipv4
-      serviceIpv4Cidr: 10.0.0.0/16
+      - elasticLoadBalancing:
+        - enabled: true
+      - ipFamily: ipv4
+      - serviceIpv4Cidr: 10.0.0.0/16
     roleArnRef:
       name: cp-example-eks-cluster-role
     storageConfig:
-      blockStorage:
-        enabled: true
+      - blockStorage:
+        - enabled: true
     tags:
       Name: cp-example-eks-cluster
       ManagedBy: crossplane
     upgradePolicy:
-      supportType: STANDARD
+      - supportType: STANDARD
     version: "1.32"
     vpcConfig:
-      # - endpointPrivateAccess: true
-      # - endpointPublicAccess: true
-      # - publicAccessCidrs: 
-      #   - "0.0.0.0/0"
+      - endpointPrivateAccess: true
+      - endpointPublicAccess: true
+      - publicAccessCidrs: 
+        - "0.0.0.0/0"
       - subnetIdRefs:
         - name: cp-example-private-us-east-1a-subnet
         - name: cp-example-private-us-east-1b-subnet
