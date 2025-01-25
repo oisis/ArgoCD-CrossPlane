@@ -27,14 +27,14 @@ spec:
           }
         ]
       }
-    managedPolicyArnsRefs:
-      - name: AmazonEKSBlockStoragePolicy
-      - name: AmazonEKSClusterPolicy
-      - name: AmazonEKSComputePolicy
-      - name: AmazonEKSLoadBalancingPolicy
-      - name: AmazonEKSNetworkingPolicy
-      - name: AmazonEC2ContainerRegistryPullOnly
-      - name: AmazonEKSWorkerNodeMinimalPolicy
+    managedPolicyArns:
+      - arn:aws:iam::aws:policy/AmazonEKSBlockStoragePolicy
+      - arn:aws:iam::aws:policy/AmazonEKSClusterPolicy
+      - arn:aws:iam::aws:policy/AmazonEKSComputePolicy
+      - arn:aws:iam::aws:policy/AmazonEKSLoadBalancingPolicy
+      - arn:aws:iam::aws:policy/AmazonEKSNetworkingPolicy
+      - arn:aws:iam::aws:policy/AmazonEC2ContainerRegistryPullOnly
+      - arn:aws:iam::aws:policy/AmazonEKSWorkerNodeMinimalPolicy
     tags:
       Name: eks-1-role
       ManagedBy: crossplane
