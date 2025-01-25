@@ -15,7 +15,7 @@ spec:
     region: us-east-1
     accessConfig:
       - authenticationMode: API_AND_CONFIG_MAP
-    bootstrapSelfManagedAddons: true
+    bootstrapSelfManagedAddons: false
     computeConfig:
       - enabled: true
     enabledClusterLogTypes:
