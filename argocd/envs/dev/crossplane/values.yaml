@@ -21,3 +21,10 @@ extraObjects:
           key: creds
           name: aws-secret
           namespace: crossplane-system
+
+
+customAnnotations:
+  helm.sh/hook: crd-install
+service:
+  customAnnotations:
+    helm.sh/hook: crd-install
