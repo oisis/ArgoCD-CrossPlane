@@ -47,4 +47,4 @@ spec:
         - "0.0.0.0/0"
       - subnetIdRefs:
         - name: cp-example-private-us-east-1a-subnet
-        - name: cp-example-private-us-east-1b-subnet
+        # - name: cp-example-private-us-east-1b-subnet
