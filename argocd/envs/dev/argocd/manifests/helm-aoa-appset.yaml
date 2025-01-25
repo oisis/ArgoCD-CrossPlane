@@ -57,14 +57,14 @@ spec:
           directory:
             recurse: true
             include: '*.yaml'
-            exclude: '{values.yaml,apps-config-example.yaml,.*}'
+            exclude: '{values.yaml,apps-config-example.yaml,.*,values-org.yaml}'
         - repoURL: https://github.com/oisis/ArgoCD-CrossPlane.git
           targetRevision: HEAD
           path: argocd/envs/{{.environment}}/{{.name}}
           directory:
             recurse: true
             include: '*.yaml'
-            exclude: '{values.yaml,apps-config-example.yaml,.*}'
+            exclude: '{values.yaml,apps-config-example.yaml,.*,values-org.yaml}'
       destination:
         name: '{{.environment}}'
         namespace: '{{.namespace}}'
