@@ -41,9 +41,10 @@ spec:
       supportType: STANDARD
     version: "1.32"
     vpcConfig:
-      endpointPrivateAccess: true
-      endpointPublicAccess: true
-      publicAccessCidrs: "0.0.0.0/0"
-      subnetIdRefs:
+      - endpointPrivateAccess: true
+      - endpointPublicAccess: true
+      - publicAccessCidrs: 
+        - "0.0.0.0/0"
+      - subnetIdRefs:
         - name: cp-example-private-us-east-1a-subnet
         - name: cp-example-private-us-east-1b-subnet
