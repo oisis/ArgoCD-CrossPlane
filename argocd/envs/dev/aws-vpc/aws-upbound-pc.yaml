@@ -4,8 +4,8 @@ kind: ProviderConfig
 metadata:
   name: aws-upbound-pc
   annotations:
-    argocd.argoproj.io/hook: PostSync
-    argocd.argoproj.io/sync-wave: "5"
+    argocd.argoproj.io/hook: PreSync
+    argocd.argoproj.io/sync-wave: "-5"
 spec:
   credentials:
     source: Secret
