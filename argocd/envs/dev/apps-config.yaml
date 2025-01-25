@@ -37,3 +37,6 @@ k8s_manifest_apps:
   - name: "aws-vpc"
     namespace: 'crossplane-system'
     config_dir: "aws-vpc"
+  - name: "aws-ssm-agent"
+    namespace: 'crossplane-system'
+    config_dir: "aws-ssm-agent"
