@@ -25,6 +25,9 @@ helm_apps:
     chart: 'kubernetes-dashboard'
     targetRevision: '>=7.10.0 <7.11.0'
 k8s_manifest_apps:
+  - name: "aws-config"
+    namespace: 'crossplane-system'
+    config_dir: "aws-config"
   # - name: "aws-ec2"
   #   namespace: 'crossplane-system'
   #   config_dir: "aws-ec2"
