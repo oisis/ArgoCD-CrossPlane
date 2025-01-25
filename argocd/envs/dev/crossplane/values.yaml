@@ -1,12 +1,3 @@
-customAnnotations:
-  "helm.sh/hook": crd-install
-  "helm.sh/hook-weight": "-1"
-  "helm.sh/hook-delete-policy": before-hook-creation
-service:
-  customAnnotations:
-    "helm.sh/hook": crd-install
-    "helm.sh/hook-weight": "-1"
-    "helm.sh/hook-delete-policy": before-hook-creation
 provider:
   packages:
     - "xpkg.upbound.io/upbound/provider-aws-s3:v1"
@@ -22,7 +13,7 @@ extraObjects:
       annotations:
         argocd.argoproj.io/hook: PostSync
         argocd.argoproj.io/sync-wave: "10"
-        argocd.argoproj.io/sync-options: "Retry=5;FailFast=false"
+        argocd.argoproj.io/sync-options: "Retry=5;FailFast=true;SkipDryRunOnMissingResource=true"
     spec:
       credentials:
         source: Secret
