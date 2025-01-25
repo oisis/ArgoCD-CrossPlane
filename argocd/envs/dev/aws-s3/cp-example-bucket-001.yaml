@@ -2,7 +2,11 @@
 apiVersion: s3.aws.upbound.io/v1beta2
 kind: Bucket
 metadata:
-  name: cp-example-bucket
+  name: cp-example-bucket-001
+  # annotations:
+  #   crossplane.io/external-name: sg-0e880dcde534bafc1 # manage existing SecurityGroup
+  labels:
+    name: cp-example-bucket-001
 spec:
   providerConfigRef:
     name: aws-upbound-pc
@@ -11,5 +15,5 @@ spec:
     forceDestroy: true
     region: us-east-1
     tags:
-      Name: cp-example-bucket
+      Name: cp-example-bucket-001
       ManagedBy: crossplane
