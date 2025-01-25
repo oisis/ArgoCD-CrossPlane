@@ -61,6 +61,11 @@ spec:
         - name: 'Applicatation url:'
           value: 'http://{{.name}}.{{.domain}}'
       syncPolicy:
+        managedNamespaceMetadata:
+          labels:
+            environment: '{{.environment}}'
+          annotations:
+            app_name: '{{.name}}'
         automated:
           prune: true
           selfHeal: true
@@ -70,3 +75,4 @@ spec:
           - CreateNamespace=true
           - PrunePropagationPolicy=foreground
           - PruneLast=true
+          - ApplyOutOfSyncOnly=true
