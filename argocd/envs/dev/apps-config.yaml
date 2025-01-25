@@ -25,18 +25,18 @@ helm_apps:
     chart: 'kubernetes-dashboard'
     targetRevision: '7.10.1'
 k8s_manifest_apps:
-  # - name: "aws-ec2"
-  #   namespace: 'crossplane-system'
-  #   config_dir: "aws-ec2"
-  # - name: "aws-eks"
-  #   namespace: 'crossplane-system'
-  #   config_dir: "aws-eks"
-  # - name: "aws-s3"
-  #   namespace: 'crossplane-system'
-  #   config_dir: "aws-s3"
-  # - name: "aws-vpc"
-  #   namespace: 'crossplane-system'
-  #   config_dir: "aws-vpc"
-  # - name: "aws-ssm-agent"
-  #   namespace: 'crossplane-system'
-  #   config_dir: "aws-ssm-agent"
+  - name: "aws-ec2"
+    namespace: 'crossplane-system'
+    config_dir: "aws-ec2"
+  - name: "aws-eks"
+    namespace: 'crossplane-system'
+    config_dir: "aws-eks"
+  - name: "aws-s3"
+    namespace: 'crossplane-system'
+    config_dir: "aws-s3"
+  - name: "aws-vpc"
+    namespace: 'crossplane-system'
+    config_dir: "aws-vpc"
+  - name: "aws-ssm-agent"
+    namespace: 'crossplane-system'
+    config_dir: "aws-ssm-agent"
