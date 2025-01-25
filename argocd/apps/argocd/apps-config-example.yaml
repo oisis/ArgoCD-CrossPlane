@@ -4,4 +4,4 @@ appconfig:
     project: "default"
     repoUrl: "https://argoproj.github.io/argo-helm"
     chart: "argo-cd"
-    targetRevision: "7.7.16"
+    targetRevision: "7.7.17"
