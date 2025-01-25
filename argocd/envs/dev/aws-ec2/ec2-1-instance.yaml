@@ -23,7 +23,7 @@ spec:
     vpcSecurityGroupIdRefs:
       - name: ec2-1-sg
     subnetIdRef:
-      name: cp-example-public-us-east-1a-subnet
+      name: vpc-1-pub-us-east-1a-subnet
     userDataReplaceOnChange: true
     tags:
       Name: ec2-1
