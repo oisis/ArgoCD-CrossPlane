@@ -1,0 +1,69 @@
+---
+apiVersion: eks.aws.upbound.io/v1beta1
+kind: Addon
+metadata:
+  name: eks-1-vpc-cni
+  # annotations:
+  #   crossplane.io/external-name: sg-0e880dcde534bafc1 # manage existing SecurityGroup
+  labels:
+    name: eks-1-vpc-cni
+    ManagedBy: crossplane
+spec:
+  providerConfigRef:
+    name: aws-upbound-pc
+  # deletionPolicy: Orphan # Do not delete resource even you will delete it from crossplane
+  forProvider:
+    addonName: vpc-cni
+    addonVersion: "v1.19.2-eksbuild.1"
+    clusterNameRef:
+      name: eks-1
+    region: us-east-1
+    tags:
+      Name: eks-1-vpc-cni
+      ManagedBy: crossplane
+---
+apiVersion: eks.aws.upbound.io/v1beta1
+kind: Addon
+metadata:
+  name: eks-1-kube-proxy
+  # annotations:
+  #   crossplane.io/external-name: sg-0e880dcde534bafc1 # manage existing SecurityGroup
+  labels:
+    name: eks-1-kube-proxy
+    ManagedBy: crossplane
+spec:
+  providerConfigRef:
+    name: aws-upbound-pc
+  # deletionPolicy: Orphan # Do not delete resource even you will delete it from crossplane
+  forProvider:
+    addonName: kube-proxy
+    addonVersion: "v1.32.0-eksbuild.2"
+    clusterNameRef:
+      name: eks-1
+    region: us-east-1
+    tags:
+      Name: eks-1-kube-proxy
+      ManagedBy: crossplane
+---
+apiVersion: eks.aws.upbound.io/v1beta1
+kind: Addon
+metadata:
+  name: eks-1-coredns
+  # annotations:
+  #   crossplane.io/external-name: sg-0e880dcde534bafc1 # manage existing SecurityGroup
+  labels:
+    name: eks-1-coredns
+    ManagedBy: crossplane
+spec:
+  providerConfigRef:
+    name: aws-upbound-pc
+  # deletionPolicy: Orphan # Do not delete resource even you will delete it from crossplane
+  forProvider:
+    addonName: coredns
+    addonVersion: "v1.11.4-eksbuild.2"
+    clusterNameRef:
+      name: eks-1
+    region: us-east-1
+    tags:
+      Name: eks-1-coredns
+      ManagedBy: crossplane
