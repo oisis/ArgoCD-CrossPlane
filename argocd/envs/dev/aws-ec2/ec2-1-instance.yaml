@@ -32,6 +32,7 @@ spec:
       ManagedBy: crossplane
     volumeTags:
       Name: ec2-1
+    userDataReplaceOnChange: true
     userData: |
       #!/bin/bash
       mkdir -p /mount/ebs1
