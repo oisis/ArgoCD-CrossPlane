@@ -29,6 +29,8 @@ spec:
         ]
       }
     managedPolicyArns:
+      - arn:aws:iam::aws:policy/AmazonEKSWorkerNodePolicy
+      - arn:aws:iam::aws:policy/AmazonEKSCNIPolicy
       - arn:aws:iam::aws:policy/AmazonEC2ContainerRegistryPullOnly
       - arn:aws:iam::aws:policy/AmazonEKSWorkerNodeMinimalPolicy
     tags:
