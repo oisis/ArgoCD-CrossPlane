@@ -7,12 +7,15 @@ ArgoCD test environment, operating on a local machine using Docker Desktop.
 * [argocd](https://argo-cd.readthedocs.io/en/stable/cli_installation/)
 * [helm](https://helm.sh/docs/intro/install/)
 
-## 2. Setup Argocd
-### 2.1 Run Docker desktop in Kubernetes mode:
+### 2. Run Docker desktop in Kubernetes mode:
 Follow this [guide](https://docs.docker.com/desktop/features/kubernetes/) to configure Docker Desktop in Kubernetes mode.
 
-### 2.2 Install ArgoCD
-#### 2.2.1 Install with Helm
+## 3. Setup Argocd
+### 3.1 Run Docker desktop in Kubernetes mode:
+Follow this [guide](https://docs.docker.com/desktop/features/kubernetes/) to configure Docker Desktop in Kubernetes mode.
+
+### 3.2 Install ArgoCD
+#### 3.2.1 Install with Helm
 * Add ArgoCD Helm repo:
 ```bash
 helm repo add argocd https://argoproj.github.io/argo-helm
@@ -29,7 +32,7 @@ helm install argocd argocd/argo-cd --version 7.7.6 \
   --create-namespace \
   -n argocd
 ```
-#### 2.2.2 Install ArgoCD in Argo way
+#### 3.2.2 Install ArgoCD in Argo way
 * Create namespace for ArgoCD
 ```bash
 kubectl create namespace argocd
@@ -45,14 +48,14 @@ kubectl apply -n argocd -f https://raw.githubusercontent.com/argoproj/argo-cd/st
 kubectl patch svc argocd-server -n argocd -p '{"spec": {"type": "LoadBalancer"}}'
 ```
 
-### 2.3. Bootstrap ArgoCD
+### 3.3. Bootstrap ArgoCD
 * Apply Kubernetes manifests to finish ArgoCD bootstraping
 Create Repositories, Cluster(local), ApplicationOfApplications(ApplicationSet)
 ```bash
 kubectl apply -f ./argocd/bootstrap/manifests/
 ```
 
-### 2.4. Get default ArgoCD password
+### 3.4. Get default ArgoCD password
 ```bash
 argocd admin initial-password -n argocd
 ```
@@ -62,40 +65,40 @@ kubectl -n argocd get secret argocd-initial-admin-secret -o jsonpath="{.data.pas
 ```
 After first ArgoCD sync with repo, passwords will be changed to this from [file](./argocd/envs/dev/argocd/values.yaml).
 
-### 2.5. You can use `run.sh` script
+### 3.5. You can use `run.sh` script
 Script will run all above commands for you
 ```bash
 sh ./run.sh
 ```
 
-### 2.6. Open ArgoCD ui
+### 3.6. Open ArgoCD ui
 ```bash
 kubectl port-forward svc/argocd-server -n argocd 8080:443
 ```
 Open http://localhost:8080 in web browser
 
-### 2.7. Change ArgoCD default password
+### 3.7. Change ArgoCD default password
 ```bash
 argocd login localhost:8080
 argocd account update-password
 ```
 
-## 3. CrossPlane
+## 4. CrossPlane
 
-### 3.1. Set AWS credentials
-#### 3.1.1. Create credential file 'aws-credentials.txt':
+### 4.1. Set AWS credentials
+#### 4.1.1. Create credential file 'aws-credentials.txt':
 ```toml
 [default]
 aws_access_key_id = XXXXXXXXXXXXXXXXXXXX
 aws_secret_access_key = XXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXX
 ```
 
-#### 3.1.2. Create secret from file:
+#### 4.1.2. Create secret from file:
 ```bash
 kubectl create secret generic aws-secret -n crossplane-system --from-file=creds=./aws-credentials.txt
 ```
 
-#### 3.1.3. Save secret as file
+#### 4.1.3. Save secret as file
 ##### WARNING: Protect your AWS credentials! The credentials provided here are invalid and are for example purposes only.!!!
 ```bash
 kubectl get secret aws-secret -o yaml > ./argocd/envs/dev/crossplane/manifests/aws-creds-secret.yaml
