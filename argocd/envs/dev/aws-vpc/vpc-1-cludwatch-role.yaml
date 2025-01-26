@@ -1,0 +1,32 @@
+---
+apiVersion: iam.aws.upbound.io/v1beta1
+kind: Role
+metadata:
+  name: vpc-1-cludwatch-role
+  # annotations:
+  #   crossplane.io/external-name: sg-0e880dcde534bafc1 # manage existing SecurityGroup
+  labels:
+    name: vpc-1-cludwatch-role
+    ManagedBy: crossplane
+spec:
+  providerConfigRef:
+    name: aws-upbound-pc
+  # deletionPolicy: Orphan # Do not delete resource even you will delete it from crossplane
+  forProvider:
+    description: "Role for VPC-1 CloudWatch"
+    assumeRolePolicy: |
+      {
+        "Version": "2012-10-17",
+        "Statement": [
+          {
+            "Effect": "Allow",
+            "Principal": {
+              "Service": "vpc-flow-logs.amazonaws.com"
+            },
+            "Action": "sts:AssumeRole"
+          }
+        ]
+      }
+    tags:
+      Name: vpc-1-cludwatch-role
+      ManagedBy: crossplane
