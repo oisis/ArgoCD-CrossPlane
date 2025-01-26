@@ -1,0 +1,20 @@
+apiVersion: eks.aws.upbound.io/v1beta1
+kind: ClusterAuth
+metadata:
+  name: eks-1-clusterauth
+  # annotations:
+  #   crossplane.io/external-name: subnet-03c18525e77fda56b # manage existing Subnet
+  labels:
+    name: eks-1-clusterauth
+spec:
+  providerConfigRef:
+    name: aws-upbound-pc
+  # deletionPolicy: Orphan # Do not delete resource even you will delete it from crossplane
+  forProvider:
+    region: us-east-1
+    clusterNameRef:
+      name: eks-1
+    refreshPeriod: 10m0s
+  writeConnectionSecretToRef:
+    name: eks-1-clusterauth
+    namespace: crossplane-system
