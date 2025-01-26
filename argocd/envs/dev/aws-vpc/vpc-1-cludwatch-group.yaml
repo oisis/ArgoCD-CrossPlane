@@ -6,7 +6,7 @@ metadata:
   # annotations:
   #   crossplane.io/external-name: vpc-06b5984e75c31ff46 # manage existing VPC
   labels:
-    name: /aws/vpc/vpc-1
+    name: aws_vpc_vpc-1
 spec:
   providerConfigRef:
     name: aws-upbound-pc
