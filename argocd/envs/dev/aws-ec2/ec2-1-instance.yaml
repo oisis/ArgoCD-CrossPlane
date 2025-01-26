@@ -18,7 +18,7 @@ spec:
     availabilityZone: us-east-1a
     disableApiStop: false
     disableApiTermination: false
-    iamInstanceProfile: ssm-agent-instanceprofile
+    iamInstanceProfile: ssm-agent-role
     instanceType: t2.medium
     keyName: oisis-ssh-key
     monitoring: true
@@ -32,7 +32,6 @@ spec:
       ManagedBy: crossplane
     volumeTags:
       Name: ec2-1
-    userDataReplaceOnChange: true
     userData: |
       #!/bin/bash
       mkdir -p /mount/ebs1
