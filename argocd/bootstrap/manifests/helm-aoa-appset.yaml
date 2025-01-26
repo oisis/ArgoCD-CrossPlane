@@ -49,18 +49,30 @@ spec:
               - $values/argocd/envs/{{.environment}}/{{.name}}/values.yaml
         - repoURL: https://github.com/oisis/ArgoCD-CrossPlane.git
           targetRevision: HEAD
-          path: argocd/apps/{{.name}}/manifests
+          path: argocd/apps/{{.name}}
           directory:
             recurse: true
+            include: '*.yaml'
+            exclude: '{values.yaml,apps-config-example.yaml,.*,values-org.yaml}'
         - repoURL: https://github.com/oisis/ArgoCD-CrossPlane.git
           targetRevision: HEAD
-          path: argocd/envs/{{.environment}}/{{.name}}/manifests
+          path: argocd/envs/{{.environment}}/{{.name}}
           directory:
             recurse: true
+            include: '*.yaml'
+            exclude: '{values.yaml,apps-config-example.yaml,.*,values-org.yaml}'
       destination:
         name: '{{.environment}}'
         namespace: "{{.namespace}}"
+      info:
+        - name: 'Applicatation url:'
+          value: 'http://{{.name}}.{{.domain}}'
       syncPolicy:
+        managedNamespaceMetadata:
+          labels:
+            environment: '{{.environment}}'
+          annotations:
+            app_name: '{{.name}}'
         automated:
           prune: true
           selfHeal: true
@@ -70,3 +82,4 @@ spec:
           - CreateNamespace=true
           - PrunePropagationPolicy=foreground
           - PruneLast=true
+          - ApplyOutOfSyncOnly=true
