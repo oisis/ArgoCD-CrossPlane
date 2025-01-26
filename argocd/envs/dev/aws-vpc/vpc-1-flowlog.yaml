@@ -15,7 +15,7 @@ spec:
   forProvider:
     iamRoleArnRef:
       name: vpc-1-cludwatch-role
-    logDestinationSelector:
+    logDestinationRef:
       name: aws.vpc.vpc-1
     region: us-east-1
     logDestinationType: cloud-watch-logs
