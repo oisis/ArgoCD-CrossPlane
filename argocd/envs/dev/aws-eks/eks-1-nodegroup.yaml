@@ -15,7 +15,7 @@ spec:
   forProvider:
     clusterNameRef:
       name: eks-1
-    diskSize: 20
+    # diskSize: 20
     instanceTypes:
       - "t3.medium"
     nodeRoleArnRef:
