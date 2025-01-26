@@ -1,0 +1,12 @@
+---
+apiVersion: cloudwatchlogs.aws.upbound.io/v1beta1
+kind: Group
+metadata:
+  name: vpc-1
+spec:
+  forProvider:
+    region: us-east-1
+    tags:
+      ManagedBy: Crossplane
+      Name: vpc-1
+      VPC_Name: vpc-1
