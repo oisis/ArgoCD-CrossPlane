@@ -1,19 +1,20 @@
 ---
+---
 apiVersion: iam.aws.upbound.io/v1beta1
 kind: Role
 metadata:
-  name: eks-1-role
+  name: eks-1-ng-role
   # annotations:
   #   crossplane.io/external-name: sg-0e880dcde534bafc1 # manage existing SecurityGroup
   labels:
-    name: eks-1-role
+    name: eks-1-ng-role
     ManagedBy: crossplane
 spec:
   providerConfigRef:
     name: aws-upbound-pc
   # deletionPolicy: Orphan # Do not delete resource even you will delete it from crossplane
   forProvider:
-    description: "Role for EKS"
+    description: "Role for EKS node group"
     assumeRolePolicy: |
       {
         "Version": "2012-10-17",
@@ -28,11 +29,8 @@ spec:
         ]
       }
     managedPolicyArns:
-      - arn:aws:iam::aws:policy/AmazonEKSBlockStoragePolicy
-      - arn:aws:iam::aws:policy/AmazonEKSClusterPolicy
-      - arn:aws:iam::aws:policy/AmazonEKSComputePolicy
-      - arn:aws:iam::aws:policy/AmazonEKSLoadBalancingPolicy
-      - arn:aws:iam::aws:policy/AmazonEKSNetworkingPolicy
+      - arn:aws:iam::aws:policy/AmazonEC2ContainerRegistryPullOnly
+      - arn:aws:iam::aws:policy/AmazonEKSWorkerNodeMinimalPolicy
     tags:
-      Name: eks-1-role
+      Name: eks-1-ng-role
       ManagedBy: crossplane
