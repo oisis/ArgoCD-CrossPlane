@@ -2,11 +2,11 @@
 apiVersion: cloudwatchlogs.aws.upbound.io/v1beta1
 kind: Group
 metadata:
-  name: aws_vpc_vpc-1
+  name: aws.vpc.vpc-1
   # annotations:
   #   crossplane.io/external-name: vpc-06b5984e75c31ff46 # manage existing VPC
   labels:
-    name: aws_vpc_vpc-1
+    name: aws.vpc.vpc-1
 spec:
   providerConfigRef:
     name: aws-upbound-pc
@@ -17,5 +17,5 @@ spec:
     logGroupClass: STANDARD
     tags:
       ManagedBy: Crossplane
-      Name: vpc-1
+      Name: aws.vpc.vpc-1
       VPC_Name: vpc-1
