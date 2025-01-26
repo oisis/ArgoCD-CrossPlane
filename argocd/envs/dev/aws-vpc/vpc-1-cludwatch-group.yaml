@@ -2,8 +2,15 @@
 apiVersion: cloudwatchlogs.aws.upbound.io/v1beta1
 kind: Group
 metadata:
-  name: vpc-1
+  name: vpc-1-cw-group
+  # annotations:
+  #   crossplane.io/external-name: vpc-06b5984e75c31ff46 # manage existing VPC
+  labels:
+    name: vpc-1-cw-group
 spec:
+  providerConfigRef:
+    name: aws-upbound-pc
+  # deletionPolicy: Orphan # Do not delete resource even you will delete it from crossplane
   forProvider:
     region: us-east-1
     tags:
