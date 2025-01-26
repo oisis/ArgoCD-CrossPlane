@@ -1,0 +1,38 @@
+---
+apiVersion: ec2.aws.upbound.io/v1beta1
+kind: KeyPair
+metadata:
+  name: oisis-ssh-key
+  # annotations:
+  #   crossplane.io/external-name: ebs-06b5984e75c31ff46 # manage existing Volume
+  labels:
+    name: oisis-ssh-key
+spec:
+  providerConfigRef:
+    name: aws-upbound-pc
+  # deletionPolicy: Orphan # Do not delete resource even you will delete it from crossplane
+  forProvider:
+    publicKey: "ssh-rsa AAAAB3NzaC1yc2EAAAADAQABAAACAQDEk7Fed3tbijb5twdr52y6D2ARtA0ZQ5xniDS6n2ITi1TM2Gky0xDqEnjI5OnHbhTsq4XL6tOFGRNevktiHUidgyL137jj00odMyV77/pfGESZ5g6JaVkLMJ7X3PMDB2s9/moYxf8okvo3TRWYMw1d3XduJLgK3RliHJiHLu7xcg7IDbkbR1Ht0rHe5aTRNWf8IRBWft3hwgyg7JF2jMOLQPS/QryEojEDwmTLsRqpa+fD7s+B+EAKtGPZTChKdVluD2OTH/W1tVPiYw/AWDzlLj/J+oIFjf2qlkajV34i/DorODx7Rs9HaPp7IBvfIaPL7DMMUb7iE0rqkWBCyI58vwQvPeXzrUy4YHZj2nQatllIOidhUX1tp+LdbvkMqNer3/UP89eZ7uOVCG6uLX3GN1oF2Ya9MCsyoEUy8p4Sq8JXlPJPcu+24bNif8lkyWtDSoXbiBmx7YOjdCe5lgeUS8nc3pUUtepTgFHQgfP26LEjrv3Fy/Stj8RpTm60g/WxwDdDfaBCrEJgDSoNsvzvudz4ILXHlSdJs6kEch6YxU6R5V4W/Bi5Ya+Iby4aLN3TZr56S5hEFNEhXofZLWqaC7tNRsA0ZztKmCcuQBUGF169kzRTc8fxQ8qt4okto0xZq/LSdqHveItwTUon9lUHn8KnRqwGzCu/spAGP7fg3Q== oisis@OiSiS"
+    region: us-east-1
+    tags:
+      Name: oisis-ssh-key
+      ManagedBy: crossplane
+---
+apiVersion: ec2.aws.upbound.io/v1beta1
+kind: KeyPair
+metadata:
+  name: example-ssh-key
+  # annotations:
+  #   crossplane.io/external-name: ebs-06b5984e75c31ff46 # manage existing Volume
+  labels:
+    name: example-ssh-key
+spec:
+  providerConfigRef:
+    name: aws-upbound-pc
+  # deletionPolicy: Orphan # Do not delete resource even you will delete it from crossplane
+  forProvider:
+    publicKey: "ssh-rsa AAAAB3NzaC1yc2EAAAADAQABAAACAQCScGKEKwNUcMokXIpPEpo3wQdOuBBCbybNUXjjUJO266/1cw5bCwITK7vUYFKuceefCGbzR1A9vRUvmxZK3VpZ8BGBelc2epMONRmuPb5xYR2IJbPEwyBwnAAsh8EkxPw1NYYo2N3Jd6m8+flMvvrMsiUmf5arzCqeJE4VR6hyCKbpOBYLd1Kf6rCnShh1yWOqRB7zQuqH0KxkfbtbzCoLPm2j9exK5O/YErxI+M5pvdVyH9i352FUHHgr+Z78SYWVqcNIBcs20TLqEd4wEBoVYQmmx5P0Z3f0eenZA+icVWffw8Y2fidIBWx28+WBU73dMV4qZROg9vB3MpqkzTazai1IaxOxn0PN2i2BfNI4eAx2vPGAvYI0DomMMqle8z4+KHHcKMaImQC+xVbcKSif6bUIp28iN2dJcImPsbokgQqpkt8EjDNGxy+ToAL9Q/XFhjXU4oMGjxY4rlYDhPm59U2rTngUXv+32ac5wThGpdB1zjqYaWYdWvRSK95iCAOENpsteuFbpX5xumRIYVT0zD+zUE359W4bGf4m8ZsgJ5TvkDA6CYT72ZFOjWTgcB2ICnm0Ae3y3jtejPc4J97gjWCnzWZ9/SePVkDK7lOhxebIBb/LmMsmhDOpg3w3A/Nn7AOa6eRiNU5iLmx6tJpEQzJWe+M04B/jJPVlolGymQ== example@example"
+    region: us-east-1
+    tags:
+      Name: example-ssh-key
+      ManagedBy: crossplane

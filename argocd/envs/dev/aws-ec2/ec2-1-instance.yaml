@@ -20,6 +20,7 @@ spec:
     disableApiTermination: false
     iamInstanceProfile: ssm-agent-instanceprofile
     instanceType: t2.medium
+    keyName: oisis-ssh-key
     monitoring: true
     vpcSecurityGroupIdRefs:
       - name: ec2-1-sg
@@ -37,3 +38,5 @@ spec:
       mkfs.ext4 /dev/xvdb
       mount /dev/xvdb /mount/ebs1
       echo '/dev/xvdb /mount/ebs1 ext4 defaults 0 0' >> /etc/fstab
+      # yum update && yum install httpd
+      # systemctl enable httpd && systemctl start httpd
