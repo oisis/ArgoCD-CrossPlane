@@ -18,7 +18,7 @@ spec:
     availabilityZone: us-east-1a
     disableApiStop: false
     disableApiTermination: false
-    iamInstanceProfile: ssm-agent-role
+    iamInstanceProfile: ssm-agent-instanceprofile
     instanceType: t2.medium
     keyName: oisis-ssh-key
     monitoring: true
