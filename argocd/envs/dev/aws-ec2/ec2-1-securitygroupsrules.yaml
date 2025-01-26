@@ -15,8 +15,6 @@ spec:
     description: "Allow all egress traffic"
     region: us-east-1
     cidrIpv4: 0.0.0.0/0
-    fromPort: 0
-    toPort: 65535
     ipProtocol: "-1"
     securityGroupIdRef:
       name: ec2-1-sg
