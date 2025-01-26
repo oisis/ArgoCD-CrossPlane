@@ -16,8 +16,8 @@ spec:
     region: us-east-1
     cidrIpv4: 0.0.0.0/0
     fromPort: 0
-    toPort: 0
-    ipProtocol: tcp
+    toPort: 65535
+    ipProtocol: "-1"
     securityGroupIdRef:
       name: ec2-1-sg
     tags:
