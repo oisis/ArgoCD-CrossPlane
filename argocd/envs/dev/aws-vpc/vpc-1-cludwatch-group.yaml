@@ -2,7 +2,7 @@
 apiVersion: cloudwatchlogs.aws.upbound.io/v1beta1
 kind: Group
 metadata:
-  name: /aws/vpc/vpc-1
+  name: aws_vpc_vpc-1
   # annotations:
   #   crossplane.io/external-name: vpc-06b5984e75c31ff46 # manage existing VPC
   labels:
