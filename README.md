@@ -77,28 +77,34 @@ kubectl port-forward svc/argocd-server -n argocd 8080:443
 ```
 Open http://localhost:8080 in web browser
 
-### 3.7. Change ArgoCD default password
+### 3.7. ArgoCD login and password change
+#### 3.7.1
+You can find preconfigured accounts with passwords [here](./argocd/envs/dev/argocd/values.yaml#L194-L203)
+
+#### 3.7.2 Change ArgoCD user password
 ```bash
 argocd login localhost:8080
 argocd account update-password
 ```
 
 ## 4. CrossPlane
-
 ### 4.1. Set AWS credentials
-#### 4.1.1. Create credential file 'aws-credentials.txt':
+#### 4.1.1 Use `run.sh` script to create secret with AWS Access Keys
+If you plan to use the `run.sh` script, you must provide AWS_ACCESS_KEY_ID and AWS_SECRET_ACCESS_KEY. The script will handle creating the secret for you. You can view the relevant code [here](./run.sh#L29-L45)
+
+#### 4.2.1. Create credential file 'aws-credentials.txt':
 ```toml
 [default]
 aws_access_key_id = XXXXXXXXXXXXXXXXXXXX
 aws_secret_access_key = XXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXX
 ```
 
-#### 4.1.2. Create secret from file:
+#### 4.2.2. Create secret from file:
 ```bash
 kubectl create secret generic aws-secret -n crossplane-system --from-file=creds=./aws-credentials.txt
 ```
 
-#### 4.1.3. Save secret as file
+#### 4.2.3. Save secret as file
 ##### WARNING: Protect your AWS credentials! The credentials provided here are invalid and are for example purposes only.!!!
 ```bash
 kubectl get secret aws-secret -o yaml > ./argocd/envs/dev/crossplane/manifests/aws-creds-secret.yaml
