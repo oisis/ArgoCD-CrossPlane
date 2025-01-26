@@ -1,0 +1,34 @@
+---
+apiVersion: eks.aws.upbound.io/v1beta1
+kind: NodeGroup
+metadata:
+  name: eks-1-ng
+  # annotations:
+  #   crossplane.io/external-name: sg-0e880dcde534bafc1 # manage existing SecurityGroup
+  labels:
+    name: eks-1-ng
+    ManagedBy: crossplane
+spec:
+  providerConfigRef:
+    name: aws-upbound-pc
+  # deletionPolicy: Orphan # Do not delete resource even you will delete it from crossplane
+  forProvider:
+    clusterNameRef:
+      name: eks-1
+    diskSize: 20
+    instanceTypes:
+      - "t3.medium"
+    nodeRoleArnRef:
+      name: eks-1-ng-role
+    region: us-east-1
+    scalingConfig:
+      - desiredSize: 1
+        maxSize: 2
+        minSize: 1
+    subnetIdRefs:
+      - name: vpc-1-priv-us-east-1a-subnet
+      - name: vpc-1-priv-us-east-1b-subnet
+    tags:
+      Name: eks-1-ng
+      ManagedBy: crossplane
+    version: "1.32"
