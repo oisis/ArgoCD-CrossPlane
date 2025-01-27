@@ -38,5 +38,5 @@ spec:
       mkfs.ext4 /dev/xvdb
       mount /dev/xvdb /mount/ebs1
       echo '/dev/xvdb /mount/ebs1 ext4 defaults 0 0' >> /etc/fstab
-      yum update && yum install httpd
+      yum update && yum install -y httpd
       systemctl enable httpd && systemctl start httpd
