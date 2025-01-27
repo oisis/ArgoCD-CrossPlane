@@ -44,19 +44,3 @@ spec:
     policyArn: arn:aws:eks::aws:cluster-access-policy/AmazonEKSClusterAdminPolicy
     principalArnRef:
       name: eks-1-access-entry
-
-# ---
-# IAM principal ARN: arn:aws:iam::975050232587:user/cloud_user
-# Type: STANDARD
-# Username: arn:aws:iam::975050232587:user/cloud_user
-# Access policies:
-#   AmazonEKSAdminPolicy, 
-#   AmazonEKSAdminViewPolicy, 
-#   AmazonEKSAutoNodePolicy, 
-#   AmazonEKSClusterAdminPolicy, 
-#   AmazonEKSEditPolicy, 
-#   AmazonEKSLoadBalancingClusterPolicy, 
-#   AmazonEKSLoadBalancingPolicy, 
-#   AmazonEKSNetworkingClusterPolicy, 
-#   AmazonEKSNetworkingPolicy, 
-#   AmazonEKSViewPolicy
