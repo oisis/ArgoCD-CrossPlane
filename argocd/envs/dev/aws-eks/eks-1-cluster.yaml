@@ -42,9 +42,9 @@ spec:
     version: "1.32"
     vpcConfig:
       - subnetIdRefs:
-        - name: vpc-1-pub-us-east-1a-subnet
-        - name: vpc-1-pub-us-east-1b-subnet
-      # - endpointPrivateAccess: true
-      # - endpointPublicAccess: true
-      # - publicAccessCidrs: 
-      #   - "0.0.0.0/0"
+          - name: vpc-1-pub-us-east-1a-subnet
+          - name: vpc-1-pub-us-east-1b-subnet
+        endpointPrivateAccess: true
+        endpointPublicAccess: true
+        publicAccessCidrs: 
+          - "0.0.0.0/0"
