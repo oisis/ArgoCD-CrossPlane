@@ -16,6 +16,7 @@ spec:
     clusterNameRef:
       name: eks-1
     # principalArn: arn:aws:iam::381492007305:user/cloud_user
+    userName: cloud_user
     region: us-east-1
     type: STANDARD
     tags:
