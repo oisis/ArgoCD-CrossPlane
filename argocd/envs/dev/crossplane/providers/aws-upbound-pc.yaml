@@ -1,0 +1,16 @@
+---
+apiVersion: aws.upbound.io/v1beta1
+kind: ProviderConfig
+metadata:
+  name: aws-upbound-pc
+  annotations:
+    # argocd.argoproj.io/hook: Sync
+    argocd.argoproj.io/sync-wave: "3"
+    # argocd.argoproj.io/hook-delete-policy: HookFailed
+spec:
+  credentials:
+    source: Secret
+    secretRef:
+      key: creds
+      name: aws-secret
+      namespace: crossplane-system

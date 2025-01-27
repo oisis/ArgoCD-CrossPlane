@@ -1,0 +1,11 @@
+---
+apiVersion: pkg.crossplane.io/v1
+kind: Provider
+metadata:
+  name: provider-aws-eks
+  annotations:
+    # argocd.argoproj.io/hook: Sync
+    argocd.argoproj.io/sync-wave: "2"
+    # argocd.argoproj.io/hook-delete-policy: HookFailed
+spec:
+  package: xpkg.upbound.io/upbound/provider-aws-cloudwatchlogs:v1

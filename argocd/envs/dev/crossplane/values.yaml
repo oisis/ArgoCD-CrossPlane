@@ -1,12 +1,8 @@
-customAnnotations:
-  argocd.argoproj.io/hook: Sync
-  argocd.argoproj.io/sync-wave: "0"
-  argocd.argoproj.io/hook-delete-policy: HookFailed
-provider:
-  packages:
-    - "xpkg.upbound.io/upbound/provider-aws-s3:v1"
-    - "xpkg.upbound.io/upbound/provider-aws-ec2:v1"
-    - "xpkg.upbound.io/upbound/provider-aws-ssm:v1"
-    - "xpkg.upbound.io/upbound/provider-aws-iam:v1"
-    - "xpkg.upbound.io/upbound/provider-aws-eks:v1"
-    - "xpkg.upbound.io/upbound/provider-aws-cloudwatchlogs:v1"
+# provider:
+#   packages:
+#     - "xpkg.upbound.io/upbound/provider-aws-cloudwatchlogs:v1"
+#     - "xpkg.upbound.io/upbound/provider-aws-ec2:v1"
+#     - "xpkg.upbound.io/upbound/provider-aws-eks:v1"
+#     - "xpkg.upbound.io/upbound/provider-aws-iam:v1"
+#     - "xpkg.upbound.io/upbound/provider-aws-s3:v1"
+#     - "xpkg.upbound.io/upbound/provider-aws-ssm:v1"
