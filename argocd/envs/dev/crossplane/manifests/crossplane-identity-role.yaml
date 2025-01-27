@@ -1,0 +1,30 @@
+apiVersion: identity.aws.upbound.io/v1beta1
+kind: Role
+metadata:
+  name: crossplane-identity-role
+  # annotations:
+  #   crossplane.io/external-name: sg-0e880dcde534bafc1 # manage existing SecurityGroup
+  labels:
+    name: crossplane-identity-role
+    ManagedBy: crossplane
+spec:
+  providerConfigRef:
+    name: aws-upbound-pc
+  # deletionPolicy: Orphan # Do not delete resource even you will delete it from crossplane
+  forProvider:
+    assumeRolePolicyDocument: |
+      {
+        "Version": "2012-10-17",
+        "Statement": [
+          {
+            "Effect": "Allow",
+            "Principal": {
+              "Service": "sts.amazonaws.com"
+            },
+            "Action": "sts:AssumeRole"
+          }
+        ]
+      }
+    tags:
+      Name: crossplane-identity-role
+      ManagedBy: crossplane
