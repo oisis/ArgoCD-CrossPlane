@@ -15,7 +15,7 @@ spec:
     region: us-east-1
     accessConfig:
       - authenticationMode: API_AND_CONFIG_MAP
-        bootstrapClusterCreatorAdminPermissions: true
+        bootstrapClusterCreatorAdminPermissions: false
     bootstrapSelfManagedAddons: false
     computeConfig:
       - enabled: true
