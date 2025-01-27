@@ -13,7 +13,8 @@ spec:
     name: aws-upbound-pc
   # deletionPolicy: Orphan # Do not delete resource even you will delete it from crossplane
   forProvider:
-    assumeRolePolicyDocument: |
+    description: "Role for EKS"
+    assumeRolePolicy: |
       {
         "Version": "2012-10-17",
         "Statement": [
