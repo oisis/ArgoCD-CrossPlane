@@ -15,7 +15,7 @@ spec:
               generators:
                 - git:
                     repoURL: https://github.com/oisis/ArgoCD-CrossPlane.git
-                    revision: "{{ VAR_HEAD }}"
+                    revision: HEAD
                     files:
                       - path: argocd/envs/dev/apps-config.yaml
                 - list:
@@ -24,13 +24,11 @@ spec:
               generators:
                 - git:
                     repoURL: https://github.com/oisis/ArgoCD-CrossPlane.git
-                    revision: "{{ VAR_HEAD }}"
+                    revision: HEAD
                     files:
                       - path: argocd/envs/dev/apps-config.yaml
                 - list:
                     elementsYaml: "{{ .common_params | toJson }}"
-  values:
-    VAR_HEAD: "main"
   template:
     metadata:
       name: '{{.name}}'
