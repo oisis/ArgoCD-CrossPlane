@@ -36,11 +36,7 @@ spec:
     name: aws-upbound-pc
   # deletionPolicy: Orphan # Do not delete resource even you will delete it from crossplane
   forProvider:
-    region:
-      valueFrom:
-        reference:
-          name: eks-1-access-entry
-        fieldPath: "spec.forProvider.region"
+    region: us-east-1
     accessScope:
       type: cluster
     clusterNameRef:
