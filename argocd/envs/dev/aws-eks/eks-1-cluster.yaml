@@ -26,9 +26,9 @@ spec:
       - scheduler
     kubernetesNetworkConfig:
       - elasticLoadBalancing:
-        - enabled: true
-      - ipFamily: ipv4
-      - serviceIpv4Cidr: 10.0.0.0/16
+          - enabled: true
+        ipFamily: ipv4
+        serviceIpv4Cidr: 10.0.0.0/16
     roleArnRef:
       name: eks-1-role
     storageConfig:
