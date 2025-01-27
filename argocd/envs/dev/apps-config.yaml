@@ -2,9 +2,7 @@ common_params:
   - environment: dev
     domain: 'dev.example.com'
     project: 'dev'
-    git_revision: provider_test
-    sync_options: "PruneLast=true"
-    prune: false
+    git_revision: main
 helm_apps:
   - name: 'argocd'
     namespace: 'argocd'
