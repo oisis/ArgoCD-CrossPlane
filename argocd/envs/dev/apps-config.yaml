@@ -15,29 +15,29 @@ helm_apps:
     repoUrl: 'https://kubernetes-sigs.github.io/metrics-server/'
     chart: metrics-server
     targetRevision: '>=3.12.0 <3.13.0'
-  - name: 'crossplane'
-    namespace: 'crossplane-system'
-    repoUrl: 'https://charts.crossplane.io/stable'
-    chart: 'crossplane'
-    targetRevision: '>=1.18.0 <1.19.0'
+  # - name: 'crossplane'
+  #   namespace: 'crossplane-system'
+  #   repoUrl: 'https://charts.crossplane.io/stable'
+  #   chart: 'crossplane'
+  #   targetRevision: '>=1.18.0 <1.19.0'
   - name: 'kubernetes-dashboard'
     namespace: 'kubernetes-dashboard'
     repoUrl: 'https://kubernetes.github.io/dashboard'
     chart: 'kubernetes-dashboard'
     targetRevision: '>=7.10.0 <7.11.0'
-k8s_manifest_apps:
-  - name: "aws-vpc"
-    namespace: 'crossplane-system'
-    config_dir: "aws-vpc"
-  - name: "aws-ec2"
-    namespace: 'crossplane-system'
-    config_dir: "aws-ec2"
-  - name: "aws-ssm"
-    namespace: 'crossplane-system'
-    config_dir: "aws-ssm"
-  - name: "aws-eks"
-    namespace: 'crossplane-system'
-    config_dir: "aws-eks"
-  - name: "aws-s3"
-    namespace: 'crossplane-system'
-    config_dir: "aws-s3"
+# k8s_manifest_apps:
+#   - name: "aws-vpc"
+#     namespace: 'crossplane-system'
+#     config_dir: "aws-vpc"
+#   - name: "aws-ec2"
+#     namespace: 'crossplane-system'
+#     config_dir: "aws-ec2"
+#   - name: "aws-ssm"
+#     namespace: 'crossplane-system'
+#     config_dir: "aws-ssm"
+#   - name: "aws-eks"
+#     namespace: 'crossplane-system'
+#     config_dir: "aws-eks"
+#   - name: "aws-s3"
+#     namespace: 'crossplane-system'
+#     config_dir: "aws-s3"
