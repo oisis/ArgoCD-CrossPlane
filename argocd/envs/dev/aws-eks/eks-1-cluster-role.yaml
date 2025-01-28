@@ -2,11 +2,11 @@
 apiVersion: iam.aws.upbound.io/v1beta1
 kind: Role
 metadata:
-  name: eks-1-role
+  name: eks-1-cluster-role
   # annotations:
   #   crossplane.io/external-name: sg-0e880dcde534bafc1 # manage existing SecurityGroup
   labels:
-    name: eks-1-role
+    name: eks-1-cluster-role
     ManagedBy: crossplane
 spec:
   providerConfigRef:
@@ -34,5 +34,5 @@ spec:
       - arn:aws:iam::aws:policy/AmazonEKSLoadBalancingPolicy
       - arn:aws:iam::aws:policy/AmazonEKSNetworkingPolicy
     tags:
-      Name: eks-1-role
+      Name: eks-1-cluster-role
       ManagedBy: crossplane

@@ -34,7 +34,7 @@ spec:
         ipFamily: ipv4
         serviceIpv4Cidr: 172.20.0.0/16
     roleArnRef:
-      name: eks-1-role
+      name: eks-1-cluster-role
     storageConfig:
       - blockStorage:
         - enabled: true
