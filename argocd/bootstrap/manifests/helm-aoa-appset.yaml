@@ -14,7 +14,7 @@ spec:
               generators:
                 - git:
                     repoURL: https://github.com/oisis/ArgoCD-CrossPlane.git
-                    revision: HEAD
+                    revision: provider_test
                     files:
                       - path: argocd/envs/dev/apps-config.yaml
                 - list:
@@ -23,7 +23,7 @@ spec:
               generators:
                 - git:
                     repoURL: https://github.com/oisis/ArgoCD-CrossPlane.git
-                    revision: HEAD
+                    revision: provider_test
                     files:
                       - path: argocd/envs/dev/apps-config.yaml
                 - list:
@@ -37,7 +37,7 @@ spec:
       project: '{{.project}}'
       sources:
         - repoURL: https://github.com/oisis/ArgoCD-CrossPlane.git
-          targetRevision: HEAD
+          targetRevision: '{{.git_revision}}'
           ref: values
         - chart: '{{.chart}}'
           repoURL: '{{.repoUrl}}'
@@ -48,14 +48,14 @@ spec:
               - $values/argocd/apps/{{.name}}/values.yaml
               - $values/argocd/envs/{{.environment}}/{{.name}}/values.yaml
         - repoURL: https://github.com/oisis/ArgoCD-CrossPlane.git
-          targetRevision: HEAD
+          targetRevision: '{{.git_revision}}'
           path: argocd/apps/{{.name}}
           directory:
             recurse: true
             include: '*.yaml'
             exclude: '{values.yaml,apps-config-example.yaml,.*,values-org.yaml}'
         - repoURL: https://github.com/oisis/ArgoCD-CrossPlane.git
-          targetRevision: HEAD
+          targetRevision: '{{.git_revision}}'
           path: argocd/envs/{{.environment}}/{{.name}}
           directory:
             recurse: true
