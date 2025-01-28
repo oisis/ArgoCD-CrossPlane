@@ -1,8 +1,0 @@
-# provider:
-#   packages:
-#     - "xpkg.upbound.io/upbound/provider-aws-cloudwatchlogs:v1"
-#     - "xpkg.upbound.io/upbound/provider-aws-ec2:v1"
-#     - "xpkg.upbound.io/upbound/provider-aws-eks:v1"
-#     - "xpkg.upbound.io/upbound/provider-aws-iam:v1"
-#     - "xpkg.upbound.io/upbound/provider-aws-s3:v1"
-#     - "xpkg.upbound.io/upbound/provider-aws-ssm:v1"
