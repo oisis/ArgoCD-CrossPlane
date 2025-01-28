@@ -17,11 +17,11 @@ spec:
       - authenticationMode: API_AND_CONFIG_MAP
         bootstrapClusterCreatorAdminPermissions: false
     bootstrapSelfManagedAddons: false
-    computeConfig:
-      - enabled: true
-        nodePools: 
-          - general-purpose
-        nodeRoleArn: eks-1-nodepool-role
+    # computeConfig:
+    #   - enabled: true
+    #     nodePools: 
+    #       - general-purpose
+    #     nodeRoleArn: eks-1-nodepool-role
     enabledClusterLogTypes:
       - api
       - audit
