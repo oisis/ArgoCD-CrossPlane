@@ -19,9 +19,9 @@ spec:
     bootstrapSelfManagedAddons: false
     computeConfig:
       - enabled: true
-    #     nodePools: 
-    #       - general-purpose
-    #     nodeRoleArn: eks-1-nodepool-role
+        nodePools: 
+          - general-purpose
+        nodeRoleArn: eks-1-nodepool-role
     enabledClusterLogTypes:
       - api
       - audit
