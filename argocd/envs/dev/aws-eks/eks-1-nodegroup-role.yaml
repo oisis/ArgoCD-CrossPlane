@@ -30,8 +30,6 @@ spec:
     managedPolicyArns:
       - arn:aws:iam::aws:policy/AmazonEKSWorkerNodePolicy
       - arn:aws:iam::aws:policy/AmazonEKS_CNI_Policy
-      - arn:aws:iam::aws:policy/AmazonEC2ContainerRegistryPullOnly
-      - arn:aws:iam::aws:policy/AmazonEKSWorkerNodeMinimalPolicy
     tags:
       Name: eks-1-ng-role
       ManagedBy: crossplane
