@@ -82,7 +82,7 @@ spec:
           annotations:
             app_name: '{{.name}}'
         automated:
-          prune: '{{.prune}}'
+          prune: true
           selfHeal: true
           allowEmpty: true
         syncOptions:
@@ -98,3 +98,8 @@ spec:
             duration: 5s
             factor: 2
             maxDuration: 3m
+  templatePatch: |
+    spec:
+      syncPolicy:
+        automated:
+          prune: {{ .prune }}
