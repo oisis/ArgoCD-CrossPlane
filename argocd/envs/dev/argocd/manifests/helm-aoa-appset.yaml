@@ -33,10 +33,9 @@ spec:
     metadata:
       name: '{{.name}}'
       labels:
+        custom.label/managedby: 'Argo-CD'
         custom.label/deployed-by: 'helm-aoa'
         custom.label/environment: '{{.environment}}'
-      annotations:
-        argocd.argoproj.io/sync-options: Delete=confirm,Prune=confirm
       finalizers:
         - resources-finalizer.argocd.argoproj.io
     spec:
