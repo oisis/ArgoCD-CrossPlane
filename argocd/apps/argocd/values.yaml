@@ -9,6 +9,8 @@ configs:
   cm:
     create: true
     exec.enabled: true
+    timeout.reconciliation: 120s
+    controller.sync.timeout.seconds: 300
     server.insecure: true
     admin.enabled: true
     statusbadge.enabled: true
