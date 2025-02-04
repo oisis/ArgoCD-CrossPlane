@@ -30,7 +30,7 @@ spec:
                 - list:
                     elementsYaml: "{{ .common_params | toJson }}"
   syncPolicy:
-    preserveResourcesOnDeletion: '{{.preserveResourcesOnDeletion}}'
+    preserveResourcesOnDeletion: {{.preserveResourcesOnDeletion}}
   template:
     metadata:
       name: '{{.name}}'
