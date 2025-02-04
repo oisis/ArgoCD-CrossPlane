@@ -4,7 +4,7 @@ common_params:
     project: 'dev'
     git_revision: provider_test
     sync_options: "PruneLast=true"
-    applications_sync: "sync"
+    applications_sync: 'sync'
 helm_apps:
   - name: 'argocd'
     namespace: 'argocd'
