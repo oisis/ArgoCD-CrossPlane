@@ -75,7 +75,7 @@ spec:
         - name: 'Applicatation url:'
           value: 'http://{{.name}}.{{.domain}}'
       syncPolicy:
-        preserveResourcesOnDeletion: '{{.preserveResourcesOnDeletion}}'
+        preserveResourcesOnDeletion: {{.preserveResourcesOnDeletion}}
         managedNamespaceMetadata:
           labels:
             environment: '{{.environment}}'
