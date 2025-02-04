@@ -35,6 +35,8 @@ spec:
       labels:
         custom.label/deployed-by: 'helm-aoa'
         custom.label/environment: '{{.environment}}'
+      annotations:
+        argocd.argoproj.io/sync-options: Delete=confirm,Prune=confirm
       finalizers:
         - resources-finalizer.argocd.argoproj.io
     spec:
@@ -87,5 +89,3 @@ spec:
           - PrunePropagationPolicy=foreground
           - PruneLast=true
           - ApplyOutOfSyncOnly=true
-          - Delete=confirm
-          - Prune=confirm
