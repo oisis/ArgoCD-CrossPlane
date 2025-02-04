@@ -3,7 +3,7 @@ common_params:
     domain: 'dev.example.com'
     project: 'dev'
     git_revision: provider_test
-    sync_options: "ServerSideApply=false,Replace=false"
+    sync_options: "PruneLast=true"
 helm_apps:
   - name: 'argocd'
     namespace: 'argocd'
@@ -28,9 +28,6 @@ helm_apps:
     chart: 'kubernetes-dashboard'
     targetRevision: '>=7.10.0 <7.11.0'
 k8s_manifest_apps:
-  - name: argocd-apps
-    namespace: argocd
-    config_dir: argocd-apps
   - name: "aws-vpc"
     namespace: 'crossplane-system'
     config_dir: "aws-vpc"
