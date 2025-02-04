@@ -7,6 +7,8 @@ metadata:
   #   crossplane.io/external-name: ebs-06b5984e75c31ff46 # manage existing Volume
   labels:
     name: ec2-1-ebs
+    ManagedBy: crossplane
+    argocd.argoproj.io/instance: ec2-1
 spec:
   providerConfigRef:
     name: aws-upbound-pc
@@ -28,6 +30,8 @@ metadata:
   #   crossplane.io/external-name: ec2-06b5984e75c31ff46 # manage existing VolumeAttachment
   labels:
     name: ec2-1-volumeattach
+    ManagedBy: crossplane
+    argocd.argoproj.io/instance: ec2-1
 spec:
   providerConfigRef:
     name: aws-upbound-pc

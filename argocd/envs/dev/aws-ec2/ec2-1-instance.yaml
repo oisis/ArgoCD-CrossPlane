@@ -7,6 +7,8 @@ metadata:
   #   crossplane.io/external-name: ec2-06b5984e75c31ff46 # manage existing EC2
   labels:
     name: ec2-1-ebs
+    ManagedBy: crossplane
+    argocd.argoproj.io/instance: ec2-1
 spec:
   providerConfigRef:
     name: aws-upbound-pc

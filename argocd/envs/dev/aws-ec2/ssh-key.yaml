@@ -7,6 +7,8 @@ metadata:
   #   crossplane.io/external-name: ebs-06b5984e75c31ff46 # manage existing Volume
   labels:
     name: oisis-ssh-key
+    ManagedBy: crossplane
+    argocd.argoproj.io/instance: ec2-1
 spec:
   providerConfigRef:
     name: aws-upbound-pc
@@ -26,6 +28,8 @@ metadata:
   #   crossplane.io/external-name: ebs-06b5984e75c31ff46 # manage existing Volume
   labels:
     name: example-ssh-key
+    ManagedBy: crossplane
+    argocd.argoproj.io/instance: ec2-1
 spec:
   providerConfigRef:
     name: aws-upbound-pc

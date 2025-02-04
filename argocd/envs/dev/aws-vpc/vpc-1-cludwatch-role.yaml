@@ -8,6 +8,7 @@ metadata:
   labels:
     name: vpc-1-cludwatch-role
     ManagedBy: crossplane
+    argocd.argoproj.io/instance: vpc-1
 spec:
   providerConfigRef:
     name: aws-upbound-pc

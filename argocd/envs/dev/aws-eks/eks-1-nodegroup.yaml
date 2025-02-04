@@ -8,6 +8,7 @@ metadata:
   labels:
     name: eks-1-ng
     ManagedBy: crossplane
+    argocd.argoproj.io/instance: eks-1
 spec:
   providerConfigRef:
     name: aws-upbound-pc

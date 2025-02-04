@@ -7,6 +7,8 @@ metadata:
   #   crossplane.io/external-name: subnet-08fabd0299c17c277 # manage existing Subnet
   labels:
     name: vpc-1-priv-us-east-1a-subnet
+    ManagedBy: crossplane
+    argocd.argoproj.io/instance: vpc-1
 spec:
   providerConfigRef:
     name: aws-upbound-pc
@@ -30,6 +32,8 @@ metadata:
   #   crossplane.io/external-name: subnet-03c18525e77fda56b # manage existing Subnet
   labels:
     name: vpc-1-priv-us-east-1b-subnet
+    ManagedBy: crossplane
+    argocd.argoproj.io/instance: vpc-1
 spec:
   providerConfigRef:
     name: aws-upbound-pc
@@ -53,6 +57,8 @@ metadata:
   #   crossplane.io/external-name: subnet-0d4def7ee346b5654 # manage existing Subnet
   labels:
     name: vpc-1-pub-us-east-1a-subnet
+    ManagedBy: crossplane
+    argocd.argoproj.io/instance: vpc-1
 spec:
   providerConfigRef:
     name: aws-upbound-pc
@@ -76,6 +82,8 @@ metadata:
   #   crossplane.io/external-name: subnet-0cef0db5956f355f0 # manage existing Subnet
   labels:
     name: vpc-1-pub-us-east-1b-subnet
+    ManagedBy: crossplane
+    argocd.argoproj.io/instance: vpc-1
 spec:
   providerConfigRef:
     name: aws-upbound-pc

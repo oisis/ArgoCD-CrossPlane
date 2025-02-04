@@ -8,6 +8,7 @@ metadata:
   labels:
     name: ssm-agent-instanceprofile
     ManagedBy: crossplane
+    argocd.argoproj.io/instance: ssm-agent-instanceprofile
 spec:
   providerConfigRef:
     name: aws-upbound-pc

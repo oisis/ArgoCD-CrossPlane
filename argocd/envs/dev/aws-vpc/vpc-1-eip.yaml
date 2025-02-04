@@ -7,6 +7,8 @@ metadata:
   #   crossplane.io/external-name: eipalloc-088d9b4c5bf8cc067 # manage existing EIP
   labels:
     name: vpc-1-eip
+    ManagedBy: crossplane
+    argocd.argoproj.io/instance: vpc-1
 spec:
   providerConfigRef:
     name: aws-upbound-pc

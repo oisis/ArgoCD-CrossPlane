@@ -7,6 +7,7 @@ metadata:
   #   crossplane.io/external-name: subnet-03c18525e77fda56b # manage existing Subnet
   labels:
     name: eks-1
+    argocd.argoproj.io/instance: eks-1
 spec:
   providerConfigRef:
     name: aws-upbound-pc

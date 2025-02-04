@@ -7,6 +7,8 @@ metadata:
   #   crossplane.io/external-name: sg-0e880dcde534bafc1 # manage existing SecurityGroup
   labels:
     name: ec2-1-sg-egress
+    ManagedBy: crossplane
+    argocd.argoproj.io/instance: ec2-1
 spec:
   providerConfigRef:
     name: aws-upbound-pc
@@ -30,6 +32,8 @@ metadata:
   #   crossplane.io/external-name: sg-0e880dcde534bafc1 # manage existing SecurityGroup
   labels:
     name: ec2-1-sg-ingress-22
+    ManagedBy: crossplane
+    argocd.argoproj.io/instance: ec2-1
 spec:
   providerConfigRef:
     name: aws-upbound-pc
@@ -55,6 +59,8 @@ metadata:
   #   crossplane.io/external-name: sg-0e880dcde534bafc1 # manage existing SecurityGroup
   labels:
     name: ec2-1-sg-ingress-80
+    ManagedBy: crossplane
+    argocd.argoproj.io/instance: ec2-1
 spec:
   providerConfigRef:
     name: aws-upbound-pc

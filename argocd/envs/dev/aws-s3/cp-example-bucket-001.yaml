@@ -7,6 +7,8 @@ metadata:
   #   crossplane.io/external-name: sg-0e880dcde534bafc1 # manage existing SecurityGroup
   labels:
     name: cp-example-bucket-001
+    ManagedBy: crossplane
+    argocd.argoproj.io/instance: cp-example-bucket-001
 spec:
   providerConfigRef:
     name: aws-upbound-pc

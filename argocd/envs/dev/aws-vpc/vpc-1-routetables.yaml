@@ -7,6 +7,8 @@ metadata:
   #   crossplane.io/external-name: rtb-0289b5ea251088cb6 # manage existing RouteTable
   labels:
     name: vpc-1-priv-rtb
+    ManagedBy: crossplane
+    argocd.argoproj.io/instance: vpc-1
 spec:
   providerConfigRef:
     name: aws-upbound-pc
@@ -23,10 +25,13 @@ apiVersion: ec2.aws.upbound.io/v1beta1
 kind: RouteTable
 metadata:
   name: vpc-1-pub-rtb
+  argocd.argoproj.io/instance: vpc-1
   # annotations:
   #   crossplane.io/external-name: rtb-00ec3f3036a7ab799 # manage existing RouteTable
   labels:
     name: vpc-1-pub-rtb
+    ManagedBy: crossplane
+    argocd.argoproj.io/instance: vpc-1
 spec:
   providerConfigRef:
     name: aws-upbound-pc
