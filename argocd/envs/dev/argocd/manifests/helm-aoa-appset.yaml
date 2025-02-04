@@ -102,4 +102,4 @@ spec:
     spec:
       syncPolicy:
         automated:
-          prune: {{ default false .prune }}
+          prune: {{ .prune }}
