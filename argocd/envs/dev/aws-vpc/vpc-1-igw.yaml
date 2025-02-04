@@ -7,6 +7,8 @@ metadata:
   #   crossplane.io/external-name: igw-0c36920ef01a2c06b # manage existing IGW
   labels:
     name: vpc-1-igw
+    ManagedBy: crossplane
+    argocd.argoproj.io/instance: vpc-1
 spec:
   providerConfigRef:
     name: aws-upbound-pc

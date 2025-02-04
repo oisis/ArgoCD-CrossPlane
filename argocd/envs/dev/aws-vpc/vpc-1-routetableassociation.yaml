@@ -3,6 +3,10 @@ apiVersion: ec2.aws.upbound.io/v1beta1
 kind: RouteTableAssociation
 metadata:
   name: vpc-1-priv-us-east-1a-rta
+  labels:
+    name: vpc-1-priv-us-east-1a-rta
+    ManagedBy: crossplane
+    argocd.argoproj.io/instance: vpc-1
 spec:
   providerConfigRef:
     name: aws-upbound-pc
@@ -18,6 +22,10 @@ apiVersion: ec2.aws.upbound.io/v1beta1
 kind: RouteTableAssociation
 metadata:
   name: vpc-1-priv-us-east-1b-rta
+  labels:
+    name: vpc-1-priv-us-east-1b-rta
+    ManagedBy: crossplane
+    argocd.argoproj.io/instance: vpc-1
 spec:
   providerConfigRef:
     name: aws-upbound-pc
@@ -33,6 +41,10 @@ apiVersion: ec2.aws.upbound.io/v1beta1
 kind: RouteTableAssociation
 metadata:
   name: vpc-1-pub-us-east-1a-rta
+  labels:
+    name: vpc-1-pub-us-east-1a-rta
+    ManagedBy: crossplane
+    argocd.argoproj.io/instance: vpc-1
 spec:
   providerConfigRef:
     name: aws-upbound-pc
@@ -48,6 +60,10 @@ apiVersion: ec2.aws.upbound.io/v1beta1
 kind: RouteTableAssociation
 metadata:
   name: vpc-1-pub-us-east-1b-rta
+  labels:
+    name: vpc-1-pub-us-east-1b-rta
+    ManagedBy: crossplane
+    argocd.argoproj.io/instance: vpc-1
 spec:
   providerConfigRef:
     name: aws-upbound-pc

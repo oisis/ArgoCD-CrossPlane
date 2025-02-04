@@ -7,6 +7,8 @@ metadata:
   #   crossplane.io/external-name: sg-0e880dcde534bafc1 # manage existing SecurityGroup
   labels:
     name: ec2-1-sg
+    ManagedBy: crossplane
+    argocd.argoproj.io/instance: ec2-1
 spec:
   providerConfigRef:
     name: aws-upbound-pc

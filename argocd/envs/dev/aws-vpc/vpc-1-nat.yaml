@@ -7,6 +7,8 @@ metadata:
   #   crossplane.io/external-name: nat-02bb3805fb0408de2 # manage existing NAT
   labels:
     name: vpc-1-nat
+    ManagedBy: crossplane
+    argocd.argoproj.io/instance: vpc-1
 spec:
   providerConfigRef:
     name: aws-upbound-pc

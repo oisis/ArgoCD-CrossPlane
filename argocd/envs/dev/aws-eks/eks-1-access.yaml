@@ -8,6 +8,7 @@ metadata:
   labels:
     name: eks-1-access-entry
     ManagedBy: crossplane
+    argocd.argoproj.io/instance: eks-1
 spec:
   providerConfigRef:
     name: aws-upbound-pc
@@ -31,6 +32,7 @@ metadata:
   labels:
     name: eks-1-apa
     ManagedBy: crossplane
+    argocd.argoproj.io/instance: eks-1
 spec:
   providerConfigRef:
     name: aws-upbound-pc

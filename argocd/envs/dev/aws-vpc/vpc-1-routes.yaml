@@ -4,7 +4,9 @@ kind: Route
 metadata:
   name: vpc-1-priv-rt
   labels:
-    name: vpc-1-priv-rtb
+    name: vpc-1-priv-rt
+    ManagedBy: crossplane
+    argocd.argoproj.io/instance: vpc-1
 spec:
   providerConfigRef:
     name: aws-upbound-pc
@@ -21,6 +23,10 @@ apiVersion: ec2.aws.upbound.io/v1beta1
 kind: Route
 metadata:
   name: vpc-1-pub-rt
+  labels:
+    name: vpc-1-pub-rt
+    ManagedBy: crossplane
+    argocd.argoproj.io/instance: vpc-1
 spec:
   providerConfigRef:
     name: aws-upbound-pc
