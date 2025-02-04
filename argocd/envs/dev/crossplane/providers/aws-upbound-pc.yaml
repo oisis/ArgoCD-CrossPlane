@@ -3,6 +3,10 @@ apiVersion: aws.upbound.io/v1beta1
 kind: ProviderConfig
 metadata:
   name: aws-upbound-pc
+  labels:
+    name: aws-upbound-pc
+    ManagedBy: crossplane
+    argocd.argoproj.io/instance: crossplane
   annotations:
     argocd.argoproj.io/sync-wave: "20"
     argocd.argoproj.io/sync-options: SkipDryRunOnMissingResource=true
