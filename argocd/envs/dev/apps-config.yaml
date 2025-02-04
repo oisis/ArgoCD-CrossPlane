@@ -4,7 +4,7 @@ common_params:
     project: 'dev'
     git_revision: provider_test
     sync_options: "PruneLast=true"
-    preserveResourcesOnDeletion: "false"
+    preserveResourcesOnDeletion: false
 helm_apps:
   - name: 'argocd'
     namespace: 'argocd'
@@ -12,7 +12,7 @@ helm_apps:
     repoUrl: 'https://argoproj.github.io/argo-helm'
     chart: 'argo-cd'
     targetRevision: '>=7.8.0 <7.9.0'
-    preserveResourcesOnDeletion: "true"
+    preserveResourcesOnDeletion: true
   - name: 'metrics-server'
     namespace: 'metrics-server'
     repoUrl: 'https://kubernetes-sigs.github.io/metrics-server/'
