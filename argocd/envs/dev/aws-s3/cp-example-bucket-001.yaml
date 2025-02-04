@@ -10,7 +10,7 @@ metadata:
     ManagedBy: crossplane
     argocd.argoproj.io/instance: cp-example-bucket-001
   annotations:
-    argocd.argoproj.io/sync-options: Delete=confirm
+    argocd.argoproj.io/sync-options: Delete=confirm,Prune=confirm
 spec:
   providerConfigRef:
     name: aws-upbound-pc
