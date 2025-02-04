@@ -29,6 +29,8 @@ spec:
                       - path: argocd/envs/dev/apps-config.yaml
                 - list:
                     elementsYaml: "{{ .common_params | toJson }}"
+  syncPolicy:
+    applicationsSync: '{{.applications_sync}}'
   template:
     metadata:
       name: '{{.name}}'
