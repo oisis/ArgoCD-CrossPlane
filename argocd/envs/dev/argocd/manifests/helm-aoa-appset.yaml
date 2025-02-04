@@ -89,6 +89,7 @@ spec:
           - CreateNamespace=true
           - PrunePropagationPolicy=foreground
           - PruneLast=true
+          - RespectIgnoreDifferences=true
           - ApplyOutOfSyncOnly=true
         retry:
           limit: 5
