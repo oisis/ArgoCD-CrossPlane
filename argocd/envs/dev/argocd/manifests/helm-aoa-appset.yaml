@@ -82,7 +82,7 @@ spec:
           annotations:
             app_name: '{{.name}}'
         automated:
-          prune: {{.prune}}
+          prune: {{ default false .prune }}
           selfHeal: true
           allowEmpty: true
         syncOptions:
