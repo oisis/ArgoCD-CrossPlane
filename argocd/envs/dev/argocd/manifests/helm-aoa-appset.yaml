@@ -29,6 +29,8 @@ spec:
                       - path: argocd/envs/dev/apps-config.yaml
                 - list:
                     elementsYaml: "{{ .common_params | toJson }}"
+  syncPolicy:
+    preserveResourcesOnDeletion: true
   template:
     metadata:
       name: '{{.name}}'
