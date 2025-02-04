@@ -3,7 +3,7 @@ common_params:
     domain: 'dev.example.com'
     project: 'dev'
     git_revision: provider_test
-    sync_options:
+    sync_options: "PruneLast=true"
 helm_apps:
   - name: 'argocd'
     namespace: 'argocd'
