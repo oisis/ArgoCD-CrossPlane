@@ -6,6 +6,7 @@ metadata:
     argocd.argoproj.io/tracking-id: app-of-apps:argoproj.io/Application:argocd/app-of-apps
   finalizers:
     - resources-finalizer.argocd.argoproj.io
+    - resources-finalizer.argocd.argoproj.io/foreground
   labels:
     custom.label/deployed-by: app-of-apps
     custom.label/environment: dev
