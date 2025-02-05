@@ -103,3 +103,5 @@ spec:
       syncPolicy:
         automated:
           prune: {{ .prune }}
+        syncOptions:
+          - PruneLast={{ .prune_last }}
