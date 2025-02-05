@@ -81,17 +81,6 @@ spec:
             environment: '{{.environment}}'
           annotations:
             app_name: '{{.name}}'
-        automated:
-          prune: true
-          selfHeal: true
-          allowEmpty: true
-        # syncOptions:
-        #   - Validate=true
-        #   - CreateNamespace=true
-        #   - PrunePropagationPolicy=foreground
-        #   - PruneLast=true
-        #   - RespectIgnoreDifferences=true
-        #   - ApplyOutOfSyncOnly=true
         retry:
           limit: 5
           backoff:
@@ -103,6 +92,8 @@ spec:
       syncPolicy:
         automated:
           prune: {{ .prune }}
+          selfHeal: true
+          allowEmpty: true
         syncOptions:
           - Validate=true
           - CreateNamespace=true
