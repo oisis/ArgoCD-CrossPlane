@@ -17,12 +17,12 @@ helm_apps:
     repoUrl: 'https://kubernetes-sigs.github.io/metrics-server/'
     chart: metrics-server
     targetRevision: '>=3.12.0 <3.13.0'
+    prune: true
   - name: 'kubernetes-dashboard'
     namespace: 'kubernetes-dashboard'
     repoUrl: 'https://kubernetes.github.io/dashboard'
     chart: 'kubernetes-dashboard'
     targetRevision: '>=7.10.0 <7.11.0'
-    prune: true
   # - name: 'crossplane'
   #   namespace: 'crossplane-system'
   #   repoUrl: 'https://charts.crossplane.io/stable'
