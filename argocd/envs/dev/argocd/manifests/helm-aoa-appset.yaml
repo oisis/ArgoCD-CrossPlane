@@ -85,13 +85,13 @@ spec:
           prune: true
           selfHeal: true
           allowEmpty: true
-        syncOptions:
-          - Validate=true
-          - CreateNamespace=true
-          - PrunePropagationPolicy=foreground
-          - PruneLast=true
-          - RespectIgnoreDifferences=true
-          - ApplyOutOfSyncOnly=true
+        # syncOptions:
+        #   - Validate=true
+        #   - CreateNamespace=true
+        #   - PrunePropagationPolicy=foreground
+        #   - PruneLast=true
+        #   - RespectIgnoreDifferences=true
+        #   - ApplyOutOfSyncOnly=true
         retry:
           limit: 5
           backoff:
@@ -104,4 +104,9 @@ spec:
         automated:
           prune: {{ .prune }}
         syncOptions:
+          - Validate=true
+          - CreateNamespace=true
+          - PrunePropagationPolicy=foreground
           - PruneLast={{ .prune_last }}
+          - RespectIgnoreDifferences=true
+          - ApplyOutOfSyncOnly=true
