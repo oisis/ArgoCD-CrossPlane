@@ -1,85 +1,24 @@
----
 apiVersion: argoproj.io/v1alpha1
-kind: ApplicationSet
+kind: Application
 metadata:
-  name: helm-aoa
-  namespace: argocd
+  name: app-of-apps
+  finalizers:
+    - resources-finalizer.argocd.argoproj.io
+  labels:
+    custom.label/deployed-by: app-of-apps
+    custom.label/environment: dev
+    custom.label/managedby: Argo-CD
 spec:
-  goTemplate: true
-  goTemplateOptions: ["missingkey=error"]
-  generators:
-    - matrix:
-        generators:
-          - matrix:
-              generators:
-                - git:
-                    repoURL: https://github.com/oisis/ArgoCD-CrossPlane.git
-                    revision: provider_test
-                    files:
-                      - path: argocd/envs/dev/apps-config.yaml
-                - list:
-                    elementsYaml: "{{ .helm_apps | toJson }}"
-          - matrix:
-              generators:
-                - git:
-                    repoURL: https://github.com/oisis/ArgoCD-CrossPlane.git
-                    revision: provider_test
-                    files:
-                      - path: argocd/envs/dev/apps-config.yaml
-                - list:
-                    elementsYaml: "{{ .common_params | toJson }}"
-  template:
-    metadata:
-      name: '{{.name}}'
-      finalizers:
-        - resources-finalizer.argocd.argoproj.io
-    spec:
-      project: '{{.project}}'
-      sources:
-        - repoURL: https://github.com/oisis/ArgoCD-CrossPlane.git
-          targetRevision: '{{.git_revision}}'
-          ref: values
-        - chart: '{{.chart}}'
-          repoURL: '{{.repoUrl}}'
-          targetRevision: '{{.targetRevision}}'
-          helm:
-            ignoreMissingValueFiles: true
-            valueFiles:
-              - $values/argocd/apps/{{.name}}/values.yaml
-              - $values/argocd/envs/{{.environment}}/{{.name}}/values.yaml
-        - repoURL: https://github.com/oisis/ArgoCD-CrossPlane.git
-          targetRevision: '{{.git_revision}}'
-          path: argocd/apps/{{.name}}
-          directory:
-            recurse: true
-            include: '*.yaml'
-            exclude: '{values.yaml,apps-config-example.yaml,.*,values-org.yaml}'
-        - repoURL: https://github.com/oisis/ArgoCD-CrossPlane.git
-          targetRevision: '{{.git_revision}}'
-          path: argocd/envs/{{.environment}}/{{.name}}
-          directory:
-            recurse: true
-            include: '*.yaml'
-            exclude: '{values.yaml,apps-config-example.yaml,.*,values-org.yaml}'
-      destination:
-        name: '{{.environment}}'
-        namespace: "{{.namespace}}"
-      info:
-        - name: 'Applicatation url:'
-          value: 'http://{{.name}}.{{.domain}}'
-      syncPolicy:
-        managedNamespaceMetadata:
-          labels:
-            environment: '{{.environment}}'
-          annotations:
-            app_name: '{{.name}}'
-        automated:
-          prune: true
-          selfHeal: true
-          allowEmpty: true
-        syncOptions:
-          - Validate=true
-          - CreateNamespace=true
-          - PrunePropagationPolicy=foreground
-          - PruneLast=true
-          - ApplyOutOfSyncOnly=true
+  destination:
+    name: dev
+    namespace: argocd
+  info:
+  - name: 'Applicatation url:'
+    value: http://argocd.dev.example.com
+  project: default
+  sources:
+  - repoURL: https://github.com/oisis/ArgoCD-CrossPlane.git
+    path: argocd/envs/dev/app-of-apps
+    targetRevision: provider_test
+    directory:
+      include: 'app-of-apps.yaml'
