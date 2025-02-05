@@ -4,6 +4,8 @@ metadata:
   name: app-of-apps
   finalizers:
     - resources-finalizer.argocd.argoproj.io
+  annotations:
+    argocd.argoproj.io/tracking-id: app-of-apps:argoproj.io/Application:argocd/app-of-apps
   labels:
     custom.label/deployed-by: app-of-apps
     custom.label/environment: dev
@@ -19,17 +21,20 @@ spec:
   destination:
     name: dev
     namespace: argocd
+  info:
+    - name: 'Applicatation url:'
+      value: http://argocd.dev.example.com
   syncPolicy:
+    automated:
+      prune: false
+      selfHeal: true
+      allowEmpty: true
     retry:
       limit: 5
       backoff:
         duration: 5s
         factor: 2
         maxDuration: 3m
-    automated:
-      prune: false
-      selfHeal: true
-      allowEmpty: true
     syncOptions:
       - Validate=true
       - CreateNamespace=true
@@ -37,5 +42,3 @@ spec:
       - PruneLast=true
       - RespectIgnoreDifferences=true
       - ApplyOutOfSyncOnly=true
-      - Replace=false
-      - ServerSideApply=true
