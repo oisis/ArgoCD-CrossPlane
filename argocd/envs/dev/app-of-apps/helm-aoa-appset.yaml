@@ -97,6 +97,6 @@ spec:
           - Validate=true
           - CreateNamespace=true
           - PrunePropagationPolicy=foreground
-          - PruneLast={{ .prune_last }}
+          - PruneLast=true
           - RespectIgnoreDifferences=true
           - ApplyOutOfSyncOnly=true
