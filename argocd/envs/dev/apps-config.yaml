@@ -5,6 +5,7 @@ common_params:
     git_revision: provider_test
     sync_options: "PruneLast=true"
     prune: false
+    prune_last: true
 helm_apps:
   - name: 'argocd'
     namespace: 'argocd'
@@ -23,6 +24,7 @@ helm_apps:
     chart: 'kubernetes-dashboard'
     targetRevision: '>=7.10.0 <7.11.0'
     prune: true
+    prune_last: false
   # - name: 'crossplane'
   #   namespace: 'crossplane-system'
   #   repoUrl: 'https://charts.crossplane.io/stable'
