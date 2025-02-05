@@ -21,4 +21,4 @@ spec:
     path: argocd/envs/dev/app-of-apps
     targetRevision: provider_test
     directory:
-      include: 'app-of-apps.yaml'
+      include: '*.yaml'
