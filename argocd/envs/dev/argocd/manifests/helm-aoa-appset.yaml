@@ -8,7 +8,6 @@ metadata:
 spec:
   goTemplate: true
   goTemplateOptions: ["missingkey=error"]
-  # interval: 120
   generators:
     - matrix:
         generators:
