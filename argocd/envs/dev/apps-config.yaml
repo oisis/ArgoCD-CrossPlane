@@ -29,9 +29,6 @@ helm_apps:
   #   chart: 'crossplane'
   #   targetRevision: '>=1.18.0 <1.19.0'
 k8s_manifest_apps:
-  # - name: 'app-of-apps'
-  #   namespace: 'argocd'
-  #   config_dir: app-of-apps
   # - name: "aws-vpc"
   #   namespace: 'crossplane-system'
   #   config_dir: "aws-vpc"
