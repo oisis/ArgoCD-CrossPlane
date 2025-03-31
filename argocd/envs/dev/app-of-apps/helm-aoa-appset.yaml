@@ -3,8 +3,10 @@ apiVersion: argoproj.io/v1alpha1
 kind: ApplicationSet
 metadata:
   name: helm-aoa
-  finalizers:
-  - resources-finalizer.argocd.argoproj.io
+  labels:
+    custom.label/deployed-by: app-of-apps
+    custom.label/environment: dev
+    custom.label/managedby: Argo-CD
 spec:
   goTemplate: true
   goTemplateOptions: ["missingkey=error"]
@@ -90,7 +92,7 @@ spec:
     spec:
       syncPolicy:
         automated:
-          prune: {{ .prune }}
+          prune: false
           selfHeal: true
           allowEmpty: true
         syncOptions:
