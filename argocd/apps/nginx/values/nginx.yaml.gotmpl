@@ -1,9 +1,20 @@
+image:
+  debug: false
+replicaCount: 1
+updateStrategy:
+  type: RollingUpdate
+tls:
+  enabled: false
+containerPorts:
+  http: 1080
+  https: 1443
+resourcesPreset: "nano"
+service:
+  type: ClusterIP
 extraEnvVars:
   - name: PLUGIN_ENV_VAR_1
     value: {{ env "ARGOCD_ENV_PLUGIN_ENV_VAR_1" }}
   - name: APPS_NGINX_VALUES
     value: 'value from apps/nginx/values dir'
-#  - name: HELM_VERSION
-#    value: {{ requiredEnv "HELM_VERSION" }}
-#  - name: BOOTSTRAP_CONF_VAR_1
-#    value: {{ env "VAR_1" }}
+  - name: HELM_VERSION
+    value: {{ requiredEnv "HELM_VERSION" }}
