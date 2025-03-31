@@ -2,13 +2,13 @@
 apiVersion: s3.aws.upbound.io/v1beta2
 kind: Bucket
 metadata:
-  name: cp-example-bucket-001
+  name: cp-example-bucket-0001
   # annotations:
   #   crossplane.io/external-name: sg-0e880dcde534bafc1 # manage existing SecurityGroup
   labels:
-    name: cp-example-bucket-001
+    name: cp-example-bucket-0001
     ManagedBy: crossplane
-    argocd.argoproj.io/instance: cp-example-bucket-001
+    argocd.argoproj.io/instance: cp-example-bucket-0001
   annotations:
     argocd.argoproj.io/sync-options: Delete=confirm,Prune=confirm
 spec:
@@ -19,5 +19,5 @@ spec:
     forceDestroy: true
     region: us-east-1
     tags:
-      Name: cp-example-bucket-001
+      Name: cp-example-bucket-0001
       ManagedBy: crossplane
