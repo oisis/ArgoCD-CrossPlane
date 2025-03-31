@@ -9,5 +9,5 @@ releases:
     version: '19.0.3'
     values:
       - values/nginx.yaml
-      - values/nginx.yaml.gotmpl
       - ../../envs/{{ env "ARGOCD_ENV_ENVIRONMENT" }}/{{ env "ARGOCD_ENV_APP_NAME" }}/values.yaml
+      - values/nginx.yaml.gotmpl
