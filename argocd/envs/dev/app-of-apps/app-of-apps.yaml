@@ -19,9 +19,6 @@ spec:
   destination:
     name: dev
     namespace: argocd
-  info:
-    - name: 'Applicatation url:'
-      value: http://argocd.dev.example.com
   syncPolicy:
     retry:
       limit: 5
