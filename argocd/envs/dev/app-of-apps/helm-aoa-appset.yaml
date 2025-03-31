@@ -92,13 +92,49 @@ spec:
     spec:
       syncPolicy:
         automated:
-          prune: false
+      {{- if hasKey . "automatedPrune" }}
+          prune: {{.automatedPrune}}
+      {{- else }}
+          prune: true
+      {{- end }}
+      {{- if hasKey . "automatedSelfHeal" }}
+          selfHeal: {{.automatedSelfHeal}}
+      {{- else }}
           selfHeal: true
+      {{- end }}
+      {{- if hasKey . "automatedAllowEmpty" }}
+          allowEmpty: {{.automatedAllowEmpty}}
+      {{- else }}
           allowEmpty: true
+      {{- end }}
         syncOptions:
+      {{- if hasKey . "syncPolicyValidate" }}
+          - Validate={{.syncPolicyValidate}}
+      {{- else }}
           - Validate=true
+      {{- end }}
+      {{- if hasKey . "syncPolicyCreateNamespace" }}
+          - CreateNamespace={{.syncPolicyCreateNamespace}}
+      {{- else }}
           - CreateNamespace=true
+      {{- end }}
+      {{- if hasKey . "syncPolicyPrunePropagationPolicy" }}
+          - PrunePropagationPolicy={{.syncPolicyPrunePropagationPolicy}}
+      {{- else }}
           - PrunePropagationPolicy=foreground
+      {{- end }}
+      {{- if hasKey . "syncPolicyPruneLast" }}
+          - PruneLast={{.syncPolicyPruneLast}}
+      {{- else }}
           - PruneLast=true
+      {{- end }}
+      {{- if hasKey . "syncPolicyRespectIgnoreDifferences" }}
+          - RespectIgnoreDifferences={{.syncPolicyRespectIgnoreDifferences}}
+      {{- else }}
           - RespectIgnoreDifferences=true
+      {{- end }}      
+      {{- if hasKey . "syncPolicyApplyOutOfSyncOnly" }}
+          - Validate={{.syncPolicyApplyOutOfSyncOnly}}
+      {{- else }}
           - ApplyOutOfSyncOnly=true
+      {{- end }}
