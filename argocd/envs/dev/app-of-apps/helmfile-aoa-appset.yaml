@@ -27,7 +27,7 @@ spec:
       source:
         repoURL: https://github.com/oisis/ArgoCD-CrossPlane.git
         targetRevision: HEAD
-        path: argocd/envs/{{.environment}}/{{.name}}
+        path: argocd/apps/{{.name}}
         plugin:
           name: helmfile
           env:
