@@ -10,4 +10,4 @@ releases:
     values:
       - values/nginx.yaml
       - values/nginx.yaml.gotmpl
-      - ../../{{ env "ARGOCD_ENV_ENVIRONMENT" }}/{{ env "ARGOCD_ENV_APP_NAME" }}/values/env_value.yaml
+      - ../../envs/{{ env "ARGOCD_ENV_ENVIRONMENT" }}/{{ env "ARGOCD_ENV_APP_NAME" }}/values.yaml
