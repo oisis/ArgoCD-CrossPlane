@@ -15,7 +15,7 @@ spec:
               generators:
                 - git:
                     repoURL: https://github.com/oisis/ArgoCD-CrossPlane.git
-                    revision: provider_test
+                    revision: main
                     files:
                       - path: argocd/envs/dev/apps-config.yaml
                 - list:
@@ -24,7 +24,7 @@ spec:
               generators:
                 - git:
                     repoURL: https://github.com/oisis/ArgoCD-CrossPlane.git
-                    revision: provider_test
+                    revision: main
                     files:
                       - path: argocd/envs/dev/apps-config.yaml
                 - list:

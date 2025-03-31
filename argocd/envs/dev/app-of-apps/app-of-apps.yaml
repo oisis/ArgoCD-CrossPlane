@@ -13,7 +13,7 @@ spec:
   sources:
     - repoURL: https://github.com/oisis/ArgoCD-CrossPlane.git
       path: argocd/envs/dev/app-of-apps
-      targetRevision: provider_test
+      targetRevision: main
       directory:
         include: '*.yaml'
   destination:
