@@ -18,3 +18,7 @@ extraEnvVars:
     value: 'value from apps/nginx/values dir'
   - name: HELM_VERSION
     value: {{ requiredEnv "HELM_VERSION" }}
+  - name: ARGOCD_ENV_ENVIRONMENT
+    value: {{ env "ARGOCD_ENV_ENVIRONMENT" }}
+  - name: ARGOCD_ENV_APP_NAME
+    value: {{ env "ARGOCD_ENV_APP_NAME" }}
