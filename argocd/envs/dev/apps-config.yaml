@@ -29,6 +29,9 @@ helm_apps:
     targetRevision: '>=1.18.0 <1.19.0'
     automatedPrune: 'false'
 helmfile_apps:
+  - name: nginx
+    namespace: "nginx"
+    project: "dev"
 k8s_manifest_apps:
   - name: "aws-s3"
     namespace: 'crossplane-system'
