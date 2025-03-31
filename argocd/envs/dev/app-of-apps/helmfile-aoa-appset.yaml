@@ -1,0 +1,95 @@
+---
+apiVersion: argoproj.io/v1alpha1
+kind: ApplicationSet
+metadata:
+  name: app-of-apps-helmfile
+  namespace: argocd
+spec:
+  goTemplate: true
+  goTemplateOptions: ['missingkey=error']
+  generators:
+  - matrix:
+      generators:
+      - git:
+          repoURL: https://github.com/oisis/ArgoCD-CrossPlane.git
+          revision: HEAD
+          files:
+            - path: argocd/envs/dev/apps-config.yaml
+      - list:
+          elementsYaml: '{{ .helmfile_apps | toJson }}'
+  template:
+    metadata:
+      name: '{{.name}}'
+      labels:
+        app_name: '{{.name}}'
+    spec:
+      project: '{{.project}}'
+      source:
+        repoURL: https://github.com/oisis/ArgoCD-CrossPlane.git
+        targetRevision: HEAD
+        path: argocd/envs/{{.environment}}/{{.name}}
+        plugin:
+          name: helmfile
+          env:
+            - name: PLUGIN_ENV_VAR_1
+              value: 'plugin_env_var_1'
+      destination:
+        server: https://kubernetes.default.svc
+        namespace: '{{.namespace}}'
+      syncPolicy:
+        retry:
+          limit: 5
+          backoff:
+            duration: 5s
+            factor: 2
+            maxDuration: 3m
+  templatePatch: |
+    spec:
+      syncPolicy:
+        automated:
+      {{- if hasKey . "automatedPrune" }}
+          prune: {{.automatedPrune}}
+      {{- else }}
+          prune: true
+      {{- end }}
+      {{- if hasKey . "automatedSelfHeal" }}
+          selfHeal: {{.automatedSelfHeal}}
+      {{- else }}
+          selfHeal: true
+      {{- end }}
+      {{- if hasKey . "automatedAllowEmpty" }}
+          allowEmpty: {{.automatedAllowEmpty}}
+      {{- else }}
+          allowEmpty: true
+      {{- end }}
+        syncOptions:
+      {{- if hasKey . "syncPolicyValidate" }}
+          - Validate={{.syncPolicyValidate}}
+      {{- else }}
+          - Validate=true
+      {{- end }}
+      {{- if hasKey . "syncPolicyCreateNamespace" }}
+          - CreateNamespace={{.syncPolicyCreateNamespace}}
+      {{- else }}
+          - CreateNamespace=true
+      {{- end }}
+      {{- if hasKey . "syncPolicyPrunePropagationPolicy" }}
+          - PrunePropagationPolicy={{.syncPolicyPrunePropagationPolicy}}
+      {{- else }}
+          - PrunePropagationPolicy=foreground
+      {{- end }}
+      {{- if hasKey . "syncPolicyPruneLast" }}
+          - PruneLast={{.syncPolicyPruneLast}}
+      {{- else }}
+          - PruneLast=true
+      {{- end }}
+      {{- if hasKey . "syncPolicyRespectIgnoreDifferences" }}
+          - RespectIgnoreDifferences={{.syncPolicyRespectIgnoreDifferences}}
+      {{- else }}
+          - RespectIgnoreDifferences=true
+      {{- end }}      
+      {{- if hasKey . "syncPolicyApplyOutOfSyncOnly" }}
+          - Validate={{.syncPolicyApplyOutOfSyncOnly}}
+      {{- else }}
+          - ApplyOutOfSyncOnly=true
+      {{- end }}
