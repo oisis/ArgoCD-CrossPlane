@@ -31,9 +31,9 @@ k8s_manifest_apps:
   - name: "aws-s3"
     namespace: 'crossplane-system'
     config_dir: "aws-s3"
-  # - name: "aws-vpc"
-  #   namespace: 'crossplane-system'
-  #   config_dir: "aws-vpc"
+  - name: "aws-vpc"
+    namespace: 'crossplane-system'
+    config_dir: "aws-vpc"
   # - name: "aws-ec2"
   #   namespace: 'crossplane-system'
   #   config_dir: "aws-ec2"
