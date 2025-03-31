@@ -40,8 +40,6 @@ spec:
         custom.label/environment: '{{.environment}}'
       finalizers:
         - resources-finalizer.argocd.argoproj.io
-      annotations:
-        argocd.argoproj.io/sync-options: '{{.sync_options}}'
     spec:
       project: '{{.project}}'
       sources:
