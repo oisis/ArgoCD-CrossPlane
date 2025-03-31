@@ -31,6 +31,12 @@ spec:
         plugin:
           name: helmfile
           env:
+            - name: ENVIRONMENT
+              value: '{{.environment}}'
+            - name: APP_NAME
+              value: '{{.name}}'
+            - name: NAMESPACE
+              value: '{{.namespace}}'
             - name: PLUGIN_ENV_VAR_1
               value: 'plugin_env_var_1'
       destination:

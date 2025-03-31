@@ -1,0 +1,3 @@
+extraEnvVars:
+  - name: TEST_VALUES_PATH
+    value: "OK"
