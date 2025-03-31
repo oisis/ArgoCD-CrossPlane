@@ -60,25 +60,64 @@ spec:
         - name: 'Applicatation url:'
           value: 'http://{{.name}}.{{.domain}}'
       syncPolicy:
-        managedNamespaceMetadata:
-          labels:
-            environment: '{{.environment}}'
-          annotations:
-            app_name: '{{.name}}'
-        automated:
-          prune: true
-          selfHeal: true
-          allowEmpty: true
-        syncOptions:
-          - Validate=true
-          - CreateNamespace=true
-          - PrunePropagationPolicy=foreground
-          - PruneLast=true
-          - RespectIgnoreDifferences=true
-          - ApplyOutOfSyncOnly=true
         retry:
           limit: 5
           backoff:
             duration: 5s
             factor: 2
             maxDuration: 3m
+        managedNamespaceMetadata:
+          labels:
+            environment: '{{.environment}}'
+          annotations:
+            app_name: '{{.name}}'
+  templatePatch: |
+    spec:
+      syncPolicy:
+        automated:
+      {{- if hasKey . "automatedPrune" }}
+          prune: {{.automatedPrune}}
+      {{- else }}
+          prune: true
+      {{- end }}
+      {{- if hasKey . "automatedSelfHeal" }}
+          selfHeal: {{.automatedSelfHeal}}
+      {{- else }}
+          selfHeal: true
+      {{- end }}
+      {{- if hasKey . "automatedAllowEmpty" }}
+          allowEmpty: {{.automatedAllowEmpty}}
+      {{- else }}
+          allowEmpty: true
+      {{- end }}
+        syncOptions:
+      {{- if hasKey . "syncPolicyValidate" }}
+          - Validate={{.syncPolicyValidate}}
+      {{- else }}
+          - Validate=true
+      {{- end }}
+      {{- if hasKey . "syncPolicyCreateNamespace" }}
+          - CreateNamespace={{.syncPolicyCreateNamespace}}
+      {{- else }}
+          - CreateNamespace=true
+      {{- end }}
+      {{- if hasKey . "syncPolicyPrunePropagationPolicy" }}
+          - PrunePropagationPolicy={{.syncPolicyPrunePropagationPolicy}}
+      {{- else }}
+          - PrunePropagationPolicy=foreground
+      {{- end }}
+      {{- if hasKey . "syncPolicyPruneLast" }}
+          - PruneLast={{.syncPolicyPruneLast}}
+      {{- else }}
+          - PruneLast=true
+      {{- end }}
+      {{- if hasKey . "syncPolicyRespectIgnoreDifferences" }}
+          - RespectIgnoreDifferences={{.syncPolicyRespectIgnoreDifferences}}
+      {{- else }}
+          - RespectIgnoreDifferences=true
+      {{- end }}      
+      {{- if hasKey . "syncPolicyApplyOutOfSyncOnly" }}
+          - Validate={{.syncPolicyApplyOutOfSyncOnly}}
+      {{- else }}
+          - ApplyOutOfSyncOnly=true
+      {{- end }}
