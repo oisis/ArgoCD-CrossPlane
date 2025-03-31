@@ -27,6 +27,7 @@ helm_apps:
     repoUrl: 'https://charts.crossplane.io/stable'
     chart: 'crossplane'
     targetRevision: '>=1.18.0 <1.19.0'
+    automatedPrune: 'false'
 k8s_manifest_apps:
   - name: "aws-s3"
     namespace: 'crossplane-system'
