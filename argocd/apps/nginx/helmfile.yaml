@@ -3,7 +3,7 @@ bases:
   - ../helmfile/defaults.yaml
   - ../helmfile/environments.yaml
   - ../helmfile/repositories.yaml
-  - ../helmfile/templates.yaml
+  # - ../helmfile/templates.yaml
 ---
 templates:
   default: &default
