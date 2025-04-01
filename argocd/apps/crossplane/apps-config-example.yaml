@@ -3,4 +3,4 @@ helm_apps:
     namespace: 'crossplane-system'
     repoUrl: 'https://charts.crossplane.io/stable'
     chart: 'crossplane'
-    targetRevision: '1.18.2'
+    targetRevision: '1.19.1'
