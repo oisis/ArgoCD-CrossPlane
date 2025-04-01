@@ -12,8 +12,8 @@ templates:
     namespace: nginx
     missingFileHandler: Error
     values:
-    - values/nginx.yaml.gotmpl
     - ../../envs/{{`{{ requiredEnv "ARGOCD_ENV_ENVIRONMENT" }}`}}/{{`{{ requiredEnv "ARGOCD_ENV_APP_NAME" }}`}}/values.yaml
+    - values/nginx.yaml.gotmpl
 
 releases:
   - name: nginx
