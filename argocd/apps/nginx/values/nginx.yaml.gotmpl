@@ -13,12 +13,12 @@ service:
   type: ClusterIP
 extraEnvVars:
   - name: PLUGIN_ENV_VAR_1
-    value: {{ env "ARGOCD_ENV_PLUGIN_ENV_VAR_1" }}
+    value: {{ requiredEnv "ARGOCD_ENV_PLUGIN_ENV_VAR_1" }}
   - name: APPS_NGINX_VALUES
     value: 'value from apps/nginx/values dir'
   - name: HELM_VERSION
     value: {{ requiredEnv "HELM_VERSION" }}
   - name: ARGOCD_ENV_ENVIRONMENT
-    value: {{ env "ARGOCD_ENV_ENVIRONMENT" }}
+    value: {{ requiredEnv "ARGOCD_ENV_ENVIRONMENT" }}
   - name: ARGOCD_ENV_APP_NAME
-    value: {{ env "ARGOCD_ENV_APP_NAME" }}
+    value: {{ requiredEnv "ARGOCD_ENV_APP_NAME" }}

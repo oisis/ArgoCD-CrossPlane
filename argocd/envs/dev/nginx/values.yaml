@@ -2,5 +2,3 @@ replicaCount: 2
 extraEnvVars:
   - name: ENVS_DEV_NGINX_VALUES
     value: "value from envs/dev/nginx dir"
-  - name: DEBUG_OUTPUT
-    value: "../../envs/{{`{{ env \"ARGOCD_ENV_ENVIRONMENT\" }}`}}/{{`{{ env \"ARGOCD_ENV_APP_NAME\" }}`}}/values.yaml"
