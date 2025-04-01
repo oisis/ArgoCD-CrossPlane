@@ -22,3 +22,5 @@ extraEnvVars:
     value: {{ requiredEnv "ARGOCD_ENV_ENVIRONMENT" }}
   - name: ARGOCD_ENV_APP_NAME
     value: {{ requiredEnv "ARGOCD_ENV_APP_NAME" }}
+  - name: ENVS_DEV_NGINX_VALUES
+    value: "value from envs/dev/nginx dir"
