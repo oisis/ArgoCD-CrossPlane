@@ -4,5 +4,8 @@ templates:
       managedBy: Helmfile
     missingFileHandler: Error
     values:
-    - values/values.yaml.gotmpl
-    - ../../envs/{{`{{ requiredEnv "ARGOCD_ENV_ENVIRONMENT" }}`}}/{{`{{ requiredEnv "ARGOCD_ENV_APP_NAME" }}`}}/values.yaml
+      - values/values.yaml.gotmpl
+      - ../../envs/{{ requiredEnv "ARGOCD_ENV_ENVIRONMENT" }}/{{ requiredEnv "ARGOCD_ENV_APP_NAME" }}/values.yaml
+    secrets:
+      - values/values-secret.yaml
+      - ../../envs/{{ requiredEnv "ARGOCD_ENV_ENVIRONMENT" }}/{{ requiredEnv "ARGOCD_ENV_APP_NAME" }}/values-secret.yaml

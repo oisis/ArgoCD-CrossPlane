@@ -4,12 +4,11 @@ bases:
   - ../helmfile/environments.yaml
   - ../helmfile/repositories.yaml
 ---
-{{ readFile "../helmfile/templates.yaml" }}
+{{ readFile "../helmfile/templates.yaml" | fromYaml }}
 
 releases:
   - name: nginx
     chart: bitnami/nginx
     version: '19.0.3'
     namespace: nginx
-    secrets: []
     <<: *default
