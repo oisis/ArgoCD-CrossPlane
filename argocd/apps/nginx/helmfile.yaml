@@ -2,11 +2,17 @@ repositories:
   - name: bitnami
     url: https://charts.bitnami.com/bitnami
 
+helmDefaults:
+  verify: true
+  wait: true
+  createNamespace: false
+
 releases:
   - name: nginx
     namespace: nginx
     chart: bitnami/nginx
     version: '19.0.3'
+    missingFileHandler: Error
     values:
       - ../../envs/{{ env "ARGOCD_ENV_ENVIRONMENT" }}/{{ env "ARGOCD_ENV_APP_NAME" }}/values.yaml
       - values/nginx.yaml.gotmpl
