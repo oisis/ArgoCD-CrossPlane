@@ -6,7 +6,6 @@ helmDefaults:
   verify: true
   wait: true
   createNamespace: false
-  missingFileHandler: Error
 
 defaults:
   values:
@@ -18,3 +17,4 @@ releases:
     namespace: nginx
     chart: bitnami/nginx
     version: '19.0.3'
+    missingFileHandler: Error
