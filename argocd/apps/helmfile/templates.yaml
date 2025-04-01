@@ -2,4 +2,4 @@ templates:
   default: &default
     labels:
       managedBy: Helmfile
-    missingFileHandler: Error
+    missingFileHandler: Warn
