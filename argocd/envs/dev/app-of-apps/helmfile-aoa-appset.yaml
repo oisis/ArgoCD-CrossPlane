@@ -24,21 +24,24 @@ spec:
         app_name: '{{.name}}'
     spec:
       project: '{{.project}}'
-      source:
-        repoURL: https://github.com/oisis/ArgoCD-CrossPlane.git
-        targetRevision: HEAD
-        path: argocd/apps/{{.name}}
-        plugin:
-          name: helmfile
-          env:
-            - name: ENVIRONMENT
-              value: '{{.environment}}'
-            - name: APP_NAME
-              value: '{{.name}}'
-            - name: NAMESPACE
-              value: '{{.namespace}}'
-            - name: PLUGIN_ENV_VAR_1
-              value: 'plugin_env_var_1'
+      sources:
+        - repoURL: https://github.com/oisis/ArgoCD-CrossPlane.git
+          targetRevision: '{{.git_revision}}'
+          ref: values
+        - repoURL: https://github.com/oisis/ArgoCD-CrossPlane.git
+          targetRevision: HEAD
+          path: $values/argocd/apps/{{.name}}
+          plugin:
+            name: helmfile
+            env:
+              - name: ENVIRONMENT
+                value: '{{.environment}}'
+              - name: APP_NAME
+                value: '{{.name}}'
+              - name: NAMESPACE
+                value: '{{.namespace}}'
+              - name: PLUGIN_ENV_VAR_1
+                value: 'plugin_env_var_1'
       destination:
         server: https://kubernetes.default.svc
         namespace: '{{.namespace}}'
