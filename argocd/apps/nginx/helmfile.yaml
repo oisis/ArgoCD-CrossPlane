@@ -6,13 +6,15 @@ helmDefaults:
   verify: true
   wait: true
   createNamespace: false
+  missingFileHandler: Error
+
+defaults:
+  values:
+    - "../../envs/{{ env \"ARGOCD_ENV_ENVIRONMENT\" }}/{{ env \"ARGOCD_ENV_APP_NAME\" }}/values.yaml"
+    - "values/nginx.yaml.gotmpl"
 
 releases:
   - name: nginx
     namespace: nginx
     chart: bitnami/nginx
     version: '19.0.3'
-    missingFileHandler: Error
-    values:
-      - ../../envs/{{ env "ARGOCD_ENV_ENVIRONMENT" }}/{{ env "ARGOCD_ENV_APP_NAME" }}/values.yaml
-      - values/nginx.yaml.gotmpl
