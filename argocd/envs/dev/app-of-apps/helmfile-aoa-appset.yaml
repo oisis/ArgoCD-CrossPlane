@@ -30,7 +30,7 @@ spec:
           ref: values
         - repoURL: https://github.com/oisis/ArgoCD-CrossPlane.git
           targetRevision: HEAD
-          path: $values/argocd/apps/{{.name}}
+          path: argocd/apps/{{.name}}
           plugin:
             name: helmfile
             env:
