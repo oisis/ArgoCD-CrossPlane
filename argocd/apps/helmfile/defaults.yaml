@@ -1,0 +1,5 @@
+helmDefaults:
+  verify: true
+  wait: true
+  createNamespace: false
+  timeout: 1800
