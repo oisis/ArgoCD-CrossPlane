@@ -10,8 +10,8 @@ helmDefaults:
 
 defaults:
   values:
-    - "../../envs/{{ env \"ARGOCD_ENV_ENVIRONMENT\" }}/{{ env \"ARGOCD_ENV_APP_NAME\" }}/values.yaml"
-    - "values/nginx.yaml.gotmpl"
+    - ../../envs/{{ env "ARGOCD_ENV_ENVIRONMENT" }}/{{ env "ARGOCD_ENV_APP_NAME" }}/values.yaml
+    - values/nginx.yaml.gotmpl
 
 releases:
   - name: nginx
