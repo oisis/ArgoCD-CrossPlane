@@ -1,4 +1,7 @@
 replicaCount: 2
+service:
+  annotations:
+    test: "pass"
 extraEnvVars:
   - name: ENVS_DEV_NGINX_VALUES
     value: "value from envs/dev/nginx dir"
