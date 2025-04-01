@@ -11,10 +11,9 @@ templates:
       managedBy: Helmfile
     namespace: nginx
     missingFileHandler: Error
-    mergeOverwrite: true
     values:
-      - values/nginx.yaml.gotmpl
-      - ../../envs/{{ requiredEnv "ARGOCD_ENV_ENVIRONMENT" }}/{{ requiredEnv "ARGOCD_ENV_APP_NAME" }}/values.yaml
+    - values/nginx.yaml.gotmpl
+    - ../../envs/{{`{{ requiredEnv "ARGOCD_ENV_ENVIRONMENT" }}`}}/{{`{{ requiredEnv "ARGOCD_ENV_APP_NAME" }}`}}/values.yaml
 
 releases:
   - name: nginx
