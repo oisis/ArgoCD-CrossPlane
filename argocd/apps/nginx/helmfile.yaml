@@ -4,7 +4,7 @@ bases:
   - ../helmfile/environments.yaml
   - ../helmfile/repositories.yaml
 ---
-{{ readFile "../helmfile/templates.yaml" | fromYaml }}
+{{ readFile "../helmfile/templates.yaml" }}
 
 releases:
   - name: nginx
