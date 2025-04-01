@@ -1,0 +1,8 @@
+templates:
+  default: &default
+    labels:
+      managedBy: Helmfile
+    missingFileHandler: Error
+    values:
+    - values/values.yaml.gotmpl
+    - ../../envs/{{`{{ requiredEnv "ARGOCD_ENV_ENVIRONMENT" }}`}}/{{`{{ requiredEnv "ARGOCD_ENV_APP_NAME" }}`}}/values.yaml

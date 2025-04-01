@@ -3,21 +3,12 @@ bases:
   - ../helmfile/defaults.yaml
   - ../helmfile/environments.yaml
   - ../helmfile/repositories.yaml
-  # - ../helmfile/templates.yaml
+  - ../helmfile/templates.yaml
 ---
-templates:
-  default: &default
-    labels:
-      managedBy: Helmfile
-    namespace: nginx
-    missingFileHandler: Error
-    values:
-    - values/nginx.yaml.gotmpl
-    - ../../envs/{{`{{ requiredEnv "ARGOCD_ENV_ENVIRONMENT" }}`}}/{{`{{ requiredEnv "ARGOCD_ENV_APP_NAME" }}`}}/values.yaml
-
 releases:
   - name: nginx
     chart: bitnami/nginx
     version: '19.0.3'
+    namespace: nginx
     secrets: []
     <<: *default
