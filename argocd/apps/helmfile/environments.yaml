@@ -1,5 +1,6 @@
 environments:
   default:
+    missingFileHandler: Info
     values:
-    - ./default/values.yaml
-    - ./default/values.hcl
+      - ./default/values.yaml
+      - ./default/values.hcl
