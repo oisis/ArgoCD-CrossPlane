@@ -1,0 +1,138 @@
+---
+apiVersion: argoproj.io/v1alpha1
+kind: ApplicationSet
+metadata:
+  name: helm-aoa
+  labels:
+    custom.label/deployed-by: app-of-apps
+    custom.label/environment: dev
+    custom.label/managedby: Argo-CD
+spec:
+  goTemplate: true
+  goTemplateOptions: ["missingkey=error"]
+  generators:
+    - matrix:
+        generators:
+          - matrix:
+              generators:
+                - git:
+                    repoURL: https://github.com/oisis/ArgoCD-CrossPlane.git
+                    revision: migration
+                    files:
+                      - path: argocd/envs/dev/apps-config.yaml
+                - list:
+                    elementsYaml: "{{ .helm_apps | toJson }}"
+          - matrix:
+              generators:
+                - git:
+                    repoURL: https://github.com/oisis/ArgoCD-CrossPlane.git
+                    revision: migration
+                    files:
+                      - path: argocd/envs/dev/apps-config.yaml
+                - list:
+                    elementsYaml: "{{ .common_params | toJson }}"
+  template:
+    metadata:
+      name: '{{.name}}'
+      labels:
+        chartName: '{{.chart}}'
+        deployedBy: 'helm-aoa'
+        environment: '{{.environment}}'
+      finalizers:
+        - resources-finalizer.argocd.argoproj.io
+    spec:
+      project: '{{.project}}'
+      sources:
+        - repoURL: https://github.com/oisis/ArgoCD-CrossPlane.git
+          targetRevision: '{{.git_revision}}'
+          ref: values
+        - chart: '{{.chart}}'
+          repoURL: '{{.repoUrl}}'
+          targetRevision: '{{.targetRevision}}'
+          helm:
+            ignoreMissingValueFiles: true
+            valueFiles:
+              - $values/argocd/apps/{{.name}}/values.yaml
+              - $values/argocd/envs/{{.environment}}/{{.name}}/values.yaml
+        - repoURL: https://github.com/oisis/ArgoCD-CrossPlane.git
+          targetRevision: '{{.git_revision}}'
+          path: argocd/apps/{{.name}}
+          directory:
+            recurse: true
+            include: '*.yaml'
+            exclude: '{values.yaml,apps-config-example.yaml,.*,values-org.yaml}'
+        - repoURL: https://github.com/oisis/ArgoCD-CrossPlane.git
+          targetRevision: '{{.git_revision}}'
+          path: argocd/envs/{{.environment}}/{{.name}}
+          directory:
+            recurse: true
+            include: '*.yaml'
+            exclude: '{values.yaml,apps-config-example.yaml,.*,values-org.yaml}'
+      destination:
+        name: '{{.environment}}'
+        namespace: '{{.namespace}}'
+      info:
+        - name: 'Applicatation url:'
+          value: 'http://{{.name}}.{{.domain}}'
+      syncPolicy:
+        managedNamespaceMetadata:
+          labels:
+            environment: '{{.environment}}'
+          annotations:
+            app_name: '{{.name}}'
+        retry:
+          limit: 5
+          backoff:
+            duration: 5s
+            factor: 2
+            maxDuration: 3m
+  templatePatch: |
+    spec:
+      syncPolicy:
+        automated:
+      {{- if hasKey . "automatedPrune" }}
+          prune: {{.automatedPrune}}
+      {{- else }}
+          prune: true
+      {{- end }}
+      {{- if hasKey . "automatedSelfHeal" }}
+          selfHeal: {{.automatedSelfHeal}}
+      {{- else }}
+          selfHeal: true
+      {{- end }}
+      {{- if hasKey . "automatedAllowEmpty" }}
+          allowEmpty: {{.automatedAllowEmpty}}
+      {{- else }}
+          allowEmpty: true
+      {{- end }}
+        syncOptions:
+      {{- if hasKey . "syncPolicyValidate" }}
+          - Validate={{.syncPolicyValidate}}
+      {{- else }}
+          - Validate=true
+      {{- end }}
+      {{- if hasKey . "syncPolicyCreateNamespace" }}
+          - CreateNamespace={{.syncPolicyCreateNamespace}}
+      {{- else }}
+          - CreateNamespace=true
+      {{- end }}
+      {{- if hasKey . "syncPolicyPrunePropagationPolicy" }}
+          - PrunePropagationPolicy={{.syncPolicyPrunePropagationPolicy}}
+      {{- else }}
+          - PrunePropagationPolicy=foreground
+      {{- end }}
+      {{- if hasKey . "syncPolicyPruneLast" }}
+          - PruneLast={{.syncPolicyPruneLast}}
+      {{- else }}
+          - PruneLast=true
+      {{- end }}
+      {{- if hasKey . "syncPolicyRespectIgnoreDifferences" }}
+          - RespectIgnoreDifferences={{.syncPolicyRespectIgnoreDifferences}}
+      {{- else }}
+          - RespectIgnoreDifferences=true
+      {{- end }}      
+      {{- if hasKey . "syncPolicyApplyOutOfSyncOnly" }}
+          - Validate={{.syncPolicyApplyOutOfSyncOnly}}
+      {{- else }}
+          - ApplyOutOfSyncOnly=true
+      {{- end }}
