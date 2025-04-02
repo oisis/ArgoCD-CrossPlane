@@ -22,6 +22,7 @@ spec:
       name: '{{.name}}'
       labels:
         app_name: '{{.name}}'
+        environment: '{{.environment}}'
     spec:
       project: '{{.project}}'
       sources:

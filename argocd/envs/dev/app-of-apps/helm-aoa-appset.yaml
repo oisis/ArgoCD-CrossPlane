@@ -35,9 +35,10 @@ spec:
     metadata:
       name: '{{.name}}'
       labels:
-        custom.label/managedby: 'Argo-CD'
-        custom.label/deployed-by: 'helm-aoa'
-        custom.label/environment: '{{.environment}}'
+        chartName: '{{.chart}}'
+        chartVersion: '{{.targetRevision}}'
+        deployedBy: 'helm-aoa'
+        environment: '{{.environment}}'
       finalizers:
         - resources-finalizer.argocd.argoproj.io
     spec:
