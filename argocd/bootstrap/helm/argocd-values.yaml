@@ -67,3 +67,30 @@ repoServer:
         name: argocd-cmp-cm
     - name: helmfile-tmp
       emptyDir: {}
+
+extraObjects:
+  - apiVersion: v1
+    kind: Secret
+    metadata:
+      name: "repo-gitub-oisis-credentials"
+      namespace: argocd
+      labels:
+        argocd.argoproj.io/secret-type: repository
+    stringData:
+      type: git
+      url: "{{ .Values.Repo_url }}"
+  - apiVersion: v1
+    kind: Secret
+    type: Opaque
+    metadata:
+      name: "argocd-{{ .Values.Environment }}-cluster"
+      namespace: argocd
+      labels:
+        argocd.argoproj.io/secret-type: cluster
+        environment: "{{ .Values.Environment }}"
+        project: argocd-crossplane
+    stringData:
+      name: "{{ .Values.Environment }}"
+      server: https://kubernetes.default.svc
+      config: |
+        {"tlsClientConfig":{"insecure": false}}
