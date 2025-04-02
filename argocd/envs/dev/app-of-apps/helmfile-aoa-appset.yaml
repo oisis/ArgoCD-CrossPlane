@@ -12,7 +12,7 @@ spec:
       generators:
       - git:
           repoURL: https://github.com/oisis/ArgoCD-CrossPlane.git
-          revision: HEAD
+          revision: migration
           files:
             - path: argocd/envs/dev/apps-config.yaml
       - list:
