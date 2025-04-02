@@ -36,7 +36,6 @@ spec:
       name: '{{.name}}'
       labels:
         chartName: '{{.chart}}'
-        chartVersion: '{{.targetRevision}}'
         deployedBy: 'helm-aoa'
         environment: '{{.environment}}'
       finalizers:
