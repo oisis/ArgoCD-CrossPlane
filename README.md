@@ -109,3 +109,9 @@ kubectl create secret generic aws-secret -n crossplane-system --from-file=creds=
 ```bash
 kubectl get secret aws-secret -o yaml > ./argocd/envs/dev/crossplane/manifests/aws-creds-secret.yaml
 ```
+
+
+## Migration:
+1. Create dir `argocd/envs/dev/app-of-apps`
+2. Create file `argocd/envs/dev/app-of-apps/app-of-apps.yaml`
+3. Move one by one AppSets from `argocd/envs/dev/argocd/manifests/*.yaml` to `argocd/envs/dev/app-of-apps/`. Sync after each move.
