@@ -39,6 +39,9 @@ configs:
 dex:
   enabled: false
 repoServer:
+  envFrom:
+    - configMapRef:
+        name: argocd-env-config
   extraContainers:
     - name: helmfile
       image: ghcr.io/helmfile/helmfile:v0.171.0

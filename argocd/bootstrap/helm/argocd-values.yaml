@@ -37,6 +37,9 @@ configs:
 dex:
   enabled: false
 repoServer:
+  envFrom:
+    - configMapRef:
+        name: argocd-env-config
   extraContainers:
     - name: helmfile
       image: ghcr.io/helmfile/helmfile:v0.171.0
@@ -94,3 +97,13 @@ extraObjects:
       server: https://kubernetes.default.svc
       config: |
         {"tlsClientConfig":{"insecure": false}}
+  - apiVersion: v1
+    kind: ConfigMap
+    metadata:
+      name: argocd-env-config
+      namespace: argocd
+      labels:
+        environment: "{{ .Values.Environment }}"
+    data:
+      ENVIRONMENT: "{{ .Values.Environment }}"
+      GIT_REPO_URL: "{{ .Values.Repo_url }}"
