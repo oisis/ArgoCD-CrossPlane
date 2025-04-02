@@ -3,18 +3,23 @@
 GREEN='\033[0;32m'
 RED='\033[0;31m'
 NC='\033[0m'
+export ENVIRONMENT="dev"
+export REPO_URL="https://github.com/oisis/ArgoCD-CrossPlane.git"
 
 printf "${GREEN}Adding ArgoCD Helm repo${NC}\n"
 helm repo add argocd https://argoproj.github.io/argo-helm
 
 printf "${GREEN} Update Helm local repos cache${NC}\n"
-helm repo update
+helm repo update argocd
 
 printf "${GREEN}Installing ArgoCD with Helm${NC}\n"
-helm install argocd argocd/argo-cd --version 7.8.18 \
+helm install argocd argocd/argo-cd \
+  --version 7.8.21 \
   -f ./argocd/bootstrap/helm/argocd-values.yaml \
   --create-namespace \
-  -n argocd
+  -n argocd \
+  --set Environment=${ENVIRONMENT} \
+  --set Repo_url=${REPO_URL} \
 
 printf "${GREEN}Applying K8s manifests to finish ArgoCD bootstrap${NC}\n"
 kubectl apply -f ./argocd/bootstrap/manifests/
