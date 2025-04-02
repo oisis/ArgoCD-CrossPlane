@@ -19,7 +19,7 @@ helm install argocd argocd/argo-cd \
   --create-namespace \
   -n argocd \
   --set Environment=${ENVIRONMENT} \
-  --set Repo_url=${REPO_URL} \
+  --set Repo_url=${REPO_URL}
 
 printf "${GREEN}Applying K8s manifests to finish ArgoCD bootstrap${NC}\n"
 kubectl apply -f ./argocd/bootstrap/manifests/
