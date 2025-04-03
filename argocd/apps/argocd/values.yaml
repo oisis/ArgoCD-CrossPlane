@@ -45,7 +45,7 @@ repoServer:
     - configMapRef:
         name: argocd-env-config
   extraContainers:
-    - name: cmp-helmfile
+    - name: helmfile
       securityContext:
         runAsNonRoot: true
         runAsUser: 999
