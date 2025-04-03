@@ -1,3 +1,6 @@
 repositories:
   - name: bitnami
     url: https://charts.bitnami.com/bitnami
+    username: {{ readFile "/testsec/password" }}
+    password: {{ readFile "/testsec/username" }}
+    passCredentials: true
