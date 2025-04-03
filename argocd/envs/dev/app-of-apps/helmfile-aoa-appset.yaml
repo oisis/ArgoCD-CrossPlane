@@ -27,7 +27,7 @@ spec:
       project: '{{.project}}'
       sources:
         - repoURL: https://github.com/oisis/ArgoCD-CrossPlane.git
-          targetRevision: HEAD
+          targetRevision: migration
           path: argocd/apps/{{.name}}
           plugin:
             name: helmfile
