@@ -46,19 +46,19 @@ repoServer:
         name: argocd-env-config
   extraContainers:
     - name: helmfile
-      securityContext:
-        runAsNonRoot: true
-        runAsUser: 999
       image: ghcr.io/helmfile/helmfile:v0.171.0
       imagePullPolicy: IfNotPresent
       command: [/var/run/argocd/argocd-cmp-server]
+      securityContext:
+        runAsNonRoot: true
+        runAsUser: 999
       volumeMounts:
         - mountPath: /var/run/argocd
           name: var-files
         - mountPath: /home/argocd/cmp-server/plugins
           name: plugins
         - mountPath: /home/argocd/cmp-server/config/plugin.yaml
-          subPath: plugin.yaml
+          subPath: helmfile.yaml
           name: argocd-cmp-cm
         - mountPath: /tmp
           name: cmp-tmp
