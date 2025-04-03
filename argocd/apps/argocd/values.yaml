@@ -63,8 +63,8 @@ repoServer:
         - mountPath: /tmp
           name: cmp-tmp
   volumes:
-    - configMap:
-      name: argocd-cmp-cm
+    - name: argocd-cmp-cm
+      configMap:
         name: argocd-cmp-cm
     - emptyDir: {}
       name: cmp-tmp
