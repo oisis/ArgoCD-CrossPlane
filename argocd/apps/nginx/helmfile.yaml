@@ -8,7 +8,7 @@ bases:
 
 releases:
   - name: nginx
-    chart: bitnami/nginx
+    chart: bitnami-aks/nginx
     version: '19.0.3'
     namespace: nginx
     values:
