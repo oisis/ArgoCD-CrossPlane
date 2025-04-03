@@ -82,9 +82,6 @@ repoServer:
           name: plugins
         - mountPath: /tmp
           name: tmp
-        - mountPath: /var/run/secrets/kubernetes.io/serviceaccount
-          name: kube-api-access-cl8q4
-          readOnly: true
   volumes:
     - name: argocd-cmp-cm
       configMap:
