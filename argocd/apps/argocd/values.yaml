@@ -48,9 +48,11 @@ repoServer:
       command: ["/var/run/argocd/argocd-cmp-server"]
       env:
         - name: HELM_CACHE_HOME
-          value: /tmp/helm/cache
+          value: /helm-working-dir
         - name: HELM_CONFIG_HOME
-          value: /tmp/helm/config
+          value: /helm-working-dir
+        - name: HELM_DATA_HOME
+          value: /helm-working-dir
         - name: HELMFILE_CACHE_HOME
           value: /tmp/helmfile/cache
         - name: HELMFILE_TEMPDIR
@@ -61,11 +63,28 @@ repoServer:
       volumeMounts:
         - mountPath: /var/run/argocd
           name: var-files
-        - mountPath: /home/argocd/cmp-server/plugins
-          name: plugins
         - mountPath: /home/argocd/cmp-server/config/plugin.yaml
           subPath: helmfile.yaml
           name: argocd-cmp-cm
+        - mountPath: /app/config/ssh
+          name: ssh-known-hosts
+        - mountPath: /app/config/tls
+          name: tls-certs
+        - mountPath: /app/config/gpg/source
+          name: gpg-keys
+        - mountPath: /app/config/gpg/keys
+          name: gpg-keyring
+        - mountPath: /app/config/reposerver/tls
+          name: argocd-repo-server-tls
+        - mountPath: /helm-working-dir
+          name: helm-working-dir
+        - mountPath: /home/argocd/cmp-server/plugins
+          name: plugins
+        - mountPath: /tmp
+          name: tmp
+        - mountPath: /var/run/secrets/kubernetes.io/serviceaccount
+          name: kube-api-access-cl8q4
+          readOnly: true
   volumes:
     - name: argocd-cmp-cm
       configMap:
