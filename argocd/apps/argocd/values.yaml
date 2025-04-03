@@ -62,6 +62,17 @@ repoServer:
           name: argocd-cmp-cm
         - mountPath: /tmp
           name: cmp-tmp
+      env:
+        - name: ECR_OCI_PASSWD
+          valueFrom:
+            secretKeyRef:
+              name: testsec
+              key: password
+        - name: ECR_OCI_USERNAME
+          valueFrom:
+            secretKeyRef:
+              name: testsec
+              key: username
   volumes:
     - name: argocd-cmp-cm
       configMap:
