@@ -29,10 +29,16 @@ configs:
             - "-c"
             - |
               if [[ -v ENV_NAME ]]; then
+                export BITNAME_AKS_PASSWORD='$(cat /testsec/password)'
+                export BITNAME_AKS_USERNAME='$(cat /testsec/username)'
                 helmfile -n "$ARGOCD_APP_NAMESPACE" -e $ENV_NAME template --include-crds -q
               elif [[ -v ARGOCD_ENV_ENV_NAME ]]; then
+                export BITNAME_AKS_PASSWORD='$(cat /testsec/password)'
+                export BITNAME_AKS_USERNAME='$(cat /testsec/username)'
                 helmfile -n "$ARGOCD_APP_NAMESPACE" -e "$ARGOCD_ENV_ENV_NAME" template --include-crds -q
               else
+                export BITNAME_AKS_PASSWORD='$(cat /testsec/password)'
+                export BITNAME_AKS_USERNAME='$(cat /testsec/username)'
                 helmfile -n "$ARGOCD_APP_NAMESPACE" template --include-crds -q
               fi
         discover:
@@ -55,6 +61,8 @@ repoServer:
       volumeMounts:
         - mountPath: /var/run/argocd
           name: var-files
+        - mountPath: /helm-working-dir
+          name: helm-working-dir
         - mountPath: /home/argocd/cmp-server/plugins
           name: plugins
         - mountPath: /home/argocd/cmp-server/config/plugin.yaml
@@ -66,16 +74,12 @@ repoServer:
           readOnly: true
           mountPath: "/testsec"
       env:
-        - name: ECR_OCI_PASSWD
-          valueFrom:
-            secretKeyRef:
-              name: testsec
-              key: password
-        - name: ECR_OCI_USERNAME
-          valueFrom:
-            secretKeyRef:
-              name: testsec
-              key: username
+        - name: HELM_CACHE_HOME
+          value: /helm-working-dir
+        - name: HELM_CONFIG_HOME
+          value: /helm-working-dir
+        - name: HELM_DATA_HOME
+          value: /helm-working-dir
   volumes:
     - name: argocd-cmp-cm
       configMap:
